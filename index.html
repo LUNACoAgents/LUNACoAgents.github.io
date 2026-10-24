@@ -1,0 +1,649 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><title>LUNA学園 投資部</title><meta name="description" content="100万円から始まる、投資と成長の学園マンガ。月城ルナと仲間たちが、好きなお店から会社をのぞいていきます。"><meta name="robots" content="noai, noimageai"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23263063'/%3E%3Cpath d='M19 6a10 10 0 1 0 7 15A8 8 0 0 1 19 6' fill='%23e8c06e'/%3E%3C/svg%3E"><meta property="og:title" content="LUNA学園 投資部"><meta property="og:description" content="100万円から始まる、投資と成長の学園マンガ。"><meta property="og:type" content="website"><meta property="og:url" content="https://lunacoagents.github.io/"><meta property="og:image" content="https://lunacoagents.github.io/img/luna_ill.jpg"><meta name="twitter:card" content="summary_large_image"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Klee+One:wght@400;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Layout: 春の夕方の部室。上は桜色の光と舞う花びら、まん中はルナのノートと学生証、いちばん下は月の出る夜空をちびキャラが歩いて帰る。 */
+:root{
+  --paper:#fff4f6; --grid:#f9e2e9; --sheet:#fffdfb; --ruled:#e6eaf6;
+  --ink:#2a2e4b; --muted:#77718b; --navy:#263063; --gold:#b48528;
+  --pink:#e0588a; --pinksoft:#fde3ec; --crimson:#b3384a;
+  --sticky:#fff1b0; --stickyink:#4b3f10;
+  --tape:rgba(224,88,138,.26); --tape2:rgba(110,140,215,.26);
+  --line:#f0d3dc; --shadow:rgba(120,50,75,.2);
+  --glow:#ffe7c9; --petal:#f8b7cb;
+  --band:#263063; --bandink:#fff4f6;
+  --night:#202657; --night2:#3a2f6e; --nightink:#f7f1ff; --nightmuted:#c9c2e6;
+  --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --hand:"Klee One","Hiragino Mincho ProN","Yu Mincho",serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#16132a; --grid:#211c38; --sheet:#221d37; --ruled:#302a4b;
+  --ink:#f4effb; --muted:#b8b0d0; --navy:#d3daff; --gold:#e8c06e;
+  --pink:#ff8db3; --pinksoft:#3a2342; --crimson:#ff8592;
+  --sticky:#4e4520; --stickyink:#fff2c0;
+  --tape:rgba(255,141,179,.3); --tape2:rgba(150,175,255,.28);
+  --line:#3a3157; --shadow:rgba(0,0,0,.5);
+  --glow:#3a2a4a; --petal:#c9849d;
+  --band:#2c275a; --bandink:#f4effb;
+  --night:#0d0b1d; --night2:#251d47; --nightink:#f7f1ff; --nightmuted:#bdb5dc;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#16132a; --grid:#211c38; --sheet:#221d37; --ruled:#302a4b;
+  --ink:#f4effb; --muted:#b8b0d0; --navy:#d3daff; --gold:#e8c06e;
+  --pink:#ff8db3; --pinksoft:#3a2342; --crimson:#ff8592;
+  --sticky:#4e4520; --stickyink:#fff2c0;
+  --tape:rgba(255,141,179,.3); --tape2:rgba(150,175,255,.28);
+  --line:#3a3157; --shadow:rgba(0,0,0,.5);
+  --glow:#3a2a4a; --petal:#c9849d;
+  --band:#2c275a; --bandink:#f4effb;
+  --night:#0d0b1d; --night2:#251d47; --nightink:#f7f1ff; --nightmuted:#bdb5dc;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+img{height:auto;max-width:100%}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);font-weight:500;font-size:16px;line-height:1.9;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--pink);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:18px}
+.en{font-family:var(--latin);font-style:italic;font-weight:600;letter-spacing:.02em}
+
+/* 共通の部品 */
+.paper{background:var(--sheet);border-radius:6px;box-shadow:0 14px 30px -18px var(--shadow),0 1px 0 var(--line);position:relative}
+.tape{position:absolute;top:-12px;left:50%;width:96px;height:24px;transform:translateX(-50%) rotate(-3deg);background:var(--tape);
+  -webkit-mask:linear-gradient(90deg,transparent 0 3px,#000 3px calc(100% - 3px),transparent calc(100% - 3px)),repeating-linear-gradient(#000 0 3px,transparent 3px 5px);
+  -webkit-mask-composite:source-over}
+.tape.b{background:var(--tape2);transform:translateX(-50%) rotate(2.5deg)}
+.mock{background:var(--band);color:var(--bandink);font-size:12.5px;text-align:center;padding:6px 16px;line-height:1.6}
+
+/* メニュー */
+.navbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:10px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 18px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font-weight:900;font-size:18px;line-height:1.2}
+.brand svg{width:26px;height:26px;color:var(--gold)}
+.brand small{display:block;font-family:var(--latin);font-style:italic;font-weight:600;font-size:12.5px;color:var(--gold);letter-spacing:.04em}
+.navbar ul{display:flex;flex-wrap:wrap;gap:2px 4px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:700}
+.navbar ul a{text-decoration:none;padding:5px 13px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s}
+.navbar ul a:hover{background:var(--pinksoft);color:var(--pink)}
+
+/* ヒーロー */
+.hero{position:relative;overflow:hidden;padding-block:40px 70px;
+  background:radial-gradient(60% 70% at 78% 30%,var(--glow),transparent 70%),radial-gradient(40% 50% at 10% 90%,var(--pinksoft),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:2}
+.hero .wrap>*{min-width:0}
+.kicker{display:flex;align-items:center;gap:10px;color:var(--gold);font-size:19px;margin:0}
+.kicker::after{content:"";height:1px;width:56px;background:var(--gold);opacity:.6}
+h1{font-weight:900;font-size:clamp(30px,5vw,56px);line-height:1.32;letter-spacing:.01em;margin:12px 0 20px;color:var(--navy);text-wrap:balance}
+h1 .nw{white-space:nowrap}
+h1 .circ{position:relative;display:inline-block;color:var(--pink)}
+h1 .circ svg{position:absolute;left:-14%;top:-16%;width:128%;height:132%;overflow:visible;pointer-events:none}
+h1 .circ path{fill:none;stroke:var(--pink);stroke-width:2.6;stroke-linecap:round;opacity:.75}
+.lead{color:var(--muted);max-width:29em;margin:0 0 30px;font-size:16.5px}
+.cta{display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15.5px;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:16px;height:16px}
+.btn.primary{background:var(--pink);color:#fff;box-shadow:0 8px 20px -8px var(--pink)}
+.btn.ghost{background:var(--sheet);color:var(--navy);box-shadow:inset 0 0 0 2px var(--navy)}
+.hand-note{font-family:var(--hand);color:var(--muted);font-size:15px;margin:16px 0 0;display:flex;align-items:center;gap:8px}
+.hand-note svg{width:28px;height:20px;color:var(--pink);flex:none}
+
+.photos{position:relative;justify-self:center;width:min(100%,410px);aspect-ratio:4/4.9}
+.photos .pol{position:absolute;padding:12px 12px 16px;margin:0}
+.photos .pol img{display:block;width:100%;border-radius:2px}
+.pol.back{width:62%;left:-6%;top:6%;transform:rotate(-8deg)}
+.pol.front{width:78%;right:0;top:0;transform:rotate(3deg)}
+.pol .cap{font-family:var(--hand);font-weight:600;font-size:17px;line-height:1.5;text-align:center;margin-top:8px;color:var(--navy)}
+.pol .cap b{color:var(--pink);font-weight:600}
+.pol.back .cap{font-size:13px;color:var(--muted);font-weight:400}
+.seal{position:absolute;left:2%;bottom:2%;width:118px;height:118px;color:var(--navy)}
+.seal .ring{transform-origin:60px 60px}
+.seal text{font-family:var(--latin);font-style:italic;font-weight:600;font-size:12.6px;letter-spacing:.14em;fill:currentColor}
+.seal circle.bg{fill:var(--sheet)}
+.seal .m{color:var(--gold)}
+.sticker{position:absolute;right:-10px;bottom:6%;width:70px;height:70px;transform:rotate(10deg);color:var(--navy);
+  background:var(--sheet);border-radius:50%;padding:6px;box-shadow:0 6px 14px -8px var(--shadow)}
+
+.petals{position:absolute;inset:0;pointer-events:none;z-index:1}
+.petals canvas{position:absolute;inset:0;width:100%;height:100%}
+@media (prefers-reduced-motion:no-preference){
+  .seal .ring{animation:spin 26s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .pol.front{animation:sway 7s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(3deg)}50%{transform:rotate(1.4deg)}}
+}
+@media (prefers-reduced-motion:reduce){.petals{display:none}}
+
+/* 流れるリボン */
+.ribbon{background:var(--band);color:var(--bandink);overflow:hidden;white-space:nowrap;padding-block:10px;transform:rotate(-1.2deg);margin-top:-22px;position:relative;z-index:3;box-shadow:0 10px 24px -14px var(--shadow)}
+.ribbon .track{display:inline-flex;gap:28px;align-items:center;font-size:15px;font-weight:700;letter-spacing:.06em;padding-left:28px}
+.ribbon .track span{display:inline-flex;align-items:center;gap:28px}
+.ribbon .track .en{font-size:18px;font-weight:600;color:var(--glow)}
+.ribbon svg{width:14px;height:14px;color:var(--gold)}
+@media (prefers-reduced-motion:no-preference){.ribbon .track{animation:marq 38s linear infinite}@keyframes marq{to{transform:translateX(-50%)}}}
+
+/* セクション見出し */
+section{padding-block:64px 8px}
+.sh{display:flex;flex-direction:column;gap:2px;margin-bottom:30px}
+.sh .en{color:var(--gold);font-size:20px;line-height:1.2}
+h2{font-weight:900;font-size:clamp(25px,3.4vw,34px);line-height:1.3;margin:0;color:var(--navy);display:flex;align-items:center;gap:12px;text-wrap:balance}
+h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 14px)}
+.sh p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
+
+/* はじめての人へ：ふせん */
+.start{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.start a{position:relative;background:var(--sticky);color:var(--stickyink);padding:26px 22px 22px;text-decoration:none;display:flex;flex-direction:column;gap:8px;
+  box-shadow:0 14px 22px -16px var(--shadow);border-radius:2px 2px 18px 2px;transition:transform .2s}
+.start a::before{content:"";position:absolute;top:-9px;left:22px;width:70px;height:18px;background:var(--tape2);transform:rotate(-4deg)}
+.start a:nth-child(1){transform:rotate(-1.4deg)}
+.start a:nth-child(2){transform:rotate(1deg);background:var(--pinksoft);color:var(--ink)}
+.start a:nth-child(2)::before{background:var(--tape)}
+.start a:nth-child(3){transform:rotate(-.6deg)}
+.start a:hover{transform:rotate(0) translateY(-4px)}
+.start strong{font-family:var(--hand);font-weight:600;font-size:22px;line-height:1.4}
+.start span{font-size:14.5px;line-height:1.8}
+.start .go{font-family:var(--hand);font-size:14px;margin-top:auto;opacity:.75}
+
+/* マンガ */
+.manga{display:grid;grid-template-columns:.95fr 1.05fr;gap:30px;align-items:start}
+.manga>*{min-width:0}
+.feature{padding:14px 14px 22px;transform:rotate(-1deg);text-decoration:none;display:block;transition:transform .2s}
+.feature:hover{transform:rotate(0) translateY(-3px)}
+.feature img{display:block;width:100%;border-radius:3px}
+.feature .in{padding:14px 8px 0;display:flex;flex-direction:column;gap:4px}
+.feature .no{color:var(--gold);font-size:19px;line-height:1.2}
+.feature h3{margin:0;font-size:24px;font-weight:900;color:var(--navy);line-height:1.4}
+.feature p{margin:0;color:var(--muted);font-size:14.5px}
+.feature .read{align-self:flex-start;margin-top:8px;background:var(--pink);color:#fff;font-weight:700;font-size:14px;padding:7px 18px;border-radius:999px}
+.toc{padding:28px 28px 22px}
+.toc .ch{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:0}
+.toc .ch .en{color:var(--gold);font-size:19px}
+.toc h3{margin:0;font-size:21px;font-weight:900;color:var(--navy)}
+.toc .sub{color:var(--muted);font-size:14px;margin:4px 0 16px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc li{border-top:1px dashed var(--line)}
+.toc li:last-child{border-bottom:1px dashed var(--line)}
+.toc .row{display:grid;grid-template-columns:3.2em 1fr auto;align-items:center;gap:12px;padding:10px 6px;text-decoration:none;border-radius:10px}
+.toc a.row:hover{background:var(--pinksoft)}
+.toc .n{font-family:var(--latin);font-style:italic;font-weight:600;font-size:26px;line-height:1;color:var(--gold);font-variant-numeric:tabular-nums}
+.toc .t{font-weight:700;font-size:15.5px;line-height:1.5;min-width:0}
+.toc .t small{display:block;font-weight:500;font-size:12.5px;color:var(--muted)}
+.chip{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;white-space:nowrap;background:var(--grid);color:var(--muted)}
+.chip.go{background:var(--pink);color:#fff}
+.chip.new{background:var(--band);color:var(--bandink)}
+.toc .foot{font-family:var(--hand);color:var(--muted);font-size:14px;margin:14px 0 0}
+
+/* 部員名簿：学生証 */
+.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.idcard{padding:0 0 20px;overflow:hidden;display:flex;flex-direction:column;border-radius:16px}
+.idcard:nth-child(1){transform:rotate(-.8deg)} .idcard:nth-child(2){transform:rotate(.6deg)} .idcard:nth-child(3){transform:rotate(-.4deg)}
+.idhead{background:var(--band);color:var(--bandink);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 16px;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.idhead span{display:flex;align-items:center;gap:7px}
+.idhead svg{width:16px;height:16px;color:var(--gold)}
+.idhead .en{font-size:14px;letter-spacing:.04em;color:var(--gold);font-weight:600}
+.idbody{display:grid;grid-template-columns:42% 1fr;gap:14px;padding:16px 16px 4px;position:relative}
+.idbody>*{min-width:0}
+.idbody img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:8px;display:block;box-shadow:0 0 0 3px var(--sheet),0 0 0 4.5px var(--line)}
+.nm{font-weight:900;font-size:21px;line-height:1.3;color:var(--navy)}
+.nm small{display:block;font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:.05em}
+.prof{margin:8px 0 0;display:flex;flex-direction:column;gap:3px;font-size:12.5px;line-height:1.55}
+.prof div{display:flex;flex-direction:column}
+.prof dt{color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.06em}
+.prof dd{margin:0}
+.ph{position:relative;align-self:start}
+.hanko{position:absolute;right:-10px;bottom:-12px;width:46px;height:46px;border:2px solid var(--crimson);color:var(--crimson);border-radius:50%;
+  display:grid;place-items:center;font-size:11px;font-weight:900;line-height:1.15;text-align:center;transform:rotate(-14deg);opacity:.78;background:color-mix(in srgb,var(--sheet) 60%,transparent)}
+.idcard q{display:block;margin:14px 16px 6px;font-family:var(--hand);font-weight:600;font-size:17px;line-height:1.6;color:var(--pink);quotes:"「" "」"}
+.idcard p{margin:0 16px;font-size:14px;line-height:1.9}
+.soon{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.soon div{border:2px dashed var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13.5px;background:color-mix(in srgb,var(--sheet) 70%,transparent)}
+.soon b{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:50%;background:var(--grid);font-size:20px;color:var(--navy)}
+.soon .en{font-size:16px;color:var(--gold);display:block;line-height:1.2}
+
+/* ルナのまなびノート */
+.notebook{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+.page{padding:24px 24px 22px 50px;min-width:0;
+  background-image:linear-gradient(90deg,transparent 32px,var(--pink) 32px,var(--pink) 33.5px,transparent 33.5px),repeating-linear-gradient(var(--sheet) 0 33px,var(--ruled) 33px 34px);
+  background-color:var(--sheet)}
+.page:nth-child(1){transform:rotate(-.6deg)} .page:nth-child(2){transform:rotate(.5deg)}
+.page .date{font-family:var(--hand);font-size:14px;color:var(--muted)}
+.page h3{margin:2px 0 4px;font-family:var(--hand);font-weight:600;font-size:31px;line-height:1.3;color:var(--navy)}
+.page h3 small{font-size:14px;color:var(--muted);margin-left:8px;font-weight:400}
+.memo{font-family:var(--hand);font-size:18px;line-height:34px;margin:0 0 10px}
+.memo u{text-decoration:none;background:linear-gradient(transparent 58%,var(--pinksoft) 58%);color:var(--pink)}
+.fusen{background:var(--sticky);color:var(--stickyink);padding:13px 15px 14px;border-radius:2px;font-size:14px;line-height:1.8;position:relative;box-shadow:0 8px 16px -12px var(--shadow);margin:8px 0 12px}
+.fusen::before{content:"";position:absolute;top:-8px;left:18px;width:56px;height:16px;background:var(--tape2);transform:rotate(-4deg)}
+.fusen .who{display:block;font-weight:700;font-size:12px;margin-bottom:2px}
+.fusen.t{background:var(--pinksoft);color:var(--ink)}
+.doodle{display:flex;justify-content:flex-end;margin-top:-6px}
+.doodle svg{width:48px;height:48px;color:var(--muted)}
+
+/* はじめに：おてがみ */
+.letter{padding:30px 30px 28px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+  background-image:linear-gradient(135deg,var(--pinksoft) 0 10px,transparent 10px),linear-gradient(-135deg,var(--pinksoft) 0 10px,transparent 10px);
+  background-color:var(--sheet)}
+.wax{width:58px;height:58px;border-radius:50%;background:var(--crimson);display:grid;place-items:center;color:var(--sheet);box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--crimson) 70%,#000 20%)}
+.wax svg{width:26px;height:26px}
+.letter h3{margin:0 0 6px;font-size:18px;color:var(--navy)}
+.letter p{margin:0;color:var(--muted);font-size:15px;max-width:46em}
+.letter .sign{font-family:var(--hand);color:var(--navy);margin-top:12px;font-size:16px}
+
+/* 夜空のフッター */
+.night{margin-top:90px;position:relative;color:var(--nightink);
+  background:radial-gradient(1.5px 1.5px at 12% 30%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 34% 62%,#fff 50%,transparent 51%),
+  radial-gradient(2px 2px at 58% 24%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 72% 70%,#fff 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 88% 40%,#fff 50%,transparent 51%),radial-gradient(1px 1px at 46% 84%,#fff 50%,transparent 51%),
+  radial-gradient(1px 1px at 22% 78%,#fff 50%,transparent 51%),linear-gradient(var(--night2),var(--night));padding-block:64px 34px}
+.night::before{content:"";position:absolute;left:0;right:0;top:-40px;height:42px;background:var(--night2);
+  -webkit-mask:radial-gradient(60px 42px at 60px 42px,#000 98%,transparent) 0 0/120px 42px repeat-x;mask:radial-gradient(60px 42px at 60px 42px,#000 98%,transparent) 0 0/120px 42px repeat-x}
+.moon{position:absolute;right:8%;top:30px;width:64px;height:64px;color:#ffe7a6;filter:drop-shadow(0 0 18px rgba(255,231,166,.55))}
+.lane{position:relative;height:150px;overflow:hidden;margin-top:-118px}
+.parade{position:absolute;bottom:0;left:0;display:flex;align-items:flex-end;gap:14px;flex-direction:row-reverse;transform:translateX(-110%)}
+.parade img{display:block;height:120px;width:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.parade img.usagi{height:68px;margin-bottom:4px}
+.parade .c{transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){
+  .parade{animation:walk 24s linear infinite}
+  .parade .c{animation:bob .55s ease-in-out infinite alternate}
+  .parade .c:nth-child(2){animation-delay:-.2s} .parade .c:nth-child(3){animation-delay:-.35s} .parade .c:nth-child(4){animation-delay:-.1s}
+  .parade .c.hop{animation:hop .7s ease-in-out infinite}
+  @keyframes walk{from{left:0;transform:translateX(-110%)}to{left:100%;transform:translateX(10%)}}
+  @keyframes bob{from{transform:translateY(0) rotate(-1.5deg)}to{transform:translateY(-6px) rotate(1.5deg)}}
+  @keyframes hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-30px)}}
+}
+@media (prefers-reduced-motion:reduce){.parade{left:16px;transform:none}}
+.night .bye{text-align:center;margin:26px 0 30px}
+.night .bye .en{display:block;font-size:30px;color:#ffe7a6;line-height:1.2}
+.night .bye p{margin:6px 0 0;font-family:var(--hand);font-size:16px;color:var(--nightmuted)}
+.night footer{border-top:1px solid rgba(255,255,255,.14);padding-top:18px;color:var(--nightmuted);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:1fr;gap:20px}
+  .photos{order:-1;width:min(100%,340px)}
+  .manga{grid-template-columns:1fr}
+  .feature{max-width:460px}
+  .cast{grid-template-columns:1fr 1fr}
+  .notebook,.start,.soon{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .cast{grid-template-columns:1fr}
+  .hero{padding-block:22px 60px}
+  .toc{padding:24px 16px 18px}
+  .toc .row{grid-template-columns:2.6em 1fr auto;gap:8px}
+  .page{padding-right:20px}
+  .letter{grid-template-columns:1fr;padding:26px 20px 24px}
+  .lane{height:118px;margin-top:-100px}
+  .parade img{height:92px} .parade img.usagi{height:54px}
+  .seal{width:96px;height:96px}
+  .navbar ul{font-size:13px}
+  .navbar ul a{padding:4px 9px}
+}
+
+/* キラキラ星と音楽ボタン */
+#stars{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:15}
+.music{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;
+  display:inline-flex;align-items:center;gap:8px;padding:10px 16px 10px 12px;border:0;border-radius:999px;cursor:pointer;
+  font:700 14px/1.2 var(--display);background:var(--band);color:var(--bandink);box-shadow:0 10px 22px -10px var(--shadow)}
+.music .disc{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--band);font-size:16px}
+.music small{display:block;font-weight:500;font-size:11px;opacity:.75}
+.music[aria-pressed="true"] .disc{animation:spin 4s linear infinite}
+@media (prefers-reduced-motion:reduce){.music[aria-pressed="true"] .disc{animation:none}}
+.seasonpick{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;margin-left:6px}
+.seasonpick button{font:inherit;font-size:12px;border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:1px 9px;cursor:pointer;opacity:.8}
+.seasonpick button[aria-pressed="true"]{background:var(--gold);color:var(--band);border-color:var(--gold);opacity:1}
+.night footer{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+.schooldoor{margin-top:22px;display:grid;grid-template-columns:minmax(0,200px) 1fr auto;align-items:center;gap:18px 22px;padding:14px;border-radius:18px;background:var(--band);color:var(--bandink);text-decoration:none;box-shadow:0 12px 26px -16px var(--shadow);transition:transform .2s}
+.schooldoor:hover{transform:translateY(-2px)}
+.schooldoor img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px}
+.schooldoor .en{display:block;font-family:var(--latin);font-style:italic;color:var(--gold);font-size:17px;line-height:1.2}
+.schooldoor b{display:block;font-family:var(--display);font-size:19px;margin:2px 0 4px}
+.schooldoor small{display:block;font-size:13px;opacity:.82;line-height:1.7}
+.schooldoor .go{font-weight:700;font-size:14px;white-space:nowrap;padding:9px 16px;border-radius:999px;background:var(--gold);color:var(--band)}
+@media (max-width:640px){.schooldoor{grid-template-columns:1fr}.schooldoor .go{justify-self:start}}
+img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="moon" viewBox="0 0 24 24"><path fill="currentColor" d="M14.5 2.5A9.5 9.5 0 1 0 21.5 17 7.5 7.5 0 0 1 14.5 2.5Z"/></symbol>
+    <symbol id="usa" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 26c-4-8-5-20 0-21s6 11 5 19"/><path d="M38 24c1-8 4-19 9-17s0 13-5 20"/>
+        <path d="M14 42c0-10 8-17 18-17s18 7 18 17-8 16-18 16-18-6-18-16Z"/>
+      </g>
+      <circle cx="26" cy="40" r="2" fill="currentColor"/><circle cx="38" cy="40" r="2" fill="currentColor"/>
+      <path d="M30 45q2 2 4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M26 54l6-4 6 4-6 3z" fill="#e0588a"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="squig" viewBox="0 0 28 20"><path d="M2 14c5-9 9 5 14-3 3-5 6-5 9-2m0 0-1-5m1 5-5 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+
+<nav class="navbar" aria-label="サイト内メニュー">
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#moon"/></svg><span>LUNA学園 投資部<small>Luna Gakuen Investment Club</small></span></a>
+    <ul>
+      <li><a href="#manga">マンガ</a></li>
+      <li><a href="#cast">部員名簿</a></li>
+      <li><a href="#notebook">まなびノート</a></li>
+      <li><a href="#about">はじめに</a></li>
+      <li><a href="school.html">学園サイト</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="petals" aria-hidden="true"><canvas id="season"></canvas></div>
+  <div class="wrap">
+    <div>
+      <p class="kicker en">After school, in the club room</p>
+      <h1><span class="nw">好きなお店の、</span><br><span class="nw"><span class="circ">理由<svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M60 6C30 2 4 14 5 32s34 26 62 22 32-20 26-34C88 8 70 3 48 5"/></svg></span>を知りたくて。</span></h1>
+      <p class="lead">放課後の投資部室で、月城ルナと仲間たちが「なんでだろう？」をひとつずつ調べていくマンガです。投資を知らなくても大丈夫。ルナもゼロから始めています。</p>
+      <div class="cta">
+        <a class="btn primary" href="ep000.html">第0話から読む<svg><use href="#arrow"/></svg></a>
+        <a class="btn ghost" href="#cast">部員に会う</a>
+      </div>
+      <p class="hand-note"><svg><use href="#squig"/></svg>1話は4〜8ページ。すきま時間に読めます。</p>
+    </div>
+    <div class="photos">
+      <figure class="pol back paper">
+        <img src="img/cover_ep000.jpg" alt="投資部の扉の前に立つルナ。第0話のとびら絵" width="640" height="640">
+        <figcaption class="cap">第0話・はじまりの日</figcaption>
+      </figure>
+      <figure class="pol front paper">
+        <span class="tape"></span>
+        <img src="img/luna_ill.jpg" alt="うさぎのキーホルダーを手に、ほおづえをついて笑う月城ルナ" width="900" height="1200">
+        <figcaption class="cap">投資って……<br>ちょっと<b>面白そうかも。</b></figcaption>
+      </figure>
+      <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="bg" cx="60" cy="60" r="56"/>
+        <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="1"/>
+        <defs><path id="ringpath" d="M60 60m-42 0a42 42 0 1 1 84 0a42 42 0 1 1-84 0"/></defs>
+        <g class="ring"><text><textPath href="#ringpath">LUNA GAKUEN · INVESTMENT CLUB · SINCE SPRING ·</textPath></text></g>
+        <use class="m" href="#moon" x="44" y="44" width="32" height="32"/>
+      </svg>
+      <svg class="sticker" aria-hidden="true"><use href="#usa"/></svg>
+    </div>
+  </div>
+</header>
+
+<div class="ribbon" aria-hidden="true">
+  <div class="track">
+    <span><b class="en">Luna Gakuen Investment Club</b><svg><use href="#moon"/></svg>放課後の投資部へようこそ<svg><use href="#moon"/></svg>好きなお店から、会社をのぞいてみよう<svg><use href="#moon"/></svg></span>
+    <span><b class="en">Luna Gakuen Investment Club</b><svg><use href="#moon"/></svg>放課後の投資部へようこそ<svg><use href="#moon"/></svg>好きなお店から、会社をのぞいてみよう<svg><use href="#moon"/></svg></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <section aria-labelledby="h-start">
+    <div class="sh"><span class="en">For first-time readers</span><h2 id="h-start">はじめての人へ</h2><p>Xから来てくれた人も、ここから追いつけます</p></div>
+    <div class="start">
+      <a href="ep000.html"><strong>まずは第0話から</strong><span>ルナが投資部の扉をノックするところから、物語が始まります。</span><span class="go">読みにいく →</span></a>
+      <a href="#manga"><strong>最新話を読む</strong><span>第0話「投資部へようこそ。」。新しい話は、Xで配信した日にここにも載せていきます。</span><span class="go">一覧を見る →</span></a>
+      <a href="#notebook"><strong>言葉でつまずいたら</strong><span>ルナのまなびノートをのぞいてみてね。しおりに教わったことが書いてあります。</span><span class="go">ノートを開く →</span></a>
+    </div>
+  </section>
+
+  <section id="manga" aria-labelledby="h-manga">
+    <div class="sh"><span class="en">Manga</span><h2 id="h-manga">マンガ</h2><p>章ごとにまとめています</p></div>
+    <div class="manga">
+      <a class="feature paper" href="ep000.html">
+        <span class="tape b"></span>
+        <img src="img/cover_ep000.jpg" alt="第0話のとびら絵。投資部の扉の前で、入部届を持つルナ" width="640" height="640" loading="lazy">
+        <div class="in">
+          <span class="no en">Episode 0</span>
+          <h3>第0話「投資部へようこそ。」</h3>
+          <p>100万円から始まる、投資と成長の物語。</p>
+          <span class="read">読む</span>
+        </div>
+      </a>
+      <div class="toc paper">
+        <span class="tape"></span>
+        <p class="ch"><span class="en">Chapter 1</span></p>
+        <h3>第1章　会社を見る</h3>
+        <p class="sub">「好き」から始めて、会社と数字をのぞいてみる章</p>
+        <ol>
+          <li><a class="row" href="ep000.html"><span class="n">00</span><span class="t">投資部へようこそ。</span><span class="chip go">読めます</span></a></li>
+          <li><div class="row"><span class="n">01</span><span class="t">好きからはじまる</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">02</span><span class="t">お店のむこうがわ</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">03</span><span class="t">売上の、その先</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">04</span><span class="t">売上は増えたのに？</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">05</span><span class="t">理由は、どこに</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">06</span><span class="t">一回だけ、ずっと</span><span class="chip">準備中</span></div></li>
+          <li><div class="row"><span class="n">07</span><span class="t">いっしょに帰ろう</span><span class="chip">準備中</span></div></li>
+        </ol>
+        <p class="foot">ページはこれから順番にのせていくね。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cast" aria-labelledby="h-cast">
+    <div class="sh"><span class="en">Club members</span><h2 id="h-cast">部員名簿</h2><p>マンガに登場した順に増えていきます</p></div>
+    <div class="cast">
+      <article class="idcard paper">
+        <div class="idhead"><span><svg><use href="#moon"/></svg>LUNA学園 学生証</span><span class="en">Student</span></div>
+        <div class="idbody">
+          <div class="ph"><img src="img/luna_manga.jpg" alt="ノートにメモしながら、横を向いて楽しそうに話す月城ルナ" loading="lazy" width="480" height="600"><span class="hanko">投資部<br>部員</span></div>
+          <div>
+            <div class="nm">月城ルナ<small>つきしろ るな</small></div>
+            <dl class="prof">
+              <div><dt>学年</dt><dd>高校2年生・17歳</dd></div>
+              <div><dt>身長</dt><dd>158cm</dd></div>
+              <div><dt>好きなもの</dt><dd>白いうさぎのぬいぐるみ</dd></div>
+              <div><dt>目印</dt><dd>金色の三日月ヘアピン</dd></div>
+            </dl>
+          </div>
+        </div>
+        <q>安くて伸びる会社……最高じゃん♡</q>
+        <p>この物語の主人公。好奇心いっぱいで、気になったらすぐ動いてしまうタイプ。うれしい時も驚いた時も、ぜんぶ顔に出ちゃう。投資のことはまだほとんど知らないけれど、「いい会社を、できるだけ安く買いたい！」という気持ちから、ノートを片手に一歩ずつ勉強中。ふだんはニコニコしているのに、資料を読むときだけ急に真剣な顔になる。</p>
+      </article>
+      <article class="idcard paper">
+        <div class="idhead"><span><svg><use href="#moon"/></svg>LUNA学園 学生証</span><span class="en">Student</span></div>
+        <div class="idbody">
+          <div class="ph"><img src="img/shiori_manga.jpg" alt="メガネをかけて資料を見る白石しおり" loading="lazy" width="480" height="600"><span class="hanko">投資部<br>部員</span></div>
+          <div>
+            <div class="nm">白石しおり<small>しらいし しおり</small></div>
+            <dl class="prof">
+              <div><dt>学年</dt><dd>高校2年生・17歳</dd></div>
+              <div><dt>身長</dt><dd>161cm</dd></div>
+              <div><dt>得意なこと</dt><dd>決算や会社の数字を読むこと</dd></div>
+              <div><dt>目印</dt><dd>金色の三日月イヤリング</dd></div>
+            </dl>
+          </div>
+        </div>
+        <q>まずは、数字を見ていこうか。</q>
+        <p>冷静で几帳面な、投資部の分析担当。ルナと同じクラス。口数は多くないけれど、困っている人をさりげなく助けてくれる優しい子。ふだんはメガネをかけていないのに、決算を読むときだけ細いメガネをかける「分析モード」になる。大切にしている言葉は「株価より先に、会社を見る。」</p>
+      </article>
+      <article class="idcard paper">
+        <div class="idhead"><span><svg><use href="#moon"/></svg>LUNA学園 教職員証</span><span class="en">Teacher</span></div>
+        <div class="idbody">
+          <div class="ph"><img src="img/serina_manga.jpg" alt="部員を見守って笑う神崎セリナ先生" loading="lazy" width="480" height="600"><span class="hanko">投資部<br>顧問</span></div>
+          <div>
+            <div class="nm">セリナ先生<small>神崎星莉奈（かんざき せりな）</small></div>
+            <dl class="prof">
+              <div><dt>担当</dt><dd>投資部顧問・数学</dd></div>
+              <div><dt>年齢</dt><dd>29歳</dd></div>
+              <div><dt>よくいる場所</dt><dd>部室（コーヒーを片手に）</dd></div>
+              <div><dt>目印</dt><dd>金色の三日月ネックレス</dd></div>
+            </dl>
+          </div>
+        </div>
+        <q>待ってたわ、月城さん。</q>
+        <p>投資部を見守るおだやかな先生で、実は投資部のOG。答えをすぐには教えず、「どうしてそう思ったの？」と問いかけて、部員が自分で考えるのを待ってくれる。大切にしている言葉は「当てることより、退場しないこと。」</p>
+      </article>
+    </div>
+    <div class="soon">
+      <div><b>？</b><span><span class="en">Coming soon</span>新しい部員は、マンガに登場したら公開します</span></div>
+      <div><b>？</b><span><span class="en">Coming soon</span>だれが入部するかは、マンガで確かめてね</span></div>
+      <div><b>？</b><span><span class="en">Coming soon</span>学生証を、ただいま準備中です</span></div>
+    </div>
+    <a class="schooldoor" href="school.html">
+      <img src="school/hero.jpg" alt="緑に囲まれたLUNA学園の校舎" loading="lazy">
+      <span><span class="en">Luna Academy</span><b>LUNA学園 公式サイト</b><small>部員たちが通う学校のサイトです。キャンパスの写真や、学園のお知らせはこちらから。</small></span>
+      <span class="go">学園サイトへ →</span>
+    </a>
+  </section>
+
+  <section id="notebook" aria-labelledby="h-notebook">
+    <div class="sh"><span class="en">Luna's study notes</span><h2 id="h-notebook">ルナのまなびノート</h2><p>しおりに教わったことを、ルナが書きとめたノート</p></div>
+    <div class="notebook">
+      <article class="page paper">
+        <div class="date">第004話・第005話より</div>
+        <h3>増収減益<small>ぞうしゅうげんえき</small></h3>
+        <p class="memo">売上は<u>増えた</u>のに、利益は<u>減った</u>……<br>これってダメってこと？</p>
+        <div class="fusen"><span class="who">しおりのふせん</span>売上が増えて、利益が減ること。ただ、理由によって意味が変わるの。たとえば新しいお店を出すために、費用が先に増えていることもあるよ。</div>
+        <p class="memo">→ 数字だけじゃなく、<u>理由</u>を確かめる！</p>
+        <div class="doodle"><svg aria-hidden="true"><use href="#usa"/></svg></div>
+      </article>
+      <article class="page paper">
+        <div class="date">第8話ごろ登場予定</div>
+        <h3>PER<small>ピーイーアール／株価収益率</small></h3>
+        <p class="memo">ぴー、いー、あーる……？<br>なんの暗号！？</p>
+        <div class="fusen"><span class="who">しおりのふせん</span>会社まるごとの値段（時価総額）が、1年間の純利益の何倍になっているかを表す数字だよ。「株価 ÷ 1株あたりの純利益」で計算しても同じ答えになるの。ただ、高いか低いかだけでは決められなくて、その会社がこれからどうなりそうかと一緒に見るものなんだ。</div>
+        <div class="fusen t"><span class="who">セリナ先生のひとこと</span>同じ数字でも、見る人によって受け取り方が違う。そこが面白いところだね。</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="h-about">
+    <div class="sh"><span class="en">About</span><h2 id="h-about">はじめに</h2></div>
+    <div class="letter paper">
+      <span class="wax" aria-hidden="true"><svg><use href="#moon"/></svg></span>
+      <div>
+        <h3>このサイトについて</h3>
+        <p>LUNA学園 投資部は、投資に興味がなかった人にも「会社を知るのって面白いかも」と感じてもらうための創作マンガです。登場する学校・人物・会社はすべて架空のものです。作中に出てくる株や会社への投資をすすめるものではありません。実際に投資をするときは、ご自身でよく調べて決めてください。</p>
+        <p class="sign">LUNA学園 投資部より</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="night">
+  <svg class="moon" aria-hidden="true"><use href="#moon"/></svg>
+  <div class="lane" aria-hidden="true">
+    <div class="parade">
+      <img class="c hop usagi" src="img/chibi_usagi.png" alt="" width="139" height="200">
+      <img class="c" src="img/chibi_luna.png" alt="" width="220" height="300">
+      <img class="c" src="img/chibi_shiori.png" alt="" width="144" height="300">
+      <img class="c" src="img/chibi_serina.png" alt="" width="177" height="300">
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="bye"><span class="en">See you after school</span><p>今日の部活はここまで。また放課後にね。</p></div>
+    <footer>
+      <span>© LUNA学園 投資部　画像・文章の無断転載、AIの学習への利用はご遠慮ください。</span>
+      <span><a href="https://x.com/LUNA_InvestClub" style="color:inherit">X：@LUNA_InvestClub</a>　<a href="https://www.threads.com/@luna_investclub" style="color:inherit">Threads：@luna_investclub</a></span>
+      <a href="school.html" style="color:inherit">LUNA学園 公式サイト（物語の中の学校）→</a>
+    </footer>
+  </div>
+</div>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<button class="music" id="music" type="button" aria-pressed="false"><span class="disc" aria-hidden="true">♪</span><span id="musicLabel">ほしのノート</span></button>
+
+<script>
+(function(){
+  /* ── キラキラ星：曲を流している間だけ、金色の星がゆっくり降ってくる ── */
+  var cv=document.getElementById('stars'),ctx=cv.getContext('2d');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,dpr=1,stars=[],extra=false,raf=0;
+  function gold(){return getComputedStyle(document.documentElement).getPropertyValue('--gold').trim()||'#e8c06e'}
+  var col=gold();
+  function size(){dpr=Math.min(2,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function target(){var n=Math.round(Math.min(22,Math.max(10,W/55)));return extra?n:0}
+  function make(top){return{x:Math.random()*W,y:top?-20-Math.random()*H*.3:Math.random()*H,r:2.5+Math.random()*4.5,
+    v:.25+Math.random()*.55,ph:Math.random()*6.28,tw:.02+Math.random()*.04,sw:Math.random()*6.28,a:.55+Math.random()*.45}}
+  function star(x,y,r,a){
+    ctx.globalAlpha=a;ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=r*2.2;
+    ctx.beginPath();ctx.moveTo(x,y-r*2);ctx.quadraticCurveTo(x,y,x+r*2,y);ctx.quadraticCurveTo(x,y,x,y+r*2);
+    ctx.quadraticCurveTo(x,y,x-r*2,y);ctx.quadraticCurveTo(x,y,x,y-r*2);ctx.fill()}
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    while(stars.length<target())stars.push(make(true));
+    for(var i=stars.length-1;i>=0;i--){var s=stars[i];
+      s.y+=s.v;s.sw+=.01;s.ph+=s.tw;var x=s.x+Math.sin(s.sw)*14;
+      var tw=.55+.45*Math.sin(s.ph);star(x,s.y,s.r*(.8+.2*tw),s.a*tw);
+      if(s.y>H+20){if(stars.length>target())stars.splice(i,1);else stars[i]=make(true)}}
+    ctx.globalAlpha=1;ctx.shadowBlur=0;raf=requestAnimationFrame(tick)}
+  if(!reduce){size();raf=requestAnimationFrame(tick);
+    addEventListener('resize',size);
+    document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else raf=requestAnimationFrame(tick)});
+    try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){col=gold()})}catch(e){}}
+
+  /* ── 音楽：ボタンを押したら audio/bgm.mp3 を流す（今はレイが作った仮BGM。公開時はこのファイルをオリジナル曲に差し替えるだけ） ── */
+  var btn=document.getElementById('music'),label=document.getElementById('musicLabel');
+  var bgm=new Audio('audio/bgm.mp3');bgm.loop=true;bgm.preload='none';bgm.volume=.6;var playing=false;
+  function start(){var p=bgm.play();playing=true;extra=true;btn.setAttribute('aria-pressed','true');label.textContent='ほしのノート';
+    if(p&&p.catch)p.catch(function(){stop();label.textContent='この画面では鳴らせません'})}
+  function stop(){bgm.pause();playing=false;extra=false;btn.setAttribute('aria-pressed','false');label.textContent='ほしのノート'}
+  btn.addEventListener('click',function(){playing?stop():start()});
+})();
+
+/* ── 季節の演出（トップの絵のまわりだけ）：春＝桜、夏＝蛍と花火、秋＝紅葉、冬＝雪、1/1〜1/3＝お正月の花火 ── */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var cv=document.getElementById('season');if(!cv)return;var ctx=cv.getContext('2d'),hero=cv.parentNode;
+  var W=0,H=0,ps=[],sparks=[],raf=0,on=true,mode='spring',boomT=0;
+  function auto(){var d=new Date(),m=d.getMonth()+1,day=d.getDate();
+    if(m===1&&day<=3)return'newyear';if(m>=3&&m<=5)return'spring';if(m>=6&&m<=8)return'summer';if(m>=9&&m<=11)return'autumn';return'winter'}
+  function dark(){var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+  function css(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+  function size(){var r=hero.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  var R=Math.random;
+  var LEAF=['#e2603f','#ef8a3a','#d9443a','#e9b440','#c7562e'];
+  function make(top){var p={x:R()*W,y:top?-20:R()*H,rot:R()*6.28,vr:(R()-.5)*.04,sw:R()*6.28,ph:R()*6.28};
+    if(mode==='spring'){p.s=5+R()*4;p.vy=.5+R()*.5;p.vx=-.35-R()*.3}
+    else if(mode==='autumn'){p.s=8+R()*6;p.vy=.6+R()*.5;p.vx=-.2-R()*.3;p.c=LEAF[(R()*LEAF.length)|0];p.vr*=1.6}
+    else if(mode==='winter'){p.s=1.5+R()*3;p.vy=.3+R()*.5;p.vx=(R()-.5)*.2}
+    else if(mode==='summer'){p.y=H*.35+R()*H*.65;p.s=2+R()*1.6;p.vy=-.12-R()*.2;p.vx=(R()-.5)*.3}
+    return p}
+  function count(){var n=Math.round(Math.max(8,Math.min(18,W/70)));return mode==='newyear'?0:mode==='summer'?Math.round(n*.8):mode==='winter'?n*2:n}
+  function petal(p){ctx.save();ctx.translate(p.x+Math.sin(p.sw)*10,p.y);ctx.rotate(p.rot);ctx.scale(1,.55+.45*Math.abs(Math.sin(p.ph)));
+    ctx.fillStyle=css('--petal')||'#f8b7cb';ctx.globalAlpha=.85;ctx.beginPath();
+    ctx.moveTo(0,-p.s);ctx.bezierCurveTo(p.s,-p.s*.6,p.s*.8,p.s*.7,0,p.s);ctx.bezierCurveTo(-p.s*.8,p.s*.7,-p.s,-p.s*.6,-p.s*.25,-p.s*.9);ctx.lineTo(0,-p.s*.6);ctx.closePath();ctx.fill();ctx.restore()}
+  function leaf(p){ctx.save();ctx.translate(p.x+Math.sin(p.sw)*16,p.y);ctx.rotate(p.rot);ctx.scale(Math.cos(p.ph)*.4+.7,1);
+    ctx.fillStyle=p.c;ctx.globalAlpha=.9;ctx.beginPath();
+    for(var i=0;i<5;i++){var a=-Math.PI/2+i*2*Math.PI/5,b=a+Math.PI/5,r=p.s*(i===0?1.15:1);
+      ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.lineTo(Math.cos(b)*p.s*.4,Math.sin(b)*p.s*.4)}
+    ctx.closePath();ctx.fill();ctx.strokeStyle='rgba(120,40,20,.35)';ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,p.s*1.2);ctx.stroke();ctx.restore()}
+  function snow(p){var x=p.x+Math.sin(p.sw)*12,g=ctx.createRadialGradient(x,p.y,0,x,p.y,p.s*2);
+    var c=dark()?'255,255,255':'170,195,225';g.addColorStop(0,'rgba('+c+',.95)');g.addColorStop(1,'rgba('+c+',0)');
+    ctx.fillStyle=g;ctx.globalAlpha=1;ctx.beginPath();ctx.arc(x,p.y,p.s*2,0,6.28);ctx.fill()}
+  function fly(p){var x=p.x+Math.sin(p.sw)*18,a=.25+.75*Math.max(0,Math.sin(p.ph)),g=ctx.createRadialGradient(x,p.y,0,x,p.y,p.s*5);
+    g.addColorStop(0,'rgba(226,240,120,'+a+')');g.addColorStop(.3,'rgba(190,225,90,'+a*.5+')');g.addColorStop(1,'rgba(190,225,90,0)');
+    ctx.fillStyle=g;ctx.globalAlpha=1;ctx.beginPath();ctx.arc(x,p.y,p.s*5,0,6.28);ctx.fill()}
+  var FW=['#f2a7c3','#e8c06e','#8fb8f0','#f07a6a','#b99cf2','#ffffff'];
+  function boom(){var x=W*(.1+R()*.8),y=H*(.12+R()*.35),c=FW[(R()*FW.length)|0],c2=FW[(R()*FW.length)|0],n=40+(R()*20|0),sp=2+R()*1.6;
+    for(var i=0;i<n;i++){var a=i/n*6.28,v=sp*(.85+R()*.3);sparks.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1,c:i%3?c:c2})}}
+  function drawSparks(){for(var i=sparks.length-1;i>=0;i--){var k=sparks[i];k.x+=k.vx;k.y+=k.vy;k.vx*=.975;k.vy=k.vy*.975+.025;k.life-=.011;
+    if(k.life<=0){sparks.splice(i,1);continue}ctx.globalAlpha=Math.min(1,k.life*1.4);ctx.fillStyle=k.c;ctx.shadowColor=k.c;ctx.shadowBlur=6;
+    ctx.beginPath();ctx.arc(k.x,k.y,2.3,0,6.28);ctx.fill()}ctx.shadowBlur=0}
+  function tick(t){ctx.clearRect(0,0,W,H);
+    while(ps.length<count())ps.push(make(true));
+    for(var i=ps.length-1;i>=0;i--){var p=ps[i];p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.sw+=.012;p.ph+=mode==='summer'?.035:.03;
+      if(mode==='spring')petal(p);else if(mode==='autumn')leaf(p);else if(mode==='winter')snow(p);else if(mode==='summer')fly(p);
+      var out=mode==='summer'?p.y<-30:p.y>H+30||p.x<-40;if(out){if(ps.length>count())ps.splice(i,1);else ps[i]=make(mode!=='summer')}}
+    if(mode==='summer'||mode==='newyear'){if(t>boomT){boom();if(mode==='newyear'&&R()<.5)boom();boomT=t+(mode==='newyear'?900+R()*900:3200+R()*3500)}}
+    drawSparks();ctx.globalAlpha=1;raf=on?requestAnimationFrame(tick):0}
+  function setMode(m){mode=m;ps=[];sparks=[];boomT=0;var n=count();for(var i=0;i<n;i++){var p=make(false);if(mode==='summer')p.y=H*.35+R()*H*.65;ps.push(p)}
+    document.querySelectorAll('#seasonpick button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.s===m?'true':'false')})}
+  function go(){if(!raf&&on)raf=requestAnimationFrame(tick)}
+  size();var q=(location.search.match(/season=(\w+)/)||[])[1];setMode(/^(spring|summer|autumn|winter|newyear)$/.test(q)?q:auto());go();
+  addEventListener('resize',size);
+  if('IntersectionObserver'in window)new IntersectionObserver(function(e){on=e[0].isIntersecting&&!document.hidden;if(on)go()}).observe(hero);
+  document.addEventListener('visibilitychange',function(){on=!document.hidden;if(on)go()});
+  document.querySelectorAll('#seasonpick button').forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.s)})});
+})();
+</script>
+<script>/* 画像の右クリック保存・ドラッグ・長押し保存をしにくくする */
+document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault()});</script>
+
+</body></html>
