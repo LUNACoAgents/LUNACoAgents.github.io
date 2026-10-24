@@ -579,7 +579,7 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
 
   /* ── 音楽：ボタンを押したら audio/bgm.mp3 を流す（今はレイが作った仮BGM。公開時はこのファイルをオリジナル曲に差し替えるだけ） ── */
   var btn=document.getElementById('music'),label=document.getElementById('musicLabel');
-  var bgm=new Audio('audio/bgm.mp3');bgm.loop=true;bgm.preload='none';bgm.volume=.6;var playing=false;
+  var bgm=new Audio('audio/bgm.mp3?v=2');bgm.loop=true;bgm.preload='none';bgm.volume=.6;var playing=false;
   function start(){var p=bgm.play();playing=true;extra=true;btn.setAttribute('aria-pressed','true');label.textContent='ほしのノート';
     if(p&&p.catch)p.catch(function(){stop();label.textContent='この画面では鳴らせません'})}
   function stop(){bgm.pause();playing=false;extra=false;btn.setAttribute('aria-pressed','false');label.textContent='ほしのノート'}
