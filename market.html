@@ -549,6 +549,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
           <div class="mb-big"><span data-draw="num" data-source="margin_latest" data-field="pl" data-row="0" data-fmt="pctu">—</span></div>
           <div class="mb-gauge" data-draw="gauge" data-gauge="pl" data-source="margin_latest">—</div>
           <p class="mb-note"><span data-draw="num" data-source="margin_latest" data-field="week" data-row="0" data-fmt="date">—</span>申込分。−10%で追証、−20%前後で大底圏</p>
+          <p class="mb-note">松井証券のお客さん（毎日）：買い方 <b data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu">—</b>（<span data-draw="num" data-source="matsui_latest" data-field="date" data-row="0" data-fmt="date">—</span>）</p>
         </article>
         <article class="mb-card mb-ind">
           <div class="mb-ind-top"><h3>信用買残（2市場）</h3><span class="mb-chip" data-draw="judge" data-judge="ratio" data-source="margin_latest">—</span></div>
@@ -814,7 +815,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
       <dt>PBR</dt><dd>株価が1株純資産の何倍か。日経平均の大底圏は1.0〜1.2倍。</dd>
       <dt>騰落レシオ</dt><dd>25日間の値上がり銘柄数÷値下がり銘柄数×100。</dd>
       <dt>移動平均乖離率</dt><dd>終値が移動平均線から何%離れているか。株探の日足からレイが計算。</dd>
-      <dt>信用評価損益率</dt><dd>信用買いしている人の含み損益の割合。週1回（火曜）発表。</dd>
+      <dt>信用評価損益率</dt><dd>信用買いしている人の含み損益の割合。市場全体の値は週1回（火曜）発表。松井証券のお客さんだけの値は毎日出ています（出どころ：松井証券）。</dd>
       <dt>空売り比率・日経VI・裁定買い残</dt><dd>下落を見込む売り、先行きの不安、先物がらみの買いの溜まり具合。</dd>
       <dt>出どころ</dt><dd>株探（日足）、日経電子版（PER・PBR）、投資の森（騰落レシオ・日経EPS）、株式マーケットデータ（信用残・空売り比率・日経VI・裁定残・米国PER・Fear &amp; Greed）、Yahoo Finance（米国指数・VIX・10年債・ドル円）。</dd>
       <dt>まだ無いもの</dt><dd>グロース250指数そのもののPER/PBRは無料の公開元が無いため、グロース市場全銘柄の値で代用。海外投資家の売買動向は週次のため今は未掲載。</dd>
@@ -841,6 +842,8 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     inputs: ['jp_daily'], fn: (jp_daily) => latest(jp_daily, [['arb_buy', 'arb_date']])});
   dash.calc('us_latest', {title: '米国 最新の指標', description: '米国の日次データの最新行（週次のPERは直近の値）',
     inputs: ['us_daily'], fn: (us_daily) => latest(us_daily, [['spx_per_f', 'per_date']])});
+  dash.calc('matsui_latest', {title: '松井証券 信用評価損益率', description: '松井証券のお客さんの信用評価損益率（毎日）の最新行',
+    inputs: ['jp_matsui'], fn: (rows) => rows && rows.length ? [rows[rows.length - 1]] : []});
   dash.calc('margin_latest', {title: '信用残 最新週', description: '最新週の信用残と前週からの増減',
     inputs: ['jp_margin'], fn: (jp_margin) => {
       const n = jp_margin.length; if (!n) return [];
