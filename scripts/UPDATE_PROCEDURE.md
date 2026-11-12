@@ -12,14 +12,17 @@
 
 ### 日本（`jp`）
 
+**まず道具で取る（いちばん確か）**：`python3 scripts/fetch_nikkei225jp.py`（日付指定もできる）。投資の森のデータファイルを直接読んで、日経平均終値・騰落レシオ・日経VI・予想PER・PBR・配当利回り・EPS・BPS を出す。出力の日付が今日になっていれば、その JSON をそのまま `update_board.py jp` に渡す。今日の行がまだなければ、残りを下の表のページから取る。
+
 | 項目 | キー | 出どころ | 単位・注意 |
 |---|---|---|---|
-| 日経平均・TOPIX・グロース250 終値 | `nk` `tp` `gr` | https://finance.matsui.co.jp/stock/index | 更新日時が今日の15:30（終値）になっていること。場中の値は使わない |
-| 騰落レシオ（25日・プライム） | `adr25` | https://stock-marketdata.com/advance-decline-tse-prime-market | |
+| 日経平均・TOPIX・グロース250 終値 | `nk` `tp` `gr` | https://finance.matsui.co.jp/stock/index | 更新日時が今日の15:30（終値）になっていること。場中の値は使わない（`nk` は上の道具でも取れる） |
+| 騰落レシオ（25日・プライム） | `adr25` | 上の道具。だめなら https://stock-marketdata.com/advance-decline-tse-prime-market | |
 | 空売り比率（東証全体） | `short` | https://stock-marketdata.com/karauri.html | % |
-| 日経VI | `nvi` | https://stock-marketdata.com/vi.html | |
-| 日経平均 予想PER・EPS・PBR・配当利回り | `nk_per_f` `nk_eps` `nk_pbr` `nk_dy` | https://stock-marketdata.com/kabukashihyo.html | 「加重平均」の列を使う（「指数」の列ではない）。`nk_bps` は `nk ÷ nk_pbr` を小数2桁で |
+| 日経VI | `nvi` | 上の道具。だめなら https://stock-marketdata.com/vi.html | |
+| 日経平均 予想PER・EPS・PBR・配当利回り | `nk_per_f` `nk_eps` `nk_pbr` `nk_dy` | 上の道具。だめなら https://stock-marketdata.com/kabukashihyo.html | ページの場合は「加重平均」の列を使う（「指数」の列ではない）。`nk_bps` は `nk ÷ nk_pbr` を小数2桁で |
 | 裁定買い残（株数） | `arb_buy` | https://stock-marketdata.com/saiteitorihiki.html | **万株**（8億1,863万株 → 81863）。数日遅れで出るので、出ている最新日の行に入れる |
+| プライム・グロース全銘柄のPER・PBR | `pr_*` `gm_*` | まだ取れる場所がない | 入れない |
 
 - 今日のPERがまだ出ていないとき：`nk_per_f = nk ÷ 前日のnk_eps`、`nk_pbr = nk ÷ 前日のnk_bps` で推計し、`val_est: 1` を付ける。翌日以降に正式値が出たら正式値に入れ替えて `val_est: 0`
 - 騰落レシオ・空売り比率・日経VIが18:40にまだ出ていなければ、その項目は渡さない（次回に埋める）
