@@ -748,7 +748,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
           <div class="mb-ind-top"><h3>米10年債利回り</h3></div>
           <div class="mb-big"><span data-draw="num" data-source="us_latest" data-field="tnx" data-row="0" data-fmt="3">—</span><span class="mb-unit">%</span></div>
           <div class="mb-spark" data-draw="spark" data-source="us_daily" data-spark="tnx">—</div>
-          <p class="mb-note">上がるとグロース株の重しになりやすい</p>
+          <p class="mb-note">上がるとグロース株の重しになりやすい。コロンブスデー・ベテランズデーは株式市場が開いていても債券市場は休み</p>
         </article>
         <article class="mb-card mb-ind">
           <div class="mb-ind-top"><h3>ドル円</h3></div>
@@ -1080,11 +1080,15 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
   const NAMES = {nk: '日経平均', tp: 'TOPIX', gr: 'グロース250', nk_per_f: '日経平均のPER・PBR', adr25: '騰落レシオ', short: '空売り比率', nvi: '日経VI', arb_buy: '裁定買い残',
     spx: 'S&P500', ixic: 'NASDAQ総合', ndx: 'NASDAQ100', dji: 'NYダウ', vix: 'VIX', fg: 'Fear & Greed', tnx: '米10年債利回り', usdjpy: 'ドル円', spx_per_f: 'S&P500・NASDAQ100のPER'};
   const WATCH = {jp: ['nk', 'tp', 'gr', 'nk_per_f', 'adr25', 'short', 'nvi', 'arb_buy'], us: ['spx', 'ixic', 'ndx', 'dji', 'vix', 'fg', 'tnx', 'usdjpy', 'spx_per_f']};
+  // 米国の株式市場は開いていて、債券市場だけ休む日（SIFMAの休場日）
+  const BOND_HOLIDAYS = {'2026-10-12': 'コロンブスデー', '2026-11-11': 'ベテランズデー', '2027-10-11': 'コロンブスデー', '2027-11-11': 'ベテランズデー'};
   dash.draw('alert', el => {
     const mkt = el.dataset.mkt; const r = F.row(mkt + '_latest'); el.replaceChildren(); if (!r) return;
     const items = [];
     for (const k of WATCH[mkt]) {
+      const bondOff = k === 'tnx' && BOND_HOLIDAYS[r.date];
       if (r[k] == null) items.push(NAMES[k] + '：まだ発表されていないので空欄（次の更新で入ります）');
+      else if (bondOff && r.stale && r.stale[k]) items.push(NAMES[k] + '：' + F.fmt(r.date, 'date') + '（現地）は' + bondOff + 'で米国の債券市場が休場のため、直近の取引日である ' + F.fmt(r.stale[k], 'date') + ' 時点の値');
       else if (r.stale && r.stale[k]) items.push(NAMES[k] + '：' + (k === 'arb_buy' ? '数日遅れで発表される指標のため ' : k === 'tnx' ? '直近の取引日である ' : '週1回の発表のため ') + F.fmt(r.stale[k], 'date') + ' 時点の値');
     }
     if (mkt === 'jp' && r.val_est === 1 && r.nk_per_f != null) items.push('PER・PBR：正式値がまだ出ていないので、今日の終値と前日の1株利益・純資産で計算した推計値');
