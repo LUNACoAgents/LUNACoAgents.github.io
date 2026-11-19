@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小さなお店のための制作サービス（試作v2）</title>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --navy:#0b1a2b; --navy2:#1c3b5e; --gold:#b98d4f; --gold2:#e4c48a;
+    --bg:#f6f4ef; --card:#ffffff; --text:#22303f; --muted:#5c6b7a;
+    --shadow:0 20px 40px rgba(11,26,43,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);line-height:1.85;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ===== Nav ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(11,26,43,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{color:#fff;font-weight:800;letter-spacing:.14em;font-size:15px}
+  .logo span{color:var(--gold2)}
+  nav ul{display:flex;gap:26px;list-style:none}
+  nav a{color:#dbe5ef;text-decoration:none;font-size:14px}
+  nav a:hover{color:var(--gold2)}
+  .nav-cta{background:var(--gold);color:#fff !important;padding:7px 18px;border-radius:999px;font-weight:700}
+  @media (max-width:720px){nav ul li:not(:last-child){display:none}}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;min-height:92vh;display:flex;align-items:center;color:#fff;overflow:hidden;background:var(--navy)}
+  .hero-bg{position:absolute;inset:-12% 0;background:url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;will-change:transform}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,18,32,.88) 30%,rgba(8,18,32,.55) 62%,rgba(11,26,43,.25));z-index:1}
+  .hero .wrap{position:relative;z-index:2;padding-top:110px;padding-bottom:80px;width:100%}
+  .hero .badge{display:inline-block;border:1px solid var(--gold2);color:var(--gold2);border-radius:999px;padding:3px 16px;font-size:13px;letter-spacing:.18em;margin-bottom:22px;background:rgba(11,26,43,.35)}
+  .hero h1{font-size:46px;line-height:1.45;font-weight:800;letter-spacing:.02em}
+  .hero h1 .grad{background:linear-gradient(92deg,var(--gold2),#fff2cf 55%,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{margin-top:20px;font-size:17px;color:#dfe8f1;max-width:620px}
+  .hero-btns{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;padding:14px 34px;border-radius:999px;font-weight:700;transition:.25s}
+  .btn-gold{background:linear-gradient(120deg,var(--gold),#d3a860);color:#fff;box-shadow:0 12px 26px rgba(185,141,79,.4)}
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 18px 32px rgba(185,141,79,.5)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.65);color:#fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .hero-stats{display:flex;gap:38px;margin-top:52px;flex-wrap:wrap}
+  .stat .num{font-size:32px;font-weight:800;color:var(--gold2)}
+  .stat .num small{font-size:16px}
+  .stat .lbl{font-size:13px;color:#b9c8d8;letter-spacing:.06em}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  .hero .anim{animation:fadeUp .9s cubic-bezier(.2,.7,.3,1) both}
+  .hero .d1{animation-delay:.08s}.hero .d2{animation-delay:.2s}.hero .d3{animation-delay:.34s}.hero .d4{animation-delay:.5s}.hero .d5{animation-delay:.66s}
+  .scroll-hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;color:#cfe0ef;font-size:11px;letter-spacing:.3em;text-align:center}
+  .scroll-hint::after{content:"";display:block;width:1px;height:38px;margin:8px auto 0;background:linear-gradient(var(--gold2),transparent);animation:drip 1.8s ease-in-out infinite}
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* ===== Marquee ===== */
+  .marquee{background:var(--navy);color:var(--gold2);overflow:hidden;padding:13px 0;border-top:1px solid rgba(228,196,138,.25)}
+  .marquee .track{display:flex;gap:0;white-space:nowrap;width:max-content;animation:slide 30s linear infinite}
+  .marquee span{padding:0 26px;font-size:14px;letter-spacing:.22em}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ===== Sections ===== */
+  section{padding:84px 0 10px}
+  .kicker{text-align:center;color:var(--gold);font-size:13px;font-weight:700;letter-spacing:.34em;margin-bottom:10px}
+  h2{font-size:30px;text-align:center;letter-spacing:.04em}
+  h2::after{content:"";display:block;width:54px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));margin:14px auto 26px;border-radius:2px}
+  .lead{text-align:center;color:var(--muted);max-width:680px;margin:0 auto 36px}
+  .js .rv{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  .js .rv.in{opacity:1;transform:none}
+  .rv.dl1{transition-delay:.1s}.rv.dl2{transition-delay:.2s}
+
+  ul.checks{list-style:none;max-width:680px;margin:0 auto;display:grid;gap:12px}
+  ul.checks li{background:var(--card);border-radius:12px;padding:15px 20px;box-shadow:0 4px 16px rgba(11,26,43,.06);border-left:4px solid var(--gold)}
+  ul.checks li b{color:var(--navy2)}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .svc{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(11,26,43,.08);transition:.35s}
+  .svc:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+  .svc .ph{height:190px;overflow:hidden}
+  .svc .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.3,1)}
+  .svc:hover .ph img{transform:scale(1.08)}
+  .svc .body{padding:24px 24px 26px}
+  .svc h3{font-size:19px;color:var(--navy2);margin-bottom:8px}
+  .svc .price{font-size:24px;font-weight:800;color:var(--gold);margin-top:14px}
+  .svc .price small{font-size:13px;color:var(--muted);font-weight:400}
+
+  /* strengths with photo band */
+  .band{position:relative;border-radius:22px;overflow:hidden;margin-bottom:28px;box-shadow:var(--shadow)}
+  .band img{width:100%;height:300px;object-fit:cover}
+  .band .cap{position:absolute;inset:auto 0 0 0;padding:44px 30px 22px;color:#fff;background:linear-gradient(transparent,rgba(8,18,32,.82));font-size:15px}
+  .band .cap b{font-size:19px;display:block;margin-bottom:4px}
+  .strengths{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .strength{background:var(--card);border-radius:18px;padding:28px 24px;box-shadow:0 8px 24px rgba(11,26,43,.07);position:relative;overflow:hidden}
+  .strength::before{content:attr(data-no);position:absolute;right:10px;top:-16px;font-size:96px;font-weight:800;color:rgba(185,141,79,.12);line-height:1}
+  .strength h3{color:var(--navy2);font-size:18px;margin-bottom:8px;position:relative}
+
+  /* price */
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:stretch}
+  .plan{background:var(--card);border-radius:18px;padding:30px 26px;box-shadow:0 8px 24px rgba(11,26,43,.08);position:relative}
+  .plan.hot{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#eef3f8;box-shadow:var(--shadow)}
+  .plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:12px;font-weight:700;letter-spacing:.12em;padding:3px 16px;border-radius:999px}
+  .plan h3{font-size:18px;margin-bottom:6px}
+  .plan .amt{font-size:30px;font-weight:800;margin:8px 0 14px}
+  .plan .amt small{font-size:14px;font-weight:400;opacity:.75}
+  .plan ul{list-style:none;font-size:14.5px;display:grid;gap:8px}
+  .plan li::before{content:"✓ ";color:var(--gold);font-weight:700}
+  .plan.hot li::before{color:var(--gold2)}
+  .mini{max-width:760px;margin:26px auto 0;background:var(--card);border-radius:14px;box-shadow:0 4px 16px rgba(11,26,43,.06);overflow:hidden}
+  .mini table{width:100%;border-collapse:collapse}
+  .mini td{padding:11px 18px;font-size:14.5px;border-bottom:1px solid #eee8de}
+  .mini tr:last-child td{border-bottom:none}
+  .mini td:last-child{text-align:right;font-weight:700;color:var(--navy2);white-space:nowrap}
+
+  /* flow */
+  .steps{max-width:700px;margin:0 auto;counter-reset:step;position:relative}
+  .steps::before{content:"";position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold2),rgba(185,141,79,.15))}
+  .steps li{list-style:none;position:relative;padding:0 0 26px 58px}
+  .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;background:linear-gradient(140deg,var(--gold),#d3a860);color:#fff;text-align:center;line-height:40px;font-weight:800;box-shadow:0 8px 18px rgba(185,141,79,.35)}
+  .steps b{font-size:17px;color:var(--navy2)}
+
+  details{background:var(--card);border-radius:12px;padding:16px 20px;margin:0 auto 12px;max-width:760px;box-shadow:0 4px 16px rgba(11,26,43,.06)}
+  summary{font-weight:700;cursor:pointer;color:var(--navy2)}
+  details p{margin-top:8px;color:var(--muted);font-size:15px}
+
+  /* CTA */
+  .cta-band{position:relative;border-radius:24px;overflow:hidden;text-align:center;color:#fff;padding:70px 26px;margin-top:30px;box-shadow:var(--shadow)}
+  .cta-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .cta-band::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(8,18,32,.85),rgba(28,59,94,.6))}
+  .cta-band .in{position:relative;z-index:2}
+  .cta-band h2{color:#fff}
+  .cta-band h2::after{background:var(--gold2)}
+  .cta-band p{color:#d8e2ec;margin-bottom:26px}
+
+  footer{margin-top:84px;background:var(--navy);color:#aebdd0;text-align:center;padding:40px 20px 46px;font-size:13.5px}
+  footer .flogo{color:#fff;font-weight:800;letter-spacing:.14em;margin-bottom:8px}
+  footer .flogo span{color:var(--gold2)}
+
+  @media (max-width:600px){
+    .hero h1{font-size:31px}
+    .hero-stats{gap:24px}
+    section{padding:60px 0 6px}
+    h2{font-size:24px}
+  }
+  @media print{
+    nav,.scroll-hint{display:none}
+    .hero h1 .grad{background:none;color:var(--gold2);-webkit-text-fill-color:var(--gold2)}
+    .rv{opacity:1 !important;transform:none !important}
+    .hero{min-height:auto}
+    .hero .anim{animation:none}
+    .marquee .track{animation:none}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">STUDIO <span>（屋号未定）</span></div>
+    <ul>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#strengths">選ばれる理由</a></li>
+      <li><a href="#price">料金</a></li>
+      <li><a href="#faq">よくある質問</a></li>
+      <li><a class="nav-cta" href="#contact">無料相談</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="wrap">
+    <span class="badge anim d1">WEB / MOVIE / PRINT DESIGN</span>
+    <h1 class="anim d2">小さなお店の「作りたい」を、<br><span class="grad">まるごとお手伝いします。</span></h1>
+    <p class="sub anim d3">ホームページ・リール動画・チラシ。制作会社に頼むほどじゃない、でも自分で作る時間もない。そんな小さな事業者さんのための制作サービスです。</p>
+    <div class="hero-btns anim d4">
+      <a class="btn btn-gold" href="#contact">無料で相談する</a>
+      <a class="btn btn-ghost" href="#price">料金を見る</a>
+    </div>
+    <div class="hero-stats anim d5">
+      <div class="stat"><div class="num"><span data-count="50000">50,000</span><small>円〜</small></div><div class="lbl">ホームページ制作</div></div>
+      <div class="stat"><div class="num"><span data-count="0">0</span><small>円〜</small></div><div class="lbl">選べる構成でサーバー代</div></div>
+      <div class="stat"><div class="num"><span data-count="30">30</span><small>秒</small></div><div class="lbl">リール動画で魅力を凝縮</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="mqTrack">
+    <span>HOMEPAGE</span><span>✦</span><span>REEL MOVIE</span><span>✦</span><span>FLYER DESIGN</span><span>✦</span><span>MAINTENANCE</span><span>✦</span><span>SMALL BUSINESS FIRST</span><span>✦</span>
+  </div>
+</div>
+
+<section id="problems">
+  <div class="wrap">
+    <p class="kicker rv">PROBLEMS</p>
+    <h2 class="rv">こんなお悩みありませんか</h2>
+    <p class="lead rv">「作りたい気持ちはあるのに、時間と手間が足りない」——そのお悩み、まとめて引き受けます。</p>
+    <ul class="checks">
+      <li class="rv">ホームページが<b>ない・古いまま</b>でスマホで見づらい</li>
+      <li class="rv dl1">Instagramを頑張りたいけど、<b>動画編集の時間がない</b></li>
+      <li class="rv dl2">チラシを作りたいけど、<b>デザインができない</b></li>
+      <li class="rv">制作会社に見積もりを取ったら<b>高くて諦めた</b></li>
+    </ul>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <p class="kicker rv">SERVICES</p>
+    <h2 class="rv">サービス</h2>
+    <div class="cards">
+      <article class="svc rv">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="ホームページ制作のイメージ"></div>
+        <div class="body">
+          <h3>ホームページ制作</h3>
+          <p>スマホで見やすく、更新の相談もしやすいホームページを作ります。サーバー代がかからない構成も提案でき、維持費を抑えられます。</p>
+          <p class="price">50,000円〜</p>
+        </div>
+      </article>
+      <article class="svc rv dl1">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80" alt="リール動画制作のイメージ"></div>
+        <div class="body">
+          <h3>リール動画制作</h3>
+          <p>お店の魅力を30秒に。素材を送ってもらえれば、テロップ・BGMまで仕上げます。月4本パックで無理なく続けられます。</p>
+          <p class="price">月4本 30,000円〜</p>
+        </div>
+      </article>
+      <article class="svc rv dl2">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80" alt="チラシ制作のイメージ"></div>
+        <div class="body">
+          <h3>チラシ制作</h3>
+          <p>配る・置く・ポスティング。目的に合わせたデザインから、印刷にそのまま使えるデータまで仕上げます。</p>
+          <p class="price">A4片面 15,000円〜</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="strengths">
+  <div class="wrap">
+    <p class="kicker rv">WHY US</p>
+    <h2 class="rv">選ばれる理由</h2>
+    <div class="band rv">
+      <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2000&q=80" alt="打ち合わせのイメージ">
+      <div class="cap"><b>「作る」だけじゃない、経営の目線で。</b>小さな事業者さんの現場と数字、両方を知っているからできる提案があります。</div>
+    </div>
+    <div class="strengths">
+      <div class="strength rv" data-no="1">
+        <h3>経営者目線で作ります</h3>
+        <p>普段は小さな事業者さんの数字を見る仕事をしています。「見た目がいい」だけでなく、「問い合わせや来店につながるか」で考えます。</p>
+      </div>
+      <div class="strength rv dl1" data-no="2">
+        <h3>作って終わりにしません</h3>
+        <p>月額の保守プランで、文章や写真の差し替えなど公開後の更新も相談できます。回数の上限を決めた、無理のないプラン制です。</p>
+      </div>
+      <div class="strength rv dl2" data-no="3">
+        <h3>現場の仕事が分かります</h3>
+        <p>現場管理アプリの開発経験があり、リフォーム・外壁など現場系のお仕事の進め方を理解しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <p class="kicker rv">PRICE</p>
+    <h2 class="rv">料金プラン</h2>
+    <p class="lead rv">保守は「更新回数に上限のあるプラン制」。作った後も、無理なく続けられる形をご用意しています。</p>
+    <div class="plans">
+      <div class="plan rv">
+        <h3>ホームページ制作</h3>
+        <div class="amt">50,000円<small>〜（初回）</small></div>
+        <ul>
+          <li>1ページの名刺代わりサイトから</li>
+          <li>5ページ前後は 120,000円〜</li>
+          <li>原稿づくりのお手伝い込み</li>
+          <li>修正は公開前2回まで無料</li>
+        </ul>
+      </div>
+      <div class="plan hot rv dl1">
+        <span class="tag">おすすめ</span>
+        <h3>保守スタンダード</h3>
+        <div class="amt">月 10,000円</div>
+        <ul>
+          <li>公開維持・障害時の対応</li>
+          <li>軽い更新 月2回まで込み</li>
+          <li>追加更新は 1回3,000〜5,000円</li>
+          <li>チャット・メールでいつでも相談可</li>
+        </ul>
+      </div>
+      <div class="plan rv dl2">
+        <h3>リール＋チラシ</h3>
+        <div class="amt">月 30,000円<small>〜</small></div>
+        <ul>
+          <li>リール月4本パック（編集）</li>
+          <li>チラシ A4片面 15,000円〜</li>
+          <li>開業スタートセット 75,000円〜</li>
+          <li>HPと合わせた集客設計も相談可</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mini rv">
+      <table>
+        <tr><td>保守ライト（更新作業なし）</td><td>月 5,000円</td></tr>
+        <tr><td>ページ追加</td><td>10,000円〜／ページ</td></tr>
+        <tr><td>リール動画 編集のみ（単発）</td><td>8,000円／本</td></tr>
+        <tr><td>チラシ A4両面デザイン</td><td>25,000円〜</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <p class="kicker rv">FLOW</p>
+    <h2 class="rv">制作の流れ</h2>
+    <ol class="steps">
+      <li class="rv"><b>ヒアリング</b><br>30分ほど・オンライン可。作りたいものと目的を聞かせてください。</li>
+      <li class="rv"><b>お見積り</b><br>無料です。金額と範囲を先に明確にします。</li>
+      <li class="rv"><b>制作・確認</b><br>修正はプラン内の回数まで無料で対応します。</li>
+      <li class="rv"><b>公開・納品</b><br>ホームページは公開まで、チラシは印刷データまで仕上げます。</li>
+      <li class="rv"><b>保守サポート</b><br>任意の月額プランで、公開後の更新もお手伝いします。</li>
+    </ol>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="kicker rv">FAQ</p>
+    <h2 class="rv">よくある質問</h2>
+    <details class="rv">
+      <summary>副業でやっていると聞きました。大丈夫ですか？</summary>
+      <p>本業の勤務先の許可を得て活動しています。対応は平日夜と休日が中心になりますが、納期は事前に必ずお約束します。</p>
+    </details>
+    <details class="rv">
+      <summary>文章や写真を用意できていません</summary>
+      <p>ヒアリングをもとに原稿づくりからお手伝いできます（プランに含む範囲はお見積り時に明記します）。</p>
+    </details>
+    <details class="rv">
+      <summary>補助金は使えますか？</summary>
+      <p>小規模事業者持続化補助金など、ホームページ制作が対象になる制度があります。条件は公募ごとに変わるため、最新情報を一緒に確認しましょう。※申請手続きの代行や税務相談は行っていません。</p>
+    </details>
+  </div>
+</section>
+
+<section id="contact" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="cta-band rv">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2000&q=80" alt="">
+      <div class="in">
+        <h2>まずは、気軽にご相談ください</h2>
+        <p>「こんなの作れる？」だけでも大丈夫です。<br>お店のこれからを、一緒に形にしましょう。</p>
+        <a class="btn btn-gold" href="#">相談フォーム／SNSのDMへ（公開時に設定）</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">STUDIO <span>（屋号未定）</span></div>
+  <p>ホームページ制作／リール動画／チラシ制作<br>※このページは試作v2です。屋号・連絡先は公開時に設定します。</p>
+</footer>
+
+<script>
+  // スクロールでふわっと表示
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // ヒーロー画像のパララックス
+  const bg = document.getElementById('heroBg');
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    if (y < innerHeight) bg.style.transform = 'translateY(' + y * 0.22 + 'px)';
+  }, { passive: true });
+
+  // 数字カウントアップ
+  const cio = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target, target = +el.dataset.count, t0 = performance.now();
+      const tick = t => {
+        const p = Math.min((t - t0) / 1200, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('ja-JP');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      cio.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+  // マーキー（無限ループ用に複製）
+  const mq = document.getElementById('mqTrack');
+  mq.innerHTML += mq.innerHTML;
+</script>
+</body>
+</html>
