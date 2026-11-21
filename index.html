@@ -179,27 +179,28 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
 .toc .foot{font-family:var(--hand);color:var(--muted);font-size:14px;margin:14px 0 0}
 
 /* 部員名簿：学生証 */
-.cast{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.idcard{padding:0 0 20px;overflow:hidden;display:flex;flex-direction:column;border-radius:16px}
-.idcard:nth-child(1){transform:rotate(-.8deg)} .idcard:nth-child(2){transform:rotate(.6deg)} .idcard:nth-child(3){transform:rotate(-.4deg)}
-.idhead{background:var(--band);color:var(--bandink);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 16px;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.cast{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.idcard{--card-inset:16px;min-width:0;padding:0 0 18px;overflow:hidden;border-radius:16px}
+.idhead{background:var(--band);color:var(--bandink);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px var(--card-inset);font-size:12.5px;font-weight:700;letter-spacing:.08em}
 .idhead span{display:flex;align-items:center;gap:7px}
-.idhead svg{width:16px;height:16px;color:var(--gold)}
+.idhead svg{width:16px;height:16px;flex:none;color:var(--gold)}
 .idhead .en{font-size:14px;letter-spacing:.04em;color:var(--gold);font-weight:600}
-.idbody{display:grid;grid-template-columns:42% 1fr;gap:14px;padding:16px 16px 4px;position:relative}
-.idbody>*{min-width:0}
-.idbody img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:8px;display:block;box-shadow:0 0 0 3px var(--sheet),0 0 0 4.5px var(--line)}
-.nm{font-weight:900;font-size:21px;line-height:1.3;color:var(--navy)}
-.nm small{display:block;font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:.05em}
-.prof{margin:8px 0 0;display:flex;flex-direction:column;gap:3px;font-size:12.5px;line-height:1.55}
-.prof div{display:flex;flex-direction:column}
-.prof dt{color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.06em}
+.idbody{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);align-items:center;gap:14px;padding:16px var(--card-inset) 0}
+.ph{position:relative}
+.ph img{width:100%;height:auto;aspect-ratio:4/5;display:block;border-radius:9px;border:1px solid var(--line)}
+.hanko{position:absolute;right:5px;bottom:5px;width:36px;height:36px;border:1.5px solid var(--crimson);color:var(--crimson);border-radius:50%;
+  display:grid;place-items:center;font-size:9px;font-weight:900;line-height:1.1;text-align:center;background:color-mix(in srgb,var(--sheet) 92%,transparent)}
+.nm{font-weight:900;font-size:clamp(18px,5vw,22px);line-height:1.25;color:var(--navy)}
+.nm small{display:block;margin-top:2px;font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:.03em}
+.prof{margin:8px 0 0;display:grid;gap:5px;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.prof dt{color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.05em}
 .prof dd{margin:0}
-.ph{position:relative;align-self:start}
-.hanko{position:absolute;right:-10px;bottom:-12px;width:46px;height:46px;border:2px solid var(--crimson);color:var(--crimson);border-radius:50%;
-  display:grid;place-items:center;font-size:11px;font-weight:900;line-height:1.15;text-align:center;transform:rotate(-14deg);opacity:.78;background:color-mix(in srgb,var(--sheet) 60%,transparent)}
-.idcard q{display:block;margin:14px 16px 6px;font-family:var(--hand);font-weight:600;font-size:17px;line-height:1.6;color:var(--pink);quotes:"「" "」"}
-.idcard p{margin:0 16px;font-size:14px;line-height:1.9}
+.idfacts{margin:14px var(--card-inset) 0;padding-top:9px;border-top:1px solid var(--line)}
+.idfacts div{display:grid;grid-template-columns:5.3em minmax(0,1fr);align-items:baseline;gap:7px}
+.idcard q{display:block;margin:12px var(--card-inset) 8px;padding:7px 10px;border-radius:7px;background:var(--pinksoft);
+  font-family:var(--hand);font-weight:600;font-size:16px;line-height:1.55;color:var(--crimson);quotes:"「" "」";text-wrap:pretty}
+.idcard .quote-end{white-space:nowrap}
+.idcard p{margin:0 var(--card-inset);font-size:14px;line-height:1.8;overflow-wrap:anywhere}
 .soon{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .soon div{border:2px dashed var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13.5px;background:color-mix(in srgb,var(--sheet) 70%,transparent)}
 .soon b{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:50%;background:var(--grid);font-size:20px;color:var(--navy)}
@@ -267,11 +268,12 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
   .photos{order:-1;width:min(100%,340px)}
   .manga{grid-template-columns:1fr}
   .feature{max-width:460px}
-  .cast{grid-template-columns:1fr 1fr}
+  .cast{grid-template-columns:repeat(2,minmax(0,1fr))}
   .notebook,.start,.soon{grid-template-columns:1fr}
 }
 @media (max-width:600px){
-  .cast{grid-template-columns:1fr}
+  #cast{scroll-margin-top:72px}
+  .cast{grid-template-columns:minmax(0,1fr);gap:18px}
   .hero{padding-block:22px 60px}
   .toc{padding:24px 16px 18px}
   .toc .row{grid-template-columns:2.6em 1fr auto;gap:8px}
@@ -291,6 +293,10 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
   font:700 14px/1.2 var(--display);background:var(--band);color:var(--bandink);box-shadow:0 10px 22px -10px var(--shadow)}
 .music .disc{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--band);font-size:16px}
 .music small{display:block;font-weight:500;font-size:11px;opacity:.75}
+@media (max-width:600px){
+  .music{right:max(10px,env(safe-area-inset-right,0px));bottom:calc(10px + env(safe-area-inset-bottom,0px));gap:5px;padding:5px 8px 5px 5px;font-size:11px;min-height:44px}
+  .music .disc{width:32px;height:32px}
+}
 .music[aria-pressed="true"] .disc{animation:spin 4s linear infinite}
 @media (prefers-reduced-motion:reduce){.music[aria-pressed="true"] .disc{animation:none}}
 .seasonpick{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;justify-content:center;margin-left:6px}
@@ -438,12 +444,14 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
               <div><dt>学年</dt><dd>高校2年生・16歳</dd></div>
               <div><dt>誕生日</dt><dd>4月12日</dd></div>
               <div><dt>身長</dt><dd>158cm</dd></div>
-              <div><dt>好きなもの</dt><dd>白いうさぎのぬいぐるみ</dd></div>
-              <div><dt>目印</dt><dd>金色の三日月ヘアピン</dd></div>
             </dl>
           </div>
         </div>
-        <q>安くて伸びる会社……最高じゃん♡</q>
+        <dl class="prof idfacts">
+          <div><dt>好きなもの</dt><dd>白いうさぎのぬいぐるみ</dd></div>
+          <div><dt>目印</dt><dd>金色の三日月ヘアピン</dd></div>
+        </dl>
+        <q>安くて伸びる会社……<span class="quote-end">最高じゃん♡</span></q>
         <p>この物語の主人公。好奇心いっぱいで、気になったらすぐ動いてしまうタイプ。うれしい時も驚いた時も、ぜんぶ顔に出ちゃう。投資のことはまだほとんど知らないけれど、「いい会社を、できるだけ安く買いたい！」という気持ちから、ノートを片手に一歩ずつ勉強中。ふだんはニコニコしているのに、資料を読むときだけ急に真剣な顔になる。</p>
       </article>
       <article class="idcard paper">
@@ -456,11 +464,13 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
               <div><dt>学年</dt><dd>高校2年生・16歳</dd></div>
               <div><dt>誕生日</dt><dd>11月3日</dd></div>
               <div><dt>身長</dt><dd>161cm</dd></div>
-              <div><dt>得意なこと</dt><dd>決算や会社の数字を読むこと</dd></div>
-              <div><dt>目印</dt><dd>金色の三日月イヤリング</dd></div>
             </dl>
           </div>
         </div>
+        <dl class="prof idfacts">
+          <div><dt>得意なこと</dt><dd>決算や会社の数字を読むこと</dd></div>
+          <div><dt>目印</dt><dd>金色の三日月イヤリング</dd></div>
+        </dl>
         <q>まずは、数字を見ていこうか。</q>
         <p>冷静で几帳面な、投資部の分析担当。ルナと同じクラス。口数は多くないけれど、困っている人をさりげなく助けてくれる優しい子。ふだんはメガネをかけていないのに、決算を読むときだけ細いメガネをかける「分析モード」になる。大切にしている言葉は「株価より先に、会社を見る。」</p>
       </article>
@@ -474,11 +484,13 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
               <div><dt>担当</dt><dd>投資部顧問・数学</dd></div>
               <div><dt>年齢</dt><dd>29歳</dd></div>
               <div><dt>誕生日</dt><dd>11月23日</dd></div>
-              <div><dt>よくいる場所</dt><dd>部室（コーヒーを片手に）</dd></div>
-              <div><dt>目印</dt><dd>金色の三日月ネックレス</dd></div>
             </dl>
           </div>
         </div>
+        <dl class="prof idfacts">
+          <div><dt>よくいる場所</dt><dd>部室（コーヒーを片手に）</dd></div>
+          <div><dt>目印</dt><dd>金色の三日月ネックレス</dd></div>
+        </dl>
         <q>待ってたわ、月城さん。</q>
         <p>投資部を見守るおだやかな先生で、実は投資部のOG。答えをすぐには教えず、「どうしてそう思ったの？」と問いかけて、部員が自分で考えるのを待ってくれる。大切にしている言葉は「当てることより、退場しないこと。」</p>
       </article>
