@@ -185,7 +185,7 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
 .idhead span{display:flex;align-items:center;gap:7px}
 .idhead svg{width:16px;height:16px;flex:none;color:var(--gold)}
 .idhead .en{font-size:14px;letter-spacing:.04em;color:var(--gold);font-weight:600}
-.idbody{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);align-items:center;gap:14px;padding:16px var(--card-inset) 0}
+.idbody{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);align-items:start;gap:14px;padding:16px var(--card-inset) 0}
 .ph{position:relative}
 .ph img{width:100%;height:auto;aspect-ratio:4/5;display:block;border-radius:9px;border:1px solid var(--line)}
 .hanko{position:absolute;right:5px;bottom:5px;width:36px;height:36px;border:1.5px solid var(--crimson);color:var(--crimson);border-radius:50%;
@@ -196,11 +196,17 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
 .prof dt{color:var(--gold);font-weight:700;font-size:11px;letter-spacing:.05em}
 .prof dd{margin:0}
 .idfacts{margin:14px var(--card-inset) 0;padding-top:9px;border-top:1px solid var(--line)}
-.idfacts div{display:grid;grid-template-columns:5.3em minmax(0,1fr);align-items:baseline;gap:7px}
+.idfacts div{display:grid;grid-template-columns:5.8em minmax(0,1fr);align-items:baseline;gap:7px}
 .idcard q{display:block;margin:12px var(--card-inset) 8px;padding:7px 10px;border-radius:7px;background:var(--pinksoft);
   font-family:var(--hand);font-weight:600;font-size:16px;line-height:1.55;color:var(--crimson);quotes:"「" "」";text-wrap:pretty}
 .idcard .quote-end{white-space:nowrap}
 .idcard p{margin:0 var(--card-inset);font-size:14px;line-height:1.8;overflow-wrap:anywhere}
+@supports (grid-template-rows:subgrid){
+  @media (min-width:601px){
+    .idcard{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:0}
+    .idcard q{align-self:start}
+  }
+}
 .soon{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .soon div{border:2px dashed var(--line);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;color:var(--muted);font-size:13.5px;background:color-mix(in srgb,var(--sheet) 70%,transparent)}
 .soon b{display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:50%;background:var(--grid);font-size:20px;color:var(--navy)}
