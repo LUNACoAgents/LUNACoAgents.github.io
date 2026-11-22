@@ -1,7 +1,7 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23263063'/%3E%3Cpath d='M19 6a10 10 0 1 0 7 15A8 8 0 0 1 19 6' fill='%23e8c06e'/%3E%3C/svg%3E"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ルナとしおりの市況メモ🌸｜LUNA学園 投資部</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
 <style>
 /* ===== 色・文字・余白の設定（Claudeダッシュボードの代わり）。ここを変えると全体の見た目が変わる ===== */
 :root{--color-bg:#f7f6f2;--color-panel:#ffffff;--color-fg:#1d1d1b;--color-fg-muted:#6b6a65;--color-border-line:#e3e1da;
@@ -466,6 +466,65 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
   .mb-head .mb-seg {justify-self:start;order:3}
 }
 
+/* ===== LUNA学園 かわいいテーマ（2026-11-22） ===== */
+.mb {
+  --mb-ink:#3a2f55;--mb-muted:#7a6c93;--mb-surface:#fffdfe;--mb-back:#fbf3f8;--mb-line:#f0dcea;
+  --mb-accent:#b0569a;--mb-tint:#fde8f3;--mb-up:#d0487a;--mb-dn:#4f7fd0;
+  --mb-shadow:0 10px 26px #c7709c1a,0 2px 6px #9a6fc014;
+  --font-anthropic-sans:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+  font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;
+}
+@media(prefers-color-scheme:dark) {
+  .mb {
+    --mb-ink:#f6ecff;--mb-muted:#c9b8dc;--mb-surface:#2a2140;--mb-back:#1d1730;--mb-line:#463a63;
+    --mb-accent:#ffb4dc;--mb-tint:#3d2c55;--mb-up:#ff9ec0;--mb-dn:#a9c8ff;
+    --mb-shadow:0 9px 28px #0a061880;
+  }
+}
+html,body{background:
+  radial-gradient(circle at 12% 8%,#ffe1ee 0,transparent 32%),
+  radial-gradient(circle at 92% 18%,#e7e0ff 0,transparent 30%),
+  radial-gradient(circle at 50% 100%,#dff0ff 0,transparent 40%),#fbf3f8}
+@media(prefers-color-scheme:dark){html,body{background:radial-gradient(circle at 15% 5%,#3a2650 0,transparent 35%),radial-gradient(circle at 90% 20%,#2b2a5a 0,transparent 32%),#1d1730}}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;
+  background-image:radial-gradient(#f6b9d6 1.2px,transparent 1.6px),radial-gradient(#c9bdf5 1px,transparent 1.5px);
+  background-size:46px 46px,70px 70px;background-position:0 0,23px 31px}
+#dash-root{position:relative;z-index:1}
+.mb-head {
+  border:0;border-radius:28px;min-height:240px;
+  background:radial-gradient(ellipse at 82% 18%,#ffe2f0aa,transparent 50%),linear-gradient(120deg,#6e5bb8,#a46bb8 52%,#f19bbb);
+  box-shadow:0 16px 36px #b2659a33;
+}
+.mb-head::before {background-image:radial-gradient(#ffffff70 1.3px,transparent 1.8px);background-size:28px 28px;mask-image:linear-gradient(90deg,transparent 20%,black 90%)}
+.mb-head h1 {font-family:"Zen Maru Gothic",sans-serif;font-weight:700;letter-spacing:.04em;text-shadow:0 2px 12px #5a2f7a55}
+.mb-kicker {color:#fff0f8}
+.mb-kicker::before {box-shadow:inset 4px -3px 0 #fff3b0,0 0 14px #fff3b0aa}
+.mb-head .mb-orbit {opacity:.35}
+.mb-head .mb-orbit g {stroke:#fff}
+.mb-lede .mb-date {border-color:#ffffff66;background:#ffffff2e;border-radius:999px;padding:4px 12px}
+.mb-seg {background:#ffffff33;border-color:#ffffff77;border-radius:999px}
+.mb-seg button {border-radius:999px;color:#fff}
+.mb-seg button[aria-selected="true"] {background:#fff;color:#a0478b;box-shadow:0 3px 10px #7a2f6a40}
+.mb-seg button:hover:not([aria-selected="true"]) {background:#ffffff38}
+.mb-head .edition-visual img {border-radius:20px}
+.mb-quick {border-bottom:0;gap:7px}
+.mb-quick a {border-radius:999px;background:var(--mb-surface);border:1.5px solid var(--mb-line);color:var(--mb-accent);padding:6px 13px}
+.mb-quick a:hover,.mb-quick a:focus-visible {background:var(--mb-tint);border-color:#f3b6d4}
+.mb-sec-head h2::before,.mb-sec > h2::before {content:"🌙";width:auto;height:auto;background:none;font-size:.9em}
+.mb-card {border:1.5px solid var(--mb-line);border-radius:22px;box-shadow:var(--mb-shadow)}
+.mb-tile::after {background:linear-gradient(90deg,#f3a6c8,#c7b2ff 58%,transparent 92%)}
+.mb-chart {border-radius:16px}
+.mb-chip {border-radius:999px}
+.mb-shot-score {border-radius:999px;padding:4px 12px}
+.mb-dot {width:1.3em;height:1.3em;border:2px dashed #e3cfe0;border-radius:50%;box-sizing:border-box;display:inline-grid;place-items:center;background:none!important;box-shadow:none!important}
+.mb-dot.on {border:0;font-size:inherit}
+.mb-dot.on::after {content:"🌙";font-size:1.15em;line-height:1;filter:drop-shadow(0 0 6px #ffd76a)}
+.mb-sigs li:has(.mb-dot.on) {background:linear-gradient(90deg,#fff3c9aa,transparent 80%);border-radius:12px;padding-inline:6px}
+@media(prefers-color-scheme:dark){.mb-sigs li:has(.mb-dot.on){background:linear-gradient(90deg,#5a4a2a99,transparent 80%)}}
+.mb-post-text,.mb-post[open] .mb-post-text {border-radius:16px}
+.mb button,.mb .mb-copy {border-radius:999px}
+.mb details.mb-card > summary {cursor:pointer}
+.mb-head .school-edition {background:#ffffff30;border-color:#ffffff70;border-radius:999px}
 </style>
 
 <div class="mb" id="mb">
@@ -590,9 +649,9 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
           <p class="mb-note">70以下で売られ過ぎ、120以上で過熱。出どころ：投資の森（サイトにより1〜数ポイント差が出ます）</p>
         </article>
         <article class="mb-card mb-ind">
-          <div class="mb-ind-top"><h3>信用評価損益率（松井証券・買い方）</h3></div>
+          <div class="mb-ind-top"><h3>信用評価損益率（買い方）</h3></div>
           <div class="mb-big"><span data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu3">—</span></div>
-          <p class="mb-note">松井証券のお客さん（<span data-draw="num" data-source="matsui_latest" data-field="date" data-row="0" data-fmt="date">—</span>時点・毎日）　売り方 <b data-draw="num" data-source="matsui_latest" data-field="sell_pl" data-row="0" data-fmt="pctu3">—</b></p>
+          <p class="mb-note">松井証券（<span data-draw="num" data-source="matsui_latest" data-field="date" data-row="0" data-fmt="date">—</span>時点）　売り方 <b data-draw="num" data-source="matsui_latest" data-field="sell_pl" data-row="0" data-fmt="pctu3">—</b></p>
           <p class="mb-note mb-sub">市場全体（火曜発表・<span data-draw="num" data-source="margin_latest" data-field="week" data-row="0" data-fmt="date">—</span>申込分）<b data-draw="num" data-source="margin_latest" data-field="pl" data-row="0" data-fmt="pctu">—</b> <span class="mb-chip" data-draw="judge" data-judge="pl" data-source="margin_latest">—</span><br>市場全体の目安：−10%で追証、−20%前後で大底圏</p>
         </article>
         <article class="mb-card mb-ind">
@@ -633,7 +692,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
         <ul class="mb-sigs">
           <li><span class="mb-dot" data-draw="sig" data-sig="d25" data-source="jp_latest"></span><span>25日移動平均からの乖離 −7%以下<small class="mb-basis">過去10年で1.9%の日だけ</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nk_d25" data-row="0" data-fmt="pct">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="adr" data-source="jp_latest"></span><span>騰落レシオ 81以下<small class="mb-basis">2022年4月以降で2.0%（データ短め）</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="adr25" data-row="0" data-fmt="1">—</span></li>
-          <li><span class="mb-dot" data-draw="sig" data-sig="pl" data-source="margin_latest"></span><span>信用評価損益率 −20%以下<small class="mb-basis">2017年以降の週次で2.4%</small></span><span class="mb-now"><span data-draw="num" data-source="margin_latest" data-field="pl" data-row="0" data-fmt="pctu">—</span><small class="mb-asof">（<span data-draw="num" data-source="margin_latest" data-field="week" data-row="0" data-fmt="date">—</span>時点）</small></span></li>
+          <li><span class="mb-dot" data-draw="sig" data-sig="pl" data-source="matsui_latest"></span><span>信用評価損益率（買い方）−20%以下<small class="mb-basis">毎日更新の値で判定</small></span><span class="mb-now"><span data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu">—</span></span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="short" data-source="jp_latest"></span><span>空売り比率 49%以上<small class="mb-basis">2017年以降で1.9%</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="short" data-row="0" data-fmt="pctu1">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="nvi" data-source="jp_latest"></span><span>日経VI 41以上<small class="mb-basis">過去10年で2.0%</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nvi" data-row="0" data-fmt="2">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="per" data-source="jp_latest"></span><span>予想PER 11.8倍以下<small class="mb-basis">過去10年で2.3%（2020年3月は10.6倍）</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nk_per_f" data-row="0" data-fmt="x">—</span></li>
@@ -852,7 +911,6 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     </details>
   </section>
 
-  <p class="mb-note" id="matsui-credit-source">松井証券内の信用評価損益率は、<a href="https://www.matsui.co.jp/market/" target="_blank" rel="noopener noreferrer">松井証券「信用残速報（松井証券内）」</a>の公表値を掲載しています。</p>
 
   <details class="mb-card" id="notes">
     <summary>指標の見方とデータの出どころ</summary>
@@ -861,9 +919,9 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
       <dt>PBR</dt><dd>株価が1株純資産の何倍か。日経平均の大底圏は1.0〜1.2倍。</dd>
       <dt>騰落レシオ</dt><dd>25日間の値上がり銘柄数÷値下がり銘柄数×100。</dd>
       <dt>移動平均乖離率</dt><dd>終値が移動平均線から何%離れているか。株探の日足からレイが計算。</dd>
-      <dt>信用評価損益率</dt><dd>信用買いしている人の含み損益の割合。市場全体の値は週1回（火曜）発表。松井証券のお客さんだけの値は毎日出ています（出どころ：松井証券）。</dd>
+      <dt>信用評価損益率</dt><dd>信用買いしている人の含み損益の割合。市場全体の値は週1回（火曜）発表。このページは松井証券のお客さん（買い方）の毎日の値をメインにしています。</dd>
       <dt>空売り比率・日経VI・裁定買い残</dt><dd>下落を見込む売り、先行きの不安、先物がらみの買いの溜まり具合。</dd>
-      <dt>出どころ</dt><dd>株探（日足）、日経電子版（PER・PBR）、投資の森（騰落レシオ・日経EPS）、株式マーケットデータ（信用残・空売り比率・日経VI・裁定残・米国PER・Fear &amp; Greed）、Yahoo Finance（米国指数・VIX・10年債・ドル円）。</dd>
+      <dt>出どころ</dt><dd>株探（日足）、日経電子版（PER・PBR）、投資の森（騰落レシオ・日経EPS）、松井証券（信用評価損益率）、株式マーケットデータ（信用残・空売り比率・日経VI・裁定残・米国PER・Fear &amp; Greed）、Yahoo Finance（米国指数・VIX・10年債・ドル円）。</dd>
       <dt>まだ無いもの</dt><dd>グロース250指数そのもののPER/PBRは無料の公開元が無いため、グロース市場全銘柄の値で代用。海外投資家の売買動向は週次のため今は未掲載。</dd>
     </dl>
   </details>
@@ -944,13 +1002,13 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
   F.sig = {
     d25: r => r.nk_d25 != null && r.nk_d25 <= -7,
     adr: r => r.adr25 != null && r.adr25 <= 81,
-    pl: r => r.pl != null && r.pl <= -20,
+    pl: r => r.buy_pl != null && r.buy_pl <= -20,
     short: r => r.short != null && r.short >= 49,
     nvi: r => r.nvi != null && r.nvi >= 41,
     per: r => r.nk_per_f != null && r.nk_per_f <= 11.8,
     pbr: r => r.nk_pbr != null && r.nk_pbr <= 0.8
   };
-  F.sigSrc = {d25: 'jp_latest', adr: 'jp_latest', pl: 'margin_latest', short: 'jp_latest', nvi: 'jp_latest', per: 'jp_latest', pbr: 'jp_latest'};
+  F.sigSrc = {d25: 'jp_latest', adr: 'jp_latest', pl: 'matsui_latest', short: 'jp_latest', nvi: 'jp_latest', per: 'jp_latest', pbr: 'jp_latest'};
   // X の文字数（日本語は2、英数字は1で数える／上限280）
   F.xlen = s => { let n = 0; for (const ch of s) { const c = ch.codePointAt(0); n += (c <= 4351 || (c >= 8192 && c <= 8205) || (c >= 8208 && c <= 8223) || (c >= 8242 && c <= 8247)) ? 1 : 2; } return n; };
   const sp = v => ((v > 0 ? '+' : '') + c2(v) + '%').replace('−', '-');
@@ -958,12 +1016,12 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
   F.post = (mkt) => {
     let lines;
     if (mkt === 'sig') {
-      const r = F.row('jp_latest'), m = F.row('margin_latest'); if (!r) return null;
+      const r = F.row('jp_latest'), m = F.row('matsui_latest'); if (!r) return null;
       const v = (x, f) => x == null ? '未発表' : F.fmt(x, f).replace('−', '-');
       const S = [
         ['d25', r, '日経25日乖離', v(r.nk_d25, 'pct'), '-7%以下'],
         ['adr', r, '騰落レシオ', v(r.adr25, '1'), '81以下'],
-        ['pl', m, '信用評価損益率', m ? v(m.pl, 'pctu') + '(' + F.fmt(m.week, 'date') + ')' : '未発表', '-20%以下'],
+        ['pl', m, '信用評価損益率(買い方)', m ? v(m.buy_pl, 'pctu') + (m.date !== r.date ? '(' + F.fmt(m.date, 'date') + ')' : '') : '未発表', '-20%以下'],
         ['short', r, '空売り比率', v(r.short, 'pctu1'), '49%以上'],
         ['nvi', r, '日経VI', v(r.nvi, '2'), '41以上'],
         ['per', r, '予想PER', v(r.nk_per_f, 'x') + (r.val_est === 1 ? '(推計)' : ''), '11.8倍以下'],
@@ -971,7 +1029,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
       ];
       const n = S.filter(x => x[1] && F.sig[x[0]](x[1])).length;
       lines = [[9, `【${F.fmt(r.date, 'date')} 日経平均 底打ちサイン】点灯 ${n}/7`]]
-        .concat(S.map(x => [9, `${x[1] && F.sig[x[0]](x[1]) ? '🔴' : '⚪'}${x[2]} ${x[3]}（${x[4]}）`]))
+        .concat(S.map(x => [9, `${x[1] && F.sig[x[0]](x[1]) ? '🌙' : '⚪'}${x[2]} ${x[3]}（${x[4]}）`]))
         .concat([[9, '#日経平均'], [8, '#株式投資'], [1, '#投資初心者']]);
     } else if (mkt === 'jp') {
       const r = F.row('jp_latest'), m = F.row('margin_latest'); if (!r) return null;
@@ -1121,9 +1179,9 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     el.setAttribute('aria-label', on ? '点灯' : '未点灯');
   });
   dash.draw('sigcount', el => {
-    const jr = F.row('jp_latest'), mr = F.row('margin_latest');
+    const jr = F.row('jp_latest'), mr = F.row('matsui_latest');
     if (!jr) { el.textContent = '—'; return; }
-    let n = 0; for (const k in F.sig) { const r = F.sigSrc[k] === 'margin_latest' ? mr : jr; if (r && F.sig[k](r)) n++; }
+    let n = 0; for (const k in F.sig) { const r = F.sigSrc[k] === 'matsui_latest' ? mr : jr; if (r && F.sig[k](r)) n++; }
     el.textContent = String(n);
   });
   // 今日の値ではない指標の一覧（赤枠で上に表示）
@@ -1379,13 +1437,13 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     return true;
   };
   const drawSig = (g) => {
-    const r = F.row('jp_latest'), m = F.row('margin_latest'); if (!r) return false;
+    const r = F.row('jp_latest'), m = F.row('matsui_latest'); if (!r) return false;
     base(g, F.fmt(r.date, 'date') + ' 終値 ・ 日経平均', '底打ちサインチェック');
     const est = r.val_est === 1 ? '（推計）' : '';
     const S = [
       ['d25', r, '25日線からの乖離', '−7%以下', r.nk_d25, 'pct', ''],
       ['adr', r, '騰落レシオ', '81以下', r.adr25, '1', ''],
-      ['pl', m, '信用評価損益率', '−20%以下', m ? m.pl : null, 'pctu', m && m.week ? '（' + F.fmt(m.week, 'date') + '時点）' : ''],
+      ['pl', m, '信用評価損益率（買い方）', '−20%以下', m ? m.buy_pl : null, 'pctu', m && m.date && m.date !== r.date ? '（' + F.fmt(m.date, 'date') + '時点）' : ''],
       ['short', r, '空売り比率', '49%以上', r.short, 'pctu1', ''],
       ['nvi', r, '日経VI', '41以上', r.nvi, '2', ''],
       ['per', r, '予想PER', '11.8倍以下', r.nk_per_f, 'x', est],
@@ -1397,7 +1455,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
       const y0 = 318 + i * 124, x0 = 100, w0 = W - 200;
       g.fillStyle = on[i] ? C.onBg : '#f1f3fa'; g.fill(rr(x0, y0, w0, 108, 30));
       g.beginPath(); g.arc(x0 + 56, y0 + 54, 20, 0, Math.PI * 2);
-      if (on[i]) { g.fillStyle = C.on; g.fill(); } else { g.lineWidth = 6; g.strokeStyle = C.off; g.stroke(); }
+      if (on[i]) { g.font = f(400, 44); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('🌙', x0 + 56, y0 + 56); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; } else { g.lineWidth = 6; g.strokeStyle = C.off; g.stroke(); }
       txt(g, s[2], x0 + 100, y0 + 50, f(700, 36), C.ink); txt(g, '基準 ' + s[3], x0 + 100, y0 + 88, f(500, 26), C.sub);
       const vx = x0 + w0 - 36;
       if (s[4] == null) { missing(g, vx, y0 + 68, 'right'); return; }
@@ -1445,8 +1503,8 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
   const fx = (v, d) => Number(v).toFixed(d);
   const sp = v => (v > 0 ? '+' : v < 0 ? '−' : '±') + Math.abs(v).toFixed(2) + '%';
   const md = d => { const p = String(d).split('-'); return +p[1] + '/' + +p[2]; };
-  const sigs = () => { const jr = F.row('jp_latest'), mr = F.row('margin_latest'); let n = 0;
-    for (const k in F.sig) { const r = F.sigSrc[k] === 'margin_latest' ? mr : jr; if (r && F.sig[k](r)) n++; } return n; };
+  const sigs = () => { const jr = F.row('jp_latest'), mr = F.row('matsui_latest'); let n = 0;
+    for (const k in F.sig) { const r = F.sigSrc[k] === 'matsui_latest' ? mr : jr; if (r && F.sig[k](r)) n++; } return n; };
   const lunaSay = r => r.nk_pct == null ? '今日の日経平均は、まだ確定してないみたい。' :
     r.nk_pct <= -3 ? '日経平均、大きく下げちゃった……。でも、こんな日こそ落ち着いて数字を見よう！' :
     r.nk_pct < 0 ? '日経平均は少し下げたね。理由もいっしょに見てみよう！' :
@@ -1458,13 +1516,13 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     return t.length ? t.join('、') + '。サインは「重なり」で見るものだよ。' : '今日の指標は、まだそろっていないよ。'; };
   F.cute = () => {
     const r = F.row('jp_latest'); if (!r) return null; const m = F.row('matsui_latest');
-    const n = sigs(); const moons = '🌕'.repeat(n) + '🌑'.repeat(7 - n);
+    const n = sigs(); const moons = '🌙'.repeat(n) + '⚪'.repeat(7 - n);
     let L = [
       [9, `🌸ルナとしおりの市況メモ（${md(r.date)}）`],
       r.nk != null ? [9, `ルナ🌙「日経平均は${n0(r.nk)}円（${sp(r.nk_pct)}）だったよ！」`] : null,
       r.adr25 != null && r.nvi != null ? [7, `しおり📘「騰落レシオ${fx(r.adr25, 1)}、日経VI${fx(r.nvi, 1)}」`] : null,
       r.nk_per_f != null && r.nk_pbr != null ? [5, `しおり📘「予想PER${fx(r.nk_per_f, 1)}倍、PBR${fx(r.nk_pbr, 2)}倍${r.val_est === 1 ? '（推計）' : ''}」`] : null,
-      m && m.buy_pl != null ? [6, `しおり📘「松井証券・買い方の評価損益率${fx(m.buy_pl, 2).replace('-', '−')}%${m.date !== r.date ? '（' + md(m.date) + '）' : ''}」`] : null,
+      m && m.buy_pl != null ? [6, `しおり📘「信用評価損益率（買い方）${fx(m.buy_pl, 2).replace('-', '−')}%${m.date !== r.date ? '（' + md(m.date) + '）' : ''}」`] : null,
       [8, `ルナ🌙「底打ちサインは${n}/7点灯 ${moons}」`],
       [9, '#LUNA学園 #投資部']
     ].filter(Boolean);
