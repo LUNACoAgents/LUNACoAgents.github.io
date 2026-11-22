@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ルナのまなびノート｜LUNA学園 投資部</title>
+<meta name="description" content="PER・PBR・ROEなど、マンガ「LUNA学園 投資部」に出てくる言葉を、ルナたちが計算のしかたつきでやさしく説明するノートです。">
+<meta name="robots" content="noai, noimageai">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23263063'/%3E%3Cpath d='M19 6a10 10 0 1 0 7 15A8 8 0 0 1 19 6' fill='%23e8c06e'/%3E%3C/svg%3E">
+<meta property="og:title" content="ルナのまなびノート｜LUNA学園 投資部">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lunacoagents.github.io/note.html">
+<meta property="og:image" content="https://lunacoagents.github.io/img/luna_ill.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Klee+One:wght@400;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
+<style>
+/* Layout: 投資部サイトと同じ桜色の方眼紙。上にルナのあいさつ、まん中に色つきインデックスの単語カード、カードを開くとノートの見開きでルナたちが説明する。 */
+:root{
+  --paper:#fff4f6; --grid:#f9e2e9; --sheet:#fffdfb; --ruled:#e6eaf6;
+  --ink:#2a2e4b; --muted:#6f6984; --navy:#263063; --gold:#a97c22;
+  --pink:#d94f83; --pinksoft:#fde3ec; --crimson:#b3384a;
+  --sticky:#fff1b0; --stickyink:#4b3f10;
+  --tape:rgba(224,88,138,.26); --tape2:rgba(110,140,215,.26);
+  --line:#f0d3dc; --shadow:rgba(120,50,75,.2);
+  --band:#263063; --bandink:#fff4f6;
+  --night:#202657; --night2:#3a2f6e; --nightink:#f7f1ff; --nightmuted:#c9c2e6;
+  /* 4つの分類の色（インデックスシール） */
+  --c-price:#e0588a; --c-price-soft:#fde3ec;
+  --c-profit:#c99422; --c-profit-soft:#fff1cc;
+  --c-health:#4a78c9; --c-health-soft:#e2ecfb;
+  --c-mind:#8a63c9; --c-mind-soft:#efe6fb;
+  --marker:#ffe27a;
+  --bubble:#ffffff; --bubble-luna:#fdeef4; --bubble-shiori:#eaf1fc; --bubble-mirai:#fff4dc; --bubble-serina:#efeafb;
+  --display:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --hand:"Klee One","Hiragino Mincho ProN","Yu Mincho",serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#16132a; --grid:#211c38; --sheet:#221d37; --ruled:#302a4b;
+  --ink:#f4effb; --muted:#b8b0d0; --navy:#d3daff; --gold:#e8c06e;
+  --pink:#ff8db3; --pinksoft:#3a2342; --crimson:#ff8592;
+  --sticky:#4e4520; --stickyink:#fff2c0;
+  --tape:rgba(255,141,179,.3); --tape2:rgba(150,175,255,.28);
+  --line:#3a3157; --shadow:rgba(0,0,0,.5);
+  --band:#2c275a; --bandink:#f4effb;
+  --night:#0d0b1d; --night2:#251d47; --nightink:#f7f1ff; --nightmuted:#bdb5dc;
+  --c-price:#ff8db3; --c-price-soft:#3a2342;
+  --c-profit:#e8c06e; --c-profit-soft:#3a3120;
+  --c-health:#8fb3f5; --c-health-soft:#1f2a47;
+  --c-mind:#c3a6f5; --c-mind-soft:#2c2347;
+  --marker:#6b5a1c;
+  --bubble:#2a2442; --bubble-luna:#3a2342; --bubble-shiori:#1f2a47; --bubble-mirai:#3a3120; --bubble-serina:#2c2347;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#16132a; --grid:#211c38; --sheet:#221d37; --ruled:#302a4b;
+  --ink:#f4effb; --muted:#b8b0d0; --navy:#d3daff; --gold:#e8c06e;
+  --pink:#ff8db3; --pinksoft:#3a2342; --crimson:#ff8592;
+  --sticky:#4e4520; --stickyink:#fff2c0;
+  --tape:rgba(255,141,179,.3); --tape2:rgba(150,175,255,.28);
+  --line:#3a3157; --shadow:rgba(0,0,0,.5);
+  --band:#2c275a; --bandink:#f4effb;
+  --night:#0d0b1d; --night2:#251d47; --nightink:#f7f1ff; --nightmuted:#bdb5dc;
+  --c-price:#ff8db3; --c-price-soft:#3a2342;
+  --c-profit:#e8c06e; --c-profit-soft:#3a3120;
+  --c-health:#8fb3f5; --c-health-soft:#1f2a47;
+  --c-mind:#c3a6f5; --c-mind-soft:#2c2347;
+  --marker:#6b5a1c;
+  --bubble:#2a2442; --bubble-luna:#3a2342; --bubble-shiori:#1f2a47; --bubble-mirai:#3a3120; --bubble-serina:#2c2347;
+  color-scheme:dark}
+
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--display);font-weight:500;font-size:16px;line-height:1.85;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;overflow-x:hidden}
+img{max-width:100%;height:auto;-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--pink);outline-offset:3px;border-radius:8px}
+[hidden]{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.en{font-family:var(--latin);font-style:italic;font-weight:600;letter-spacing:.02em}
+
+/* メニュー（トップと同じ） */
+.navbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;padding-block:10px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navbar .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 18px}
+.brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--navy);font-weight:900;font-size:18px;line-height:1.2}
+.brand svg{width:26px;height:26px;color:var(--gold)}
+.brand small{display:block;font-family:var(--latin);font-style:italic;font-weight:600;font-size:12.5px;color:var(--gold);letter-spacing:.04em}
+.navbar ul{display:flex;flex-wrap:wrap;gap:2px 4px;list-style:none;margin:0;padding:0;font-size:14px;font-weight:700}
+.navbar ul a{text-decoration:none;padding:5px 13px;border-radius:999px;color:var(--muted);transition:background .2s,color .2s}
+.navbar ul a:hover,.navbar ul a[aria-current]{background:var(--pinksoft);color:var(--pink)}
+
+/* はじめのあいさつ */
+.intro{padding-block:34px 10px}
+.intro .wrap{display:grid;grid-template-columns:auto 1fr;gap:10px 26px;align-items:end}
+.intro .chibi{width:150px;display:block;filter:drop-shadow(0 8px 10px var(--shadow))}
+.intro .kicker{color:var(--gold);font-size:19px;margin:0}
+.intro h1{margin:2px 0 10px;font-family:var(--hand);font-weight:600;font-size:clamp(32px,5.4vw,52px);line-height:1.25;color:var(--navy);text-wrap:balance}
+.intro h1 .hl{background:linear-gradient(transparent 60%,var(--marker) 60%);padding-inline:2px}
+.say{position:relative;background:var(--sheet);border-radius:18px;padding:14px 18px;box-shadow:0 12px 24px -18px var(--shadow);font-size:15.5px;max-width:40em;margin:0}
+.say::before{content:"";position:absolute;left:-10px;bottom:22px;width:18px;height:18px;background:var(--sheet);transform:rotate(45deg);border-radius:3px}
+.say b{color:var(--pink)}
+.howto{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;padding:0;list-style:none;font-family:var(--hand);font-size:15px;color:var(--muted)}
+.howto li::before{content:"✎ ";color:var(--pink)}
+
+/* 分類のタブ（インデックスシール）と検索 */
+.tools{padding-block:12px 4px;margin-top:14px}
+.tools .wrap{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tab{--c:var(--navy);--cs:var(--sheet);display:inline-flex;align-items:center;gap:7px;cursor:pointer;border:0;padding:7px 15px 7px 11px;border-radius:12px 12px 4px 4px;
+  background:var(--sheet);color:var(--ink);font-weight:700;font-size:14px;box-shadow:inset 0 -3px 0 var(--c),0 6px 12px -10px var(--shadow);transition:transform .15s}
+.tab:hover{transform:translateY(-2px)}
+.tab .dot{width:11px;height:11px;border-radius:50%;background:var(--c)}
+.tab small{font-weight:500;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.tab[aria-pressed="true"]{background:var(--c);color:var(--sheet);box-shadow:0 8px 16px -10px var(--c)}
+.tab[aria-pressed="true"] .dot{background:var(--sheet)}
+.tab[aria-pressed="true"] small{color:var(--sheet);opacity:.85}
+.tab.price{--c:var(--c-price)} .tab.profit{--c:var(--c-profit)} .tab.health{--c:var(--c-health)} .tab.mind{--c:var(--c-mind)}
+.search{display:flex;align-items:center;gap:8px;background:var(--sheet);border-radius:999px;padding:6px 14px;box-shadow:inset 0 0 0 1.5px var(--line);min-width:0;flex:0 1 260px}
+.search svg{width:16px;height:16px;color:var(--muted);flex:none}
+.search input{border:0;background:transparent;font:inherit;font-size:14.5px;color:var(--ink);width:100%;min-width:0;outline:none}
+.search input::placeholder{color:var(--muted)}
+
+/* 単語カード */
+main{padding-block:16px 30px}
+.group{margin-top:34px}
+.group h2{display:flex;align-items:center;gap:12px;margin:0 0 4px;font-weight:900;font-size:clamp(22px,3vw,28px);color:var(--navy);text-wrap:balance}
+.group h2 .seal{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--c);color:var(--sheet);font-size:15px;flex:none}
+.group h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 14px)}
+.group>p{margin:0 0 18px 46px;color:var(--muted);font-size:14.5px}
+.price{--c:var(--c-price);--cs:var(--c-price-soft)} .profit{--c:var(--c-profit);--cs:var(--c-profit-soft)}
+.health{--c:var(--c-health);--cs:var(--c-health-soft)} .mind{--c:var(--c-mind);--cs:var(--c-mind-soft)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:22px 20px}
+.card{position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;cursor:pointer;border:0;padding:20px 18px 16px 20px;min-width:0;
+  background:var(--sheet);border-radius:4px 14px 14px 14px;box-shadow:0 14px 24px -18px var(--shadow),0 1px 0 var(--line);
+  transition:transform .18s,box-shadow .18s}
+.card::before{content:"";position:absolute;top:-9px;left:16px;width:58px;height:14px;border-radius:5px 5px 0 0;background:var(--c)}
+.card:hover{transform:translateY(-4px) rotate(-.4deg);box-shadow:0 20px 28px -18px var(--shadow),0 1px 0 var(--line)}
+.card .term{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.3;color:var(--navy)}
+.card .yomi{font-size:12px;color:var(--muted);line-height:1.4}
+.card .one{font-size:14.5px;line-height:1.75;margin:2px 0 4px}
+.card .mini{font-family:var(--hand);font-size:14px;line-height:1.6;background:var(--cs);border-radius:8px;padding:6px 10px;color:var(--ink);overflow-wrap:anywhere}
+.card .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.ep{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--grid);color:var(--muted);white-space:nowrap}
+.ep.soon{background:transparent;box-shadow:inset 0 0 0 1.5px var(--line)}
+.card .open{font-family:var(--hand);font-size:13.5px;color:var(--c);white-space:nowrap}
+.empty{font-family:var(--hand);color:var(--muted);text-align:center;padding:40px 0;font-size:17px}
+
+/* ノートの見開き（ダイアログ） */
+dialog{border:0;padding:0;background:transparent;color:var(--ink);width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:visible}
+dialog::backdrop{background:rgba(30,24,60,.45);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.sheet{position:relative;background:var(--sheet);border-radius:6px 18px 18px 6px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45);max-height:calc(100dvh - 24px);overflow:auto;
+  background-image:linear-gradient(90deg,transparent 30px,var(--c) 30px,var(--c) 31.5px,transparent 31.5px);border-left:10px solid var(--c)}
+.sheet-in{padding:22px 24px 22px 48px;display:flex;flex-direction:column;gap:18px}
+.d-head{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:8px 14px;padding-right:44px}
+.d-cat{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--c);letter-spacing:.04em}
+.d-cat .dot{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.d-head h2{margin:2px 0 0;font-family:var(--hand);font-weight:600;font-size:clamp(30px,5vw,40px);line-height:1.2;color:var(--navy)}
+.d-head .yomi{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.stamp{align-self:center;border:2px solid var(--crimson);color:var(--crimson);border-radius:8px;padding:2px 10px;font-weight:900;font-size:13px;transform:rotate(-6deg);opacity:.85;white-space:nowrap}
+.stamp.soon{border-style:dashed}
+.x{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;background:var(--grid);color:var(--ink);font-size:20px;line-height:1;display:grid;place-items:center}
+.x:hover{background:var(--pinksoft);color:var(--pink)}
+.label{display:flex;align-items:center;gap:8px;font-weight:900;font-size:14px;color:var(--c);letter-spacing:.06em;margin:0 0 8px}
+.label .en{font-size:16px;color:var(--gold);letter-spacing:.02em;font-weight:600}
+.formula{background:var(--cs);border-radius:12px;padding:14px 18px;font-family:var(--hand);font-weight:600;font-size:clamp(17px,2.6vw,21px);line-height:1.75;color:var(--navy);overflow-x:auto}
+.formula div{white-space:normal;overflow-wrap:anywhere}
+.formula div+div{border-top:1px dashed color-mix(in srgb,var(--c) 40%,transparent);margin-top:4px;padding-top:4px}
+.calc{border:2px dashed var(--line);border-radius:12px;padding:12px 16px 14px}
+.calc .t{font-weight:700;font-size:14px;color:var(--muted);margin:0 0 4px}
+.calc ol{list-style:none;margin:0;padding:0;font-family:var(--hand);font-size:17px;line-height:1.8;font-variant-numeric:tabular-nums}
+.calc ol li{overflow-wrap:anywhere}
+.calc ol li::before{content:"→ ";color:var(--c)}
+.calc .ans{display:inline-block;margin-top:6px;font-family:var(--hand);font-weight:600;font-size:21px;line-height:1.5;background:linear-gradient(transparent 55%,var(--marker) 55%);padding-inline:4px;color:var(--navy)}
+.calc .note{display:block;font-size:12.5px;color:var(--muted);margin-top:6px}
+.talk{display:flex;flex-direction:column;gap:10px}
+.line{display:grid;grid-template-columns:52px 1fr;gap:10px;align-items:start}
+.line.r{grid-template-columns:1fr 52px}
+.line.r .face{order:2}
+.face{width:52px;height:52px;border-radius:50%;object-fit:cover;background:var(--grid);box-shadow:0 0 0 2.5px var(--sheet),0 0 0 4px var(--line)}
+.bub{position:relative;min-width:0;margin:0;background:var(--bubble);border-radius:16px;padding:9px 14px 10px;font-size:15.5px;line-height:1.75;box-shadow:0 6px 14px -12px var(--shadow)}
+.bub .who{display:block;font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+.line.luna .bub{background:var(--bubble-luna)} .line.shiori .bub{background:var(--bubble-shiori)}
+.line.mirai .bub{background:var(--bubble-mirai)} .line.serina .bub{background:var(--bubble-serina)}
+.line.luna .who{color:var(--c-price)} .line.shiori .who{color:var(--c-health)} .line.mirai .who{color:var(--c-profit)} .line.serina .who{color:var(--c-mind)}
+.fusen{position:relative;background:var(--sticky);color:var(--stickyink);padding:16px 18px 14px;border-radius:2px 2px 16px 2px;font-size:15px;line-height:1.8;box-shadow:0 10px 18px -14px var(--shadow);transform:rotate(-.5deg)}
+.fusen::before{content:"";position:absolute;top:-9px;left:22px;width:64px;height:18px;background:var(--tape2);transform:rotate(-4deg)}
+.fusen .who{display:block;font-weight:900;font-size:12.5px;margin-bottom:2px}
+.src{font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1px solid var(--line);padding-top:10px}
+.src b{font-weight:700}
+.src a{color:inherit;text-underline-offset:2px}
+.src ul{margin:2px 0 0;padding-left:1.2em}
+.d-nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.d-nav button{border:0;cursor:pointer;background:var(--grid);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px;color:var(--navy);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-nav button:hover{background:var(--cs)}
+
+/* このノートについて */
+.about{margin-top:56px;background:var(--sheet);border-radius:6px;padding:22px 24px;box-shadow:0 14px 30px -18px var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.about .wax{width:50px;height:50px;border-radius:50%;background:var(--crimson);display:grid;place-items:center;color:var(--sheet)}
+.about .wax svg{width:22px;height:22px}
+.about h3{margin:0 0 4px;font-size:17px;color:var(--navy)}
+.about p{margin:0;color:var(--muted);font-size:14.5px}
+.about p+p{margin-top:6px}
+
+/* 夜空のフッター（トップと同じ並び） */
+.night{margin-top:80px;position:relative;color:var(--nightink);
+  background:radial-gradient(1.5px 1.5px at 12% 30%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 34% 62%,#fff 50%,transparent 51%),
+  radial-gradient(2px 2px at 58% 24%,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 72% 70%,#fff 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 88% 40%,#fff 50%,transparent 51%),linear-gradient(var(--night2),var(--night));padding-block:56px 30px}
+.night::before{content:"";position:absolute;left:0;right:0;top:-40px;height:42px;background:var(--night2);
+  -webkit-mask:radial-gradient(60px 42px at 60px 42px,#000 98%,transparent) 0 0/120px 42px repeat-x;mask:radial-gradient(60px 42px at 60px 42px,#000 98%,transparent) 0 0/120px 42px repeat-x}
+.lane{position:relative;height:150px;overflow:hidden;margin-top:-110px}
+.parade{position:absolute;bottom:0;left:0;display:flex;align-items:flex-end;gap:14px;flex-direction:row-reverse;transform:translateX(-110%)}
+.parade img{display:block;height:120px;width:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.parade img.usagi{height:68px;margin-bottom:4px}
+.parade .c{transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){
+  .parade{animation:walk 24s linear infinite}
+  .parade .c{animation:bob .55s ease-in-out infinite alternate}
+  .parade .c:nth-child(2){animation-delay:-.2s} .parade .c:nth-child(3){animation-delay:-.35s} .parade .c:nth-child(4){animation-delay:-.1s}
+  .parade .c.hop{animation:hop .7s ease-in-out infinite}
+  @keyframes walk{from{left:0;transform:translateX(-110%)}to{left:100%;transform:translateX(10%)}}
+  @keyframes bob{from{transform:translateY(0) rotate(-1.5deg)}to{transform:translateY(-6px) rotate(1.5deg)}}
+  @keyframes hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-30px)}}
+  dialog[open] .sheet{animation:openNote .28s ease-out}
+  @keyframes openNote{from{transform:translateY(14px) rotate(-1deg);opacity:0}to{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){.parade{left:16px;transform:none}.card,.tab{transition:none}}
+.night .bye{text-align:center;margin:22px 0 26px}
+.night .bye .en{display:block;font-size:28px;color:#ffe7a6;line-height:1.2}
+.night .bye p{margin:6px 0 0;font-family:var(--hand);font-size:16px;color:var(--nightmuted)}
+.night footer{border-top:1px solid rgba(255,255,255,.14);padding-top:18px;color:var(--nightmuted);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+@media (max-width:720px){
+  .intro .wrap{grid-template-columns:1fr}
+  .intro .chibi{width:104px;order:-1}
+  .say::before{left:34px;bottom:auto;top:-8px}
+  .search{flex:1 1 100%}
+  .group>p{margin-left:0}
+}
+@media (max-width:600px){
+  .navbar ul{font-size:13px} .navbar ul a{padding:4px 9px}
+  .sheet-in{padding:18px 16px 18px 38px;gap:16px}
+  .sheet{background-image:linear-gradient(90deg,transparent 22px,var(--c) 22px,var(--c) 23.5px,transparent 23.5px)}
+  .line,.line.r{grid-template-columns:42px 1fr}
+  .line.r .face{order:0}
+  .face{width:42px;height:42px}
+  .about{grid-template-columns:1fr}
+  .lane{height:118px;margin-top:-92px}
+  .parade img{height:92px} .parade img.usagi{height:54px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="moon" viewBox="0 0 24 24"><path fill="currentColor" d="M14.5 2.5A9.5 9.5 0 1 0 21.5 17 7.5 7.5 0 0 1 14.5 2.5Z"/></symbol>
+    <symbol id="lens" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<nav class="navbar" aria-label="サイト内メニュー">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg><use href="#moon"/></svg><span>LUNA学園 投資部<small>Luna Gakuen Investment Club</small></span></a>
+    <ul>
+      <li><a href="index.html#manga">マンガ</a></li>
+      <li><a href="index.html#cast">部員名簿</a></li>
+      <li><a href="note.html" aria-current="page">まなびノート</a></li>
+      <li><a href="https://luna-academy-kessan-note.just-fawn-8241.chatgpt.site/market/">マーケット指標ボード</a></li>
+      <li><a href="index.html#about">はじめに</a></li>
+      <li><a href="school.html">学園サイト</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="intro">
+  <div class="wrap">
+    <img class="chibi" src="img/chibi_luna.png" alt="ノートをかかえて歩くちびルナ" width="220" height="300">
+    <div>
+      <p class="kicker en">Luna's study notes</p>
+      <h1>ルナの<span class="hl">まなびノート</span></h1>
+      <p class="say">しおりやセリナ先生に教わったことを、ぜんぶここに書きとめてるよ！ 気になる言葉をタップすると、<b>計算のしかた</b>と、みんなの説明が出てくるからね。</p>
+      <ul class="howto">
+        <li>色は4つのなかま分け</li>
+        <li>計算はマンガの中の会社の数字</li>
+        <li>まだマンガに出てない言葉には「登場予定」</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="tools">
+  <div class="wrap">
+    <div class="tabs" id="tabs" role="group" aria-label="なかま分けでしぼりこむ"></div>
+    <label class="search" for="q"><svg aria-hidden="true"><use href="#lens"/></svg><input id="q" type="search" placeholder="言葉をさがす（例：PER、りえき）" autocomplete="off"></label>
+  </div>
+</div>
+
+<main class="wrap" id="list"></main>
+
+<div class="wrap">
+  <section class="about" aria-labelledby="h-about">
+    <span class="wax" aria-hidden="true"><svg><use href="#moon"/></svg></span>
+    <div>
+      <h3 id="h-about">このノートについて</h3>
+      <p>このノートは、マンガ「LUNA学園 投資部」に出てくる言葉を、はじめての人向けにやさしくまとめた学習用のページです。特定の株や会社への投資をすすめるものではありません。計算に出てくる星野雑貨・X社などは、マンガの中の架空の会社です。</p>
+      <p>説明は、日本取引所グループ（JPX）や証券会社の用語集などで確かめて書いています。わかりやすくするために、くわしい決まりを省いているところがあります。実際に投資をするときは、ご自身でよく調べて決めてください。</p>
+    </div>
+  </section>
+</div>
+
+<div class="night">
+  <div class="lane" aria-hidden="true">
+    <div class="parade">
+      <img class="c hop usagi" src="img/chibi_usagi.png" alt="" width="139" height="200">
+      <img class="c" src="img/chibi_luna.png" alt="" width="220" height="300">
+      <img class="c" src="img/chibi_shiori.png" alt="" width="144" height="300">
+      <img class="c" src="img/chibi_serina.png" alt="" width="177" height="300">
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="bye"><span class="en">See you after school</span><p>今日のノートはここまで。また放課後にね。</p></div>
+    <footer>
+      <span>© LUNA学園 投資部　画像・文章の無断転載、AIの学習への利用はご遠慮ください。</span>
+      <a href="index.html" style="color:inherit">LUNA学園 投資部サイトへ戻る →</a>
+    </footer>
+  </div>
+</div>
+
+<dialog id="note" aria-labelledby="d-title">
+  <article class="sheet" id="sheet">
+    <button class="x" id="close" type="button" aria-label="ノートを閉じる">×</button>
+    <div class="sheet-in" id="sheetIn"></div>
+  </article>
+</dialog>
+
+<script>
+(function(){
+  /* ── ミライはマンガ第11話で初登場。それまでは名前と顔を出さない（第11話を公開したら true にする） ── */
+  var SHOW_MIRAI=false;
+  /* ── 登場する人 ── */
+  var WHO={
+    luna:{name:'ルナ',img:'img/face_luna.png'},
+    shiori:{name:'しおり',img:'img/face_shiori.png'},
+    mirai:{name:'ミライ',img:'img/face_mirai.png'},
+    serina:{name:'セリナ先生',img:'img/face_serina.png'}
+  };
+  /* ── なかま分け ── */
+  var CATS=[
+    {id:'price',label:'値段をはかる',seal:'￥',desc:'その会社に、いまどんな値段がついているかを見る物さし'},
+    {id:'profit',label:'もうけを見る',seal:'↗',desc:'会社がどれだけ、どうやってもうけているかを見る'},
+    {id:'health',label:'会社の体力',seal:'♥',desc:'借金やお金の流れから、会社のじょうぶさを見る'},
+    {id:'mind',label:'考え方',seal:'☆',desc:'数字の前に、心にとめておきたいこと'}
+  ];
+  /* ── ノートの中身（説明はJPX・証券会社の用語集などで確認。計算はマンガの数字） ── */
+  var N=[
+  {id:'market-cap',cat:'price',term:'時価総額',yomi:'じかそうがく',ep:'第9話',
+   one:'会社まるごとの値段。',
+   f:['時価総額 ＝ 株価 × 発行済株式数'],
+   calc:{t:'星野雑貨で計算してみよう',l:['株価 500円 × 1,000万株'],a:'＝ 50億円'},
+   talk:[['luna','株価500円って、会社ぜんぶが500円……じゃないよね？'],['shiori','それは1株の値段。株の数をかけると、会社まるごとの値段になるの。それが時価総額だよ。'],['luna','ピザのひと切れと、まるごと1枚のちがいだ！']],
+   tip:'株価が高い会社が、大きい会社とはかぎらないよ。株の数は会社ごとにちがうから、会社の大きさをくらべるときは時価総額を見てね。株価が動くと、時価総額も毎日かわるよ。',
+   src:[['日本取引所グループ 用語集「時価総額」','https://www.jpx.co.jp/glossary/sa/179.html']]},
+
+  {id:'eps',cat:'price',term:'EPS',yomi:'イーピーエス／1株あたり純利益',ep:'第10話',
+   one:'1株あたり、1年でどれだけもうけたか。',
+   f:['EPS ＝ 純利益 ÷ 発行済株式数'],
+   calc:{t:'星野雑貨で計算してみよう',l:['純利益 3億1,500万円 ÷ 1,000万株'],a:'＝ 31.5円'},
+   talk:[['luna','1株あたり、いくらもうけたか……？'],['shiori','会社の1年の純利益を、株の数で分けたものだよ。1株ぶんの「もうけの取り分」の目安。'],['luna','わたしが1株持ってたら、31.5円ぶんってこと？'],['shiori','計算の上ではね。でも、ぜんぶが配当でもらえるわけじゃないよ。']],
+   tip:'純利益の多くは、会社の中に残して次の成長に使われることもあるよ。正しい計算では、1年のあいだの平均の株数などを使うの。',
+   src:[['日本取引所グループ 用語集「1株当たり当期純利益」','https://www.jpx.co.jp/glossary/0-9/558.html']]},
+
+  {id:'per',cat:'price',term:'PER',yomi:'ピーイーアール／株価収益率',ep:'第10話',
+   one:'会社の値段が、1年の純利益の何倍か。',
+   f:['PER ＝ 株価 ÷ EPS','PER ＝ 時価総額 ÷ 純利益（どちらも同じ答え）'],
+   calc:{t:'星野雑貨で計算してみよう',l:['株価 500円 ÷ EPS 31.5円','時価総額 50億円 ÷ 純利益 3億1,500万円 でも同じ'],a:'≒ 15.9倍'},
+   talk:[['luna','ぴー、いー、あーる……？ なんの暗号！？'],['shiori','会社の値段が、1年の純利益の何倍になっているか、だよ。星野雑貨は約15.9倍。'],['luna','じゃあ、16年待てば元が取れるってこと？'],['serina','そういう意味じゃないよ。利益は、増えたり減ったりするからね。']],
+   tip:'低いからお得、高いからダメ、とは決められないよ。低いのには理由があることも。その会社がこれからどうなりそうかと、いっしょに見てね。',
+   src:[['日本取引所グループ 用語集「株価収益率」','https://www.jpx.co.jp/glossary/ka/73.html']]},
+
+  {id:'forward-per',cat:'price',term:'予想PER',yomi:'よそうピーイーアール',ep:'第12話',
+   one:'来年の予想の利益で見たPER。',
+   f:['予想PER ＝ 株価 ÷ 予想EPS','予想EPS ＝ 来年の予想純利益 ÷ 発行済株式数'],
+   calc:{t:'星野雑貨で計算してみよう',l:['来年の予想純利益 4億円 ÷ 1,000万株 ＝ 予想EPS 40円','株価 500円 ÷ 40円'],a:'＝ 12.5倍'},
+   talk:[['mirai','お店が増えたら、利益はもっと伸びるよっ！'],['shiori','今の利益で見ると約15.9倍。会社が出している来年の予想で見ると、12.5倍。'],['luna','しおりは「今」を見てて、ミライは「未来」を見てる……見てる時間が、ちがうんだ！','今の利益で見るか、来年の利益で見るか……見てる時間で、PERがかわるんだ！']],
+   tip:'予想は、あくまで予想。外れることもあるよ。「どうして利益が増える予想なのか」も、いっしょに確かめてね。',
+   src:[['日本取引所グループ 用語集「株価収益率」','https://www.jpx.co.jp/glossary/ka/73.html']]},
+
+  {id:'pbr',cat:'price',term:'PBR',yomi:'ピービーアール／株価純資産倍率',ep:'第16話',
+   one:'会社の値段が、純資産の何倍か。',
+   f:['PBR ＝ 株価 ÷ BPS（1株あたり純資産）','PBR ＝ 時価総額 ÷ 純資産（どちらも同じ答え）'],
+   calc:{t:'第16話のX社で計算してみよう',l:['純資産 70億円（持ち物 100億円 − 借金 30億円）','時価総額 35億円 ÷ 純資産 70億円'],a:'＝ 0.5倍'},
+   talk:[['luna','70億円の会社が、35億円……！？'],['shiori','株の値段が、純資産の何倍か。それがPBR。1倍より下なら、帳簿の上の持ち物より安い値段がついている、ってことだよ。'],['mirai','帳簿と値段が、ずれてるんだ！'],['shiori','そう。だから、ずれている理由を調べるの。']],
+   tip:'1倍より低いのには、理由があることも。売ってもお金にならない物（のれん）が多かったり、毎年の赤字で純資産が減っていったりする会社もあるよ。中身を見てからね。',
+   src:[['日本取引所グループ 用語集「株価純資産倍率」','https://www.jpx.co.jp/glossary/ka/74.html']]},
+
+  {id:'mix',cat:'price',term:'ミックス係数',yomi:'ミックスけいすう／グレアムの目安',ep:'第16話',
+   one:'PERとPBRをかけて、ふたつの安さをいっしょに見る。',
+   f:['ミックス係数 ＝ PER × PBR','グレアムの目安：15倍 × 1.5倍 ＝ 22.5 → かけて22.5以下'],
+   calc:{t:'第16話のX社で計算してみよう',l:['PER：時価総額 35億円 ÷ 純利益 5億円（過去3年の平均）＝ 7倍','PBR：0.5倍','7 × 0.5'],a:'＝ 3.5'},
+   talk:[['shiori','利益で見る安さがPER。資産で見る安さがPBR。ふたつを、かけるの。'],['luna','7 × 0.5 で、3.5！'],['shiori','グレアムは、かけて22.5を超えないことを目安にしたの。中身を調べた上で、ね。']],
+   tip:'22.5は「これ以下なら買い」という合図じゃないよ。グレアムは、財務がしっかりしていることや、利益が続いていることなど、ほかの条件もあげているの。それから、かけ算の答えなので「22.5倍」とは言わないよ。',
+   src:[['ベンジャミン・グレアム『賢明なる投資家』第14章（防衛的投資家の銘柄選び）',null]]},
+
+  {id:'peg',cat:'price',term:'PEGレシオ',yomi:'ペグレシオ',ep:'第27話',soon:true,
+   one:'PERを、利益が伸びる速さで割る。',
+   f:['PEGレシオ ＝ PER ÷ 1株あたり利益の成長率（％の数字）'],
+   calc:{t:'たとえばの数字で',l:['Aの会社：PER 20倍、利益が毎年20％のびる → 20 ÷ 20 ＝ 1','Bの会社：PER 20倍、利益が毎年10％のびる → 20 ÷ 10 ＝ 2'],a:'PERが同じでも、Aは伸びる速さのわりに値段がひかえめ',n:'A・Bはたとえの会社です。'},
+   talk:[['mirai','PERが高くても、すっごく伸びる会社なら、いいんじゃない？'],['shiori','伸びる速さと値段を、いっしょに見るのがPEGだよ。PERを成長率で割るの。'],['luna','かけっこの速さで、値段をくらべる感じだね！']],
+   tip:'成長率には予想が入るから、外れることもあるよ。「1くらい」を目安にする考え方もあるけど、それだけで決めないでね。赤字の会社や、利益が減っている会社には使えないよ。',
+   src:[['大和証券 金融・証券用語解説「PEGレシオ」','https://www.daiwa.jp/glossary/YST2902.html']]},
+
+  {id:'dividend-yield',cat:'price',term:'配当利回り',yomi:'はいとうりまわり',ep:'マンガではこれから',soon:true,
+   one:'株価に対して、1年で何％の配当があるか。',
+   f:['配当利回り（％）＝ 1株あたりの1年の配当 ÷ 株価 × 100'],
+   calc:{t:'たとえばの数字で',l:['株価 1,000円、1年の配当 30円','30 ÷ 1,000 × 100'],a:'＝ 3％'},
+   talk:[['luna','株を持ってると、お金がもらえることもあるの？'],['shiori','会社がもうけの一部を、株主に配ることがあるの。それが配当。'],['serina','株価に対して、1年で何％くらいになるかを表すのが、配当利回りだよ。']],
+   tip:'株価が下がると、配当が同じでも利回りは高く見えるよ。業績が悪くなって、配当が減ったり、なくなったりすることもあるの。利回りの高さだけで選ばないでね。',
+   src:[['野村證券 証券用語解説集「配当利回り」','https://www.nomura.co.jp/terms/japan/ha/haitourimawari.html']]},
+
+  {id:'profit',cat:'profit',term:'売上と利益',yomi:'うりあげとりえき／利益の階段',ep:'第3話',
+   one:'売上から、いろんな費用を引いて残るのが利益。',
+   f:['売上 − 仕入れなど（原価）＝ 売上総利益（粗利）','売上総利益 − 家賃・お給料など ＝ 営業利益（本業のもうけ）','営業利益 ± 本業以外のお金 ＝ 経常利益','経常利益 ± 特別なお金 − 税金など ＝ 純利益（最後に残るもうけ）'],
+   calc:{t:'星野雑貨の数字',l:['売上 100億円','営業利益 5億円','純利益 3億1,500万円'],a:'100億円売って、最後に残るのは3億1,500万円'},
+   talk:[['luna','100億円も売れてるのに、利益は5億円！？'],['shiori','売上は、お店に入ってきたお金の合計。そこから仕入れや家賃やお給料を引いて、残ったのが利益だよ。'],['luna','利益にも、階段があるんだね……！']],
+   tip:'ニュースや決算で「利益」と出てきたら、どの段の利益か確かめてね。PERやEPSで使うのは、いちばん下の「純利益」だよ。',
+   src:[['松井証券 マネーサテライト「経常利益とは」','https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-ordinary.html']]},
+
+  {id:'gross-margin',cat:'profit',term:'粗利率',yomi:'あらりりつ／売上総利益率',ep:'第8話・第23話',
+   one:'売上のうち、何％が売上総利益（粗利）か。',
+   f:['粗利率（％）＝ 売上総利益 ÷ 売上 × 100'],
+   calc:{t:'星野雑貨で計算してみよう',l:['売上総利益 50億円 ÷ 売上 100億円 × 100'],a:'＝ 50％',n:'1,000円のノートなら、500円が売上総利益。'},
+   talk:[['luna','千円のうち、500円が売上総利益！'],['shiori','そっくりなノートが安く出ても、この割合が下がっていない。値下げしなくても選ばれている、しるしなのかも。']],
+   tip:'粗利率は、お店や会社の種類で大きくちがうよ。くらべるなら、似た種類の会社どうしでね。高いだけで「強い会社」とは言い切れないの。',
+   src:[['松井証券 マネーサテライト「経常利益とは」（利益の段階の説明）','https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-ordinary.html']]},
+
+  {id:'revenue-up-profit-down',cat:'profit',term:'増収減益',yomi:'ぞうしゅうげんえき',ep:'第4話・第5話',
+   one:'売上は増えたのに、利益は減ったこと。',
+   f:['「収」は売上、「益」は利益','増収増益：売上も利益も増えた','増収減益：売上は増えた、利益は減った','減収増益：売上は減った、利益は増えた','減収減益：売上も利益も減った'],
+   calc:{t:'星野雑貨の場合',l:['売上：前の年 80億円 → 今年 100億円（増収）','利益：前の年より減った（減益）'],a:'＝ 増収減益'},
+   talk:[['luna','売上は増えたのに、利益は減った……これってダメってこと？'],['shiori','理由によって、意味が変わるの。たとえば新しいお店を出すために、費用が先に増えていることもあるよ。'],['luna','数字だけじゃなく、理由を確かめる！']],
+   tip:'減益のときは、一回だけの費用なのか、これからも続く費用なのかを見てね。',
+   src:[]},
+
+  {id:'roe',cat:'profit',term:'ROE',yomi:'アールオーイー／自己資本利益率',ep:'第18話',
+   one:'株主のお金を使って、1年でどれだけもうけたか。',
+   f:['ROE（％）＝ 純利益 ÷ 自己資本 × 100'],
+   calc:{t:'たとえばの数字で',l:['A社：自己資本 100億円で、純利益 8億円 → 8％','B社：自己資本 100億円で、純利益 12億円 → 12％'],a:'同じ元手で、B社のほうが多く育てている'},
+   talk:[['luna','その資本、どれだけ育つ？'],['shiori','株主が出したお金と、会社がためてきた利益。それが自己資本。それを使って、1年でどれだけ純利益を出したかがROEだよ。'],['mirai','よーし、私のおこづかいでROE12％目指す！……あれ？ 自己資本、0円。','drop']],
+   tip:'日本では「8％をこえているか」がよく話題になるよ（2014年に経済産業省の「伊藤レポート」がしめした目安）。でも、借金を多くして自己資本を小さくしても、ROEは高く見えることがあるの。自己資本比率もいっしょに見てね。正しい計算では、前の年と今年の自己資本の平均を使うことが多いよ。',
+   src:[['日本取引所グループ 用語集「自己資本当期純利益率」','https://www.jpx.co.jp/glossary/sa/549.html'],['経済産業省「持続的成長への競争力とインセンティブ」プロジェクト最終報告書（伊藤レポート、2014年）',null]]},
+
+  {id:'net-assets',cat:'health',term:'純資産',yomi:'じゅんしさん／BPS',ep:'第16話',
+   one:'持ち物から借金を引いた、株主の分。',
+   f:['純資産 ＝ 資産（持ち物）− 負債（借金など）','BPS（1株あたり純資産）＝ 純資産 ÷ 発行済株式数'],
+   calc:{t:'第16話のX社で計算してみよう',l:['持ち物 100億円 − 借金 30億円'],a:'＝ 純資産 70億円'},
+   talk:[['luna','持ち物が100億円で、借金が30億円……'],['shiori','それが「純資産」。持ち物から借金を引いた、株主の分だよ。'],['mirai','会社をやめて、ぜんぶ分けたら70億円ってこと？'],['shiori','帳簿の上ではね。本当にやめるときは、費用や税金もかかるよ。']],
+   tip:'帳簿の数字なので、本当に売ったらその値段になるとはかぎらないよ。のれんは売ってもお金にならないし、土地は買った時の値段のままのことも多いの。',
+   src:[['日本取引所グループ 用語集「株価純資産倍率」','https://www.jpx.co.jp/glossary/ka/74.html']]},
+
+  {id:'equity-ratio',cat:'health',term:'自己資本比率',yomi:'じこしほんひりつ',ep:'第17話',
+   one:'持ち物のうち、返さなくていいお金でまかなっている割合。',
+   f:['自己資本比率（％）＝ 自己資本 ÷ 総資産 × 100'],
+   calc:{t:'第16話のX社で計算してみよう',l:['自己資本 70億円 ÷ 総資産 100億円 × 100'],a:'＝ 70％'},
+   talk:[['luna','PBRが同じでも、借金が多い会社と、少ない会社があるんだね……'],['shiori','持ち物のうち、返さなくていいお金でまかなっている割合が、自己資本比率。高いほど、急な嵐に強いよ。']],
+   tip:'ふつうの高さは、業種によってちがうよ（銀行などは、もともと低めなの）。このノートでは「自己資本」と「純資産」をほぼ同じものとして話しているけど、正しくは少しちがうよ。',
+   src:[['大和証券 金融・証券用語解説「自己資本比率」','https://www.daiwa.jp/glossary/YST0679.html']]},
+
+  {id:'cash-flow',cat:'health',term:'キャッシュフロー',yomi:'CF／お金の流れ',ep:'第24話',soon:true,
+   one:'会社のお金が、どこから入ってどこへ出たか。',
+   f:['営業CF：本業で、お金が入った・出た','投資CF：お店や設備を買った・売った','財務CF：お金を借りた・返した、配当をはらった','フリーCF ＝ 営業CF ＋ 投資CF'],
+   calc:{t:'たとえばの数字で',l:['1万円の商品を「来月はらうね」で売った','売上と利益は、今月につく','今月、手元に入ったお金'],a:'＝ 0円',n:'投資CFはマイナスのことが多いので、フリーCFは実際には引き算に近くなるよ。'},
+   talk:[['luna','利益が出てるのに、お金がないって……どういうこと？'],['shiori','売った時に利益はつくけど、お金が入るのは、あとのこともあるの。お金の本当の動きを見るのが、キャッシュフローだよ。']],
+   tip:'利益が出ていても、お金が足りなくなって困る会社もあるよ（黒字倒産）。利益とお金の動き、両方見てね。',
+   src:[['EY新日本 わかりやすい解説シリーズ「キャッシュ・フロー計算書」','https://www.ey.com/ja_jp/technical/corporate-accounting/commentary/cash-flow/commentary-cash-flow-2012-11-14']]},
+
+  {id:'hidden-assets',cat:'health',term:'かくれ資産',yomi:'かくれしさん／含み益',ep:'第26話',soon:true,
+   one:'帳簿の値段より、今の値段が高い持ち物。',
+   f:['含み益 ＝ 今の値段（時価）− 帳簿の値段'],
+   calc:{t:'たとえばの数字で',l:['30年前に 10億円で買った土地','帳簿は 10億円のまま。今の値段は 30億円'],a:'含み益 20億円',n:'売ると、税金などがかかるよ。'},
+   talk:[['mirai','帳簿にのってない、お宝……宝さがしだ！'],['shiori','決算書の「注記」に、貸しているビルや土地の今の値段が書いてあることがあるの。'],['luna','でも、使ってない土地は、もうけてはいないんだよね。']],
+   tip:'含み益は、売らないとお金にならないよ。売ると税金もかかるし、その土地でお店をやっているなら、かんたんには売れないの。',
+   src:[['EY新日本「賃貸等不動産の時価等の開示に関する会計基準の概要」','https://www.ey.com/ja_jp/technical/corporate-accounting/commentary/investment-properties/commentary-investment-properties-2013-10-21-03']]},
+
+  {id:'margin-of-safety',cat:'mind',term:'安全域',yomi:'あんぜんいき',ep:'第21話',
+   one:'自分の見つもりが外れても大丈夫なように、残しておく余裕。',
+   f:['安全域 ＝ 自分で考えた価値 − 買う値段'],
+   calc:{t:'たとえばの数字で',l:['自分で考えた価値 1,000円','買う値段 700円'],a:'300円ぶんの余裕が、安全域',n:'700円は、たとえの数字です。'},
+   talk:[['shiori','バフェットは、橋にたとえてる。重さ3万ポンドにたえられる橋を作って、通すのは1万ポンドのトラックだけ。'],['luna','余裕を、残しておくんだ……！'],['mirai','何割引きまで待てばいいの？'],['shiori','決まりはないの。その会社をどれだけ分かっているかで、変わるんだよ。']],
+   tip:'「何割引きなら買い」という決まりはないよ。安全域があっても、損をしないとは言えないの。',
+   src:[['ベンジャミン・グレアム『賢明なる投資家』第20章',null],['ウォーレン・バフェット「グレアム・ドッド村のスーパー投資家たち」（1984年）',null]]},
+
+  {id:'diversify',cat:'mind',term:'分散',yomi:'ぶんさん',ep:'第20話',
+   one:'ひとつの会社に、お金をぜんぶ入れない。',
+   f:['ひとつのカゴに、卵をぜんぶ盛らない'],
+   calc:{t:'LUNA FUNDの100万円で考えると',l:['1社にぜんぶ：その会社が2割下がる → 100万円が 80万円','5社に20万円ずつ：1社が2割下がる → 20万円が16万円、全体は 96万円'],a:'減ったのは 4万円だけ',n:'ほかの4社は変わらない、とした場合。'},
+   talk:[['serina','あなたたち、分散って言葉知ってる？'],['luna','LUNA FUNDのルール、第1号だね！'],['serina','当てることより、退場しないこと。']],
+   tip:'LUNA FUNDのルール　① 1つの会社に、ぜんぶ入れない　② ちがう種類の会社に分ける　③ はじめは5〜10社くらいが目安。分けても、ぜんぶがいっしょに下がる日はあるよ。',
+   src:[['財務省 中国財務局「分散投資」','https://lfb.mof.go.jp/chugoku/kinyusyouken/kin3/bunsantoushi.html']]},
+
+  {id:'moat',cat:'mind',term:'競争優位',yomi:'きょうそうゆうい／お城の堀',ep:'第23話',
+   one:'ほかの会社に、まねされにくい強み。',
+   f:['会社のもうけ ＝ お城','まねされにくい強み ＝ お城を守る「堀」'],
+   calc:{t:'星野雑貨のうさぎノートの場合',l:['300円のうさぎノートに、110円のそっくりノートが出た','それでも粗利率は、前の年 50％ → 今年 50％'],a:'値下げしなくても、選ばれているのかも'},
+   talk:[['luna','そっくりなノートが110円で出ても、星野雑貨のが売れてる……'],['shiori','まねされにくい強みを、お城のまわりの「堀」にたとえるの。バフェットも使うたとえだよ。']],
+   tip:'堀は、ずっと続くとはかぎらないよ。毎年、堀がうまっていないか確かめてね。',
+   src:[['ウォーレン・バフェット 2007年 株主への手紙（「堀」のたとえ）',null]]}
+  ];
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function epLabel(n){return n.soon?n.ep+(n.ep.indexOf('話')>-1?'で登場予定':''):n.ep+'より'}
+  var catOf={};CATS.forEach(function(c){catOf[c.id]=c});
+
+  /* ── タブ ── */
+  var tabs=document.getElementById('tabs'),q=document.getElementById('q'),list=document.getElementById('list'),filter='all';
+  function tabBtn(id,label,count,cls){return '<button type="button" class="tab '+(cls||'')+'" data-f="'+id+'" aria-pressed="'+(filter===id)+'"><span class="dot"></span>'+label+' <small>'+count+'</small></button>'}
+  function drawTabs(){var h=tabBtn('all','ぜんぶ',N.length);
+    CATS.forEach(function(c){h+=tabBtn(c.id,c.label,N.filter(function(n){return n.cat===c.id}).length,c.id)});tabs.innerHTML=h}
+  tabs.addEventListener('click',function(e){var b=e.target.closest('.tab');if(!b)return;filter=b.dataset.f;drawTabs();drawList();
+    try{localStorage.setItem('luna-note-filter',filter)}catch(err){}});
+
+  /* ── カード一覧 ── */
+  function norm(s){return String(s).toLowerCase().replace(/[ァ-ン]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0x60)})}
+  function hit(n,s){if(!s)return true;var t=norm([n.term,n.yomi,n.one,n.f.join(' ')].join(' '));return t.indexOf(norm(s))>-1}
+  function drawList(){var s=q.value.trim(),h='',any=false;
+    CATS.forEach(function(c){if(filter!=='all'&&filter!==c.id)return;
+      var items=N.filter(function(n){return n.cat===c.id&&hit(n,s)});if(!items.length)return;any=true;
+      h+='<section class="group '+c.id+'" aria-labelledby="g-'+c.id+'"><h2 id="g-'+c.id+'"><span class="seal" aria-hidden="true">'+c.seal+'</span>'+c.label+'</h2><p>'+c.desc+'</p><div class="cards">';
+      items.forEach(function(n){h+='<button type="button" class="card" data-id="'+n.id+'"><span class="term">'+esc(n.term)+'</span><span class="yomi">'+esc(n.yomi)+'</span>'+
+        '<span class="one">'+esc(n.one)+'</span><span class="mini">'+esc(n.f[0])+'</span>'+
+        '<span class="foot"><span class="ep'+(n.soon?' soon':'')+'">'+esc(epLabel(n))+'</span><span class="open">ノートを開く →</span></span></button>'});
+      h+='</div></section>'});
+    list.innerHTML=any?h:'<p class="empty">その言葉は、まだノートにないみたい……。べつの言葉でさがしてみてね。</p>'}
+  q.addEventListener('input',drawList);
+  list.addEventListener('click',function(e){var c=e.target.closest('.card');if(c)openNote(c.dataset.id,true)});
+
+  /* ── ノートを開く ── */
+  var dlg=document.getElementById('note'),sheet=document.getElementById('sheet'),inner=document.getElementById('sheetIn'),cur=-1,opener=null;
+  function line(t){var w=WHO[t[0]],r=(t[0]==='shiori'||t[0]==='serina');
+    return '<div class="line '+t[0]+(r?' r':'')+'"><img class="face" src="'+w.img+'" alt="'+w.name+'" width="160" height="160"><p class="bub"><span class="who">'+w.name+'</span>'+esc(t[1])+'</p></div>'}
+  /* ミライを出さない間は、ミライのセリフをルナが言う。ミライの名前が入るセリフは言いかえ、ミライだけのじょうだんは外す */
+  function talkFor(n){if(SHOW_MIRAI)return n.talk;var out=[];
+    n.talk.forEach(function(t){if(t[2]==='drop')return;if(t[0]==='mirai'){out.push(['luna',t[1]]);return}out.push(t[2]?[t[0],t[2]]:t)});return out}
+  function render(i){var n=N[i],c=catOf[n.cat],prev=N[(i-1+N.length)%N.length],next=N[(i+1)%N.length];
+    sheet.className='sheet '+n.cat;
+    var h='<header class="d-head"><div><span class="d-cat"><span class="dot"></span>'+c.label+'</span><h2 id="d-title">'+esc(n.term)+'</h2><span class="yomi">'+esc(n.yomi)+'</span></div>'+
+      '<span class="stamp'+(n.soon?' soon':'')+'">'+esc(epLabel(n))+'</span></header>';
+    h+='<section><p class="label">しき <span class="en">Formula</span></p><div class="formula">'+n.f.map(function(x){return '<div>'+esc(x)+'</div>'}).join('')+'</div></section>';
+    h+='<section class="calc"><p class="t">'+esc(n.calc.t)+'</p><ol>'+n.calc.l.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol><span class="ans">'+esc(n.calc.a)+'</span>'+(n.calc.n?'<span class="note">'+esc(n.calc.n)+'</span>':'')+'</section>';
+    h+='<section><p class="label">みんなで説明 <span class="en">Let\'s talk</span></p><div class="talk">'+talkFor(n).map(line).join('')+'</div></section>';
+    h+='<div class="fusen"><span class="who">しおりのふせん</span>'+esc(n.tip)+'</div>';
+    if(n.src.length)h+='<div class="src"><b>しらべたところ</b><ul>'+n.src.map(function(s){return '<li>'+(s[1]?'<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>':esc(s[0]))+'</li>'}).join('')+'</ul></div>';
+    h+='<nav class="d-nav" aria-label="ほかの言葉"><button type="button" data-go="-1">← '+esc(prev.term)+'</button><button type="button" data-go="1">'+esc(next.term)+' →</button></nav>';
+    inner.innerHTML=h;sheet.scrollTop=0}
+  function openNote(id,push){var i=N.findIndex(function(n){return n.id===id});if(i<0)return;
+    if(!dlg.open)opener=document.activeElement;cur=i;render(i);
+    if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+    if(push&&location.hash!=='#'+id){try{history.replaceState(null,'','#'+id)}catch(e){location.hash=id}}}
+  function closeNote(){if(dlg.open){if(dlg.close)dlg.close();else dlg.removeAttribute('open')}}
+  dlg.addEventListener('close',function(){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+    if(opener&&opener.focus){var again=list.querySelector('[data-id="'+N[cur].id+'"]');(again||opener).focus()}});
+  document.getElementById('close').addEventListener('click',closeNote);
+  dlg.addEventListener('click',function(e){if(e.target===dlg)closeNote();var g=e.target.closest('[data-go]');
+    if(g){var i=(cur+Number(g.dataset.go)+N.length)%N.length;openNote(N[i].id,true)}});
+  dlg.addEventListener('keydown',function(e){if(e.key==='ArrowRight'&&!e.target.closest('input')){openNote(N[(cur+1)%N.length].id,true)}
+    if(e.key==='ArrowLeft'&&!e.target.closest('input')){openNote(N[(cur-1+N.length)%N.length].id,true)}});
+  function fromHash(){var id=location.hash.slice(1);if(id&&N.some(function(n){return n.id===id}))openNote(id,false)}
+  addEventListener('hashchange',fromHash);
+
+  try{var saved=localStorage.getItem('luna-note-filter');if(saved&&(saved==='all'||catOf[saved]))filter=saved}catch(e){}
+  drawTabs();drawList();fromHash();
+})();
+/* 画像の右クリック保存・ドラッグ・長押し保存をしにくくする */
+document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
+</script>
+</body>
+</html>

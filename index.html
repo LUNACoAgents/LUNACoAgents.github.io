@@ -229,6 +229,24 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
 .fusen.t{background:var(--pinksoft);color:var(--ink)}
 .doodle{display:flex;justify-content:flex-end;margin-top:-6px}
 .doodle svg{width:48px;height:48px;color:var(--muted)}
+.doodle{align-items:center;gap:10px}
+.pagelink{font-family:var(--hand);font-size:15px;color:var(--pink);text-decoration:none;border-bottom:1.5px dashed currentColor;line-height:1.4}
+.notemore{margin-top:0;padding:26px 24px 22px}
+.nm-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 20px;margin-bottom:16px}
+.nm-head>div{min-width:0}
+.nm-head .en{display:block;color:var(--gold);font-size:18px;line-height:1.2}
+.nm-head b{display:block;font-size:21px;font-weight:900;color:var(--navy);line-height:1.4}
+.nm-head small{display:block;color:var(--muted);font-size:13.5px}
+.nm-tags{display:flex;flex-direction:column;gap:10px}
+.nm-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.nm-row.price{--c:#e0588a} .nm-row.profit{--c:#c99422} .nm-row.health{--c:#4a78c9} .nm-row.mind{--c:#8a63c9}
+.nm-cat{font-size:12.5px;font-weight:900;color:var(--c);min-width:6.5em;display:inline-flex;align-items:center;gap:6px}
+.nm-cat::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+.nm-row a{font-family:var(--hand);font-weight:600;font-size:15.5px;text-decoration:none;padding:3px 13px;border-radius:999px;background:var(--sheet);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--c);transition:background .15s,color .15s}
+.nm-row a:hover{background:var(--c);color:var(--sheet)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nm-row.price{--c:#ff8db3}:root:not([data-theme="light"]) .nm-row.profit{--c:#e8c06e}:root:not([data-theme="light"]) .nm-row.health{--c:#8fb3f5}:root:not([data-theme="light"]) .nm-row.mind{--c:#c3a6f5}}
+:root[data-theme="dark"] .nm-row.price{--c:#ff8db3}:root[data-theme="dark"] .nm-row.profit{--c:#e8c06e}:root[data-theme="dark"] .nm-row.health{--c:#8fb3f5}:root[data-theme="dark"] .nm-row.mind{--c:#c3a6f5}
+@media (max-width:600px){.nm-cat{min-width:100%}.notemore{padding:24px 16px 18px}}
 
 /* はじめに：おてがみ */
 .letter{padding:30px 30px 28px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
@@ -400,7 +418,7 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
     <div class="start">
       <a href="ep000.html"><strong>まずは第0話から</strong><span>ルナが投資部の扉をノックするところから、物語が始まります。</span><span class="go">読みにいく →</span></a>
       <a href="#manga"><strong>最新話を読む</strong><span>第0話「投資部へようこそ。」。新しい話は、Xで配信した日にここにも載せていきます。</span><span class="go">一覧を見る →</span></a>
-      <a href="#notebook"><strong>言葉でつまずいたら</strong><span>ルナのまなびノートをのぞいてみてね。しおりに教わったことが書いてあります。</span><span class="go">ノートを開く →</span></a>
+      <a href="note.html"><strong>言葉でつまずいたら</strong><span>ルナのまなびノートをのぞいてみてね。しおりに教わったことが書いてあります。</span><span class="go">ノートを開く →</span></a>
     </div>
   </section>
 
@@ -514,23 +532,19 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
   </section>
 
   <section id="notebook" aria-labelledby="h-notebook">
-    <div class="sh"><span class="en">Luna's study notes</span><h2 id="h-notebook">ルナのまなびノート</h2><p>しおりに教わったことを、ルナが書きとめたノート</p></div>
-    <div class="notebook">
-      <article class="page paper">
-        <div class="date">第004話・第005話より</div>
-        <h3>増収減益<small>ぞうしゅうげんえき</small></h3>
-        <p class="memo">売上は<u>増えた</u>のに、利益は<u>減った</u>……<br>これってダメってこと？</p>
-        <div class="fusen"><span class="who">しおりのふせん</span>売上が増えて、利益が減ること。ただ、理由によって意味が変わるの。たとえば新しいお店を出すために、費用が先に増えていることもあるよ。</div>
-        <p class="memo">→ 数字だけじゃなく、<u>理由</u>を確かめる！</p>
-        <div class="doodle"><svg aria-hidden="true"><use href="#usa"/></svg></div>
-      </article>
-      <article class="page paper">
-        <div class="date">第8話ごろ登場予定</div>
-        <h3>PER<small>ピーイーアール／株価収益率</small></h3>
-        <p class="memo">ぴー、いー、あーる……？<br>なんの暗号！？</p>
-        <div class="fusen"><span class="who">しおりのふせん</span>会社まるごとの値段（時価総額）が、1年間の純利益の何倍になっているかを表す数字だよ。「株価 ÷ 1株あたりの純利益」で計算しても同じ答えになるの。ただ、高いか低いかだけでは決められなくて、その会社がこれからどうなりそうかと一緒に見るものなんだ。</div>
-        <div class="fusen t"><span class="who">セリナ先生のひとこと</span>同じ数字でも、見る人によって受け取り方が違う。そこが面白いところだね。</div>
-      </article>
+    <div class="sh"><span class="en">Luna's study notes</span><h2 id="h-notebook">ルナのまなびノート</h2><p>しおりやセリナ先生に教わったことを、ルナが書きとめたノート。19の言葉を、計算のしかたつきでまとめています</p></div>
+    <div class="notemore paper">
+      <span class="tape b"></span>
+      <div class="nm-head">
+        <div><span class="en">Index</span><b>ノートのもくじ</b><small>言葉をえらぶと、計算のしかたと、ルナたちの説明が開きます</small></div>
+        <a class="btn primary" href="note.html">ノートをぜんぶ開く<svg><use href="#arrow"/></svg></a>
+      </div>
+      <div class="nm-tags">
+        <div class="nm-row price"><span class="nm-cat">値段をはかる</span><a href="note.html#market-cap">時価総額</a><a href="note.html#eps">EPS</a><a href="note.html#per">PER</a><a href="note.html#forward-per">予想PER</a><a href="note.html#pbr">PBR</a><a href="note.html#mix">ミックス係数</a><a href="note.html#peg">PEGレシオ</a><a href="note.html#dividend-yield">配当利回り</a></div>
+        <div class="nm-row profit"><span class="nm-cat">もうけを見る</span><a href="note.html#profit">売上と利益</a><a href="note.html#gross-margin">粗利率</a><a href="note.html#revenue-up-profit-down">増収減益</a><a href="note.html#roe">ROE</a></div>
+        <div class="nm-row health"><span class="nm-cat">会社の体力</span><a href="note.html#net-assets">純資産</a><a href="note.html#equity-ratio">自己資本比率</a><a href="note.html#cash-flow">キャッシュフロー</a><a href="note.html#hidden-assets">かくれ資産</a></div>
+        <div class="nm-row mind"><span class="nm-cat">考え方</span><a href="note.html#margin-of-safety">安全域</a><a href="note.html#diversify">分散</a><a href="note.html#moat">競争優位</a></div>
+      </div>
     </div>
   </section>
 
