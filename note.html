@@ -580,5 +580,6 @@ dialog::backdrop{background:rgba(30,24,60,.45);backdrop-filter:blur(3px);-webkit
 document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
 document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
 </script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});</script>
 </body>
 </html>

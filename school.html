@@ -99,4 +99,5 @@ lb.addEventListener('click',function(e){if(e.target!==im)close()});document.addE
 </script><script>/* 画像の右クリック保存・ドラッグ・長押し保存をしにくくする */
 document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG')e.preventDefault()});
 document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG')e.preventDefault()});</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){})});</script>
 </body></html>
