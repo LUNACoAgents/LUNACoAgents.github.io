@@ -549,7 +549,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
           <div class="mb-big"><span data-draw="num" data-source="margin_latest" data-field="pl" data-row="0" data-fmt="pctu">—</span></div>
           <div class="mb-gauge" data-draw="gauge" data-gauge="pl" data-source="margin_latest">—</div>
           <p class="mb-note"><span data-draw="num" data-source="margin_latest" data-field="week" data-row="0" data-fmt="date">—</span>申込分。−10%で追証、−20%前後で大底圏</p>
-          <p class="mb-note">松井証券のお客さん（毎日）：買い方 <b data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu">—</b>（<span data-draw="num" data-source="matsui_latest" data-field="date" data-row="0" data-fmt="date">—</span>）</p>
+          <p class="mb-note">松井証券内（<span data-draw="num" data-source="matsui_latest" data-field="date" data-row="0" data-fmt="date">—</span>時点）<br>買い方 <b data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu3">—</b> ／ 売り方 <b data-draw="num" data-source="matsui_latest" data-field="sell_pl" data-row="0" data-fmt="pctu3">—</b></p>
         </article>
         <article class="mb-card mb-ind">
           <div class="mb-ind-top"><h3>信用買残（2市場）</h3><span class="mb-chip" data-draw="judge" data-judge="ratio" data-source="margin_latest">—</span></div>
@@ -808,6 +808,8 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
     </details>
   </section>
 
+  <p class="mb-note" id="matsui-credit-source">松井証券内の信用評価損益率は、<a href="https://www.matsui.co.jp/market/" target="_blank" rel="noopener noreferrer">松井証券「信用残速報（松井証券内）」</a>の公表値を掲載しています。</p>
+
   <details class="mb-card" id="notes">
     <summary>指標の見方とデータの出どころ</summary>
     <dl>
@@ -871,6 +873,7 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
       case 'chg': return (v > 0 ? '+' : '') + c2(v);
       case 'pct': return (v > 0 ? '+' : '') + c2(v) + '%';
       case 'pctu': return c2(v) + '%';
+      case 'pctu3': return d3.format(',.3f')(v) + '%';
       case 'pctu1': return c1(v) + '%';
       case 'x': return c2(v) + '倍';
       case 'cho': return d3.format('.2f')(v / 10000);
