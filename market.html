@@ -518,7 +518,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 .mb-shot-score {border-radius:999px;padding:4px 12px}
 .mb-dot {width:1.3em;height:1.3em;border:2px dashed #e3cfe0;border-radius:50%;box-sizing:border-box;display:inline-grid;place-items:center;background:none!important;box-shadow:none!important}
 .mb-dot.on {border:0;font-size:inherit}
-.mb-dot.on::after {content:"🌙";font-size:1.15em;line-height:1;filter:drop-shadow(0 0 6px #ffd76a)}
+.mb-dot.on::after {content:"🌕";font-size:1.15em;line-height:1;filter:drop-shadow(0 0 6px #ffd76a)}
 .mb-sigs li:has(.mb-dot.on) {background:linear-gradient(90deg,#fff3c9aa,transparent 80%);border-radius:12px;padding-inline:6px}
 @media(prefers-color-scheme:dark){.mb-sigs li:has(.mb-dot.on){background:linear-gradient(90deg,#5a4a2a99,transparent 80%)}}
 .mb-post-text,.mb-post[open] .mb-post-text {border-radius:16px}
@@ -1029,7 +1029,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       ];
       const n = S.filter(x => x[1] && F.sig[x[0]](x[1])).length;
       lines = [[9, `【${F.fmt(r.date, 'date')} 日経平均 底打ちサイン】点灯 ${n}/7`]]
-        .concat(S.map(x => [9, `${x[1] && F.sig[x[0]](x[1]) ? '🌙' : '⚪'}${x[2]} ${x[3]}（${x[4]}）`]))
+        .concat(S.map(x => [9, `${x[1] && F.sig[x[0]](x[1]) ? '🌕' : '⚪'}${x[2]} ${x[3]}（${x[4]}）`]))
         .concat([[9, '#日経平均'], [8, '#株式投資'], [1, '#投資初心者']]);
     } else if (mkt === 'jp') {
       const r = F.row('jp_latest'), m = F.row('margin_latest'); if (!r) return null;
@@ -1455,7 +1455,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       const y0 = 318 + i * 124, x0 = 100, w0 = W - 200;
       g.fillStyle = on[i] ? C.onBg : '#f1f3fa'; g.fill(rr(x0, y0, w0, 108, 30));
       g.beginPath(); g.arc(x0 + 56, y0 + 54, 20, 0, Math.PI * 2);
-      if (on[i]) { g.font = f(400, 44); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('🌙', x0 + 56, y0 + 56); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; } else { g.lineWidth = 6; g.strokeStyle = C.off; g.stroke(); }
+      if (on[i]) { g.font = f(400, 44); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('🌕', x0 + 56, y0 + 56); g.textAlign = 'left'; g.textBaseline = 'alphabetic'; } else { g.lineWidth = 6; g.strokeStyle = C.off; g.stroke(); }
       txt(g, s[2], x0 + 100, y0 + 50, f(700, 36), C.ink); txt(g, '基準 ' + s[3], x0 + 100, y0 + 88, f(500, 26), C.sub);
       const vx = x0 + w0 - 36;
       if (s[4] == null) { missing(g, vx, y0 + 68, 'right'); return; }
@@ -1516,7 +1516,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     return t.length ? t.join('、') + '。サインは「重なり」で見るものだよ。' : '今日の指標は、まだそろっていないよ。'; };
   F.cute = () => {
     const r = F.row('jp_latest'); if (!r) return null; const m = F.row('matsui_latest');
-    const n = sigs(); const moons = '🌙'.repeat(n) + '⚪'.repeat(7 - n);
+    const n = sigs(); const moons = '🌕'.repeat(n) + '🌑'.repeat(7 - n);
     let L = [
       [9, `🌸ルナとしおりの市況メモ（${md(r.date)}）`],
       r.nk != null ? [9, `ルナ🌙「日経平均は${n0(r.nk)}円（${sp(r.nk_pct)}）だったよ！」`] : null,
