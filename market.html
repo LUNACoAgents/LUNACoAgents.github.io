@@ -667,7 +667,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
           <div class="mb-ind-top"><h3>空売り比率</h3><span class="mb-chip" data-draw="judge" data-judge="short" data-source="jp_latest">—</span></div>
           <div class="mb-big"><span data-draw="num" data-source="jp_latest" data-field="short" data-row="0" data-fmt="1">—</span><span class="mb-unit">%</span></div>
           <div class="mb-gauge" data-draw="gauge" data-gauge="short" data-source="jp_latest">—</div>
-          <p class="mb-note">40%超で警戒強め。49%以上は過去約10年で2%しか出ていない底打ち水準</p>
+          <p class="mb-note">40%超で警戒強め。45%以上は2024年以降で4%しか出ていない底打ち水準</p>
         </article>
         <article class="mb-card mb-ind">
           <div class="mb-ind-top"><h3>日経VI</h3><span class="mb-chip" data-draw="judge" data-judge="nvi" data-source="jp_latest">—</span></div>
@@ -693,7 +693,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
           <li><span class="mb-dot" data-draw="sig" data-sig="d25" data-source="jp_latest"></span><span>25日移動平均からの乖離 −7%以下<small class="mb-basis">過去10年で1.9%の日だけ</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nk_d25" data-row="0" data-fmt="pct">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="adr" data-source="jp_latest"></span><span>騰落レシオ 81以下<small class="mb-basis">2022年4月以降で2.0%（データ短め）</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="adr25" data-row="0" data-fmt="1">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="pl" data-source="matsui_latest"></span><span>信用評価損益率（買い方）−20%以下<small class="mb-basis">毎日更新の値で判定</small></span><span class="mb-now"><span data-draw="num" data-source="matsui_latest" data-field="buy_pl" data-row="0" data-fmt="pctu">—</span></span></li>
-          <li><span class="mb-dot" data-draw="sig" data-sig="short" data-source="jp_latest"></span><span>空売り比率 49%以上<small class="mb-basis">2017年以降で1.9%</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="short" data-row="0" data-fmt="pctu1">—</span></li>
+          <li><span class="mb-dot" data-draw="sig" data-sig="short" data-source="jp_latest"></span><span>空売り比率 45%以上<small class="mb-basis">2024年以降で4.0%</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="short" data-row="0" data-fmt="pctu1">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="nvi" data-source="jp_latest"></span><span>日経VI 41以上<small class="mb-basis">過去10年で2.0%</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nvi" data-row="0" data-fmt="2">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="per" data-source="jp_latest"></span><span>予想PER 11.8倍以下<small class="mb-basis">過去10年で2.3%（2020年3月は10.6倍）</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nk_per_f" data-row="0" data-fmt="x">—</span></li>
           <li><span class="mb-dot" data-draw="sig" data-sig="pbr" data-source="jp_latest"></span><span>PBR 0.8倍以下（大バーゲン）<small class="mb-basis">過去10年で0回（最低は2020年3月の0.82倍）</small></span><span class="mb-now" data-draw="num" data-source="jp_latest" data-field="nk_pbr" data-row="0" data-fmt="x">—</span></li>
@@ -994,7 +994,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     adr: r => r.adr25 == null ? null : r.adr25 <= 70 ? ['売られ過ぎ', 'ok'] : r.adr25 >= 120 ? ['過熱', 'bad'] : r.adr25 <= 85 ? ['弱め', ''] : ['中立', ''],
     pl: r => r.pl == null ? null : r.pl <= -20 ? ['大底圏', 'ok'] : r.pl <= -15 ? ['投げ売り水準', 'ok'] : r.pl <= -10 ? ['追証ライン', 'warn'] : r.pl >= -3 ? ['天井圏', 'bad'] : ['通常', ''],
     ratio: r => r.ratio == null ? null : r.ratio >= 8 ? ['買残だぶつき', 'warn'] : r.ratio <= 3 ? ['売り長', 'ok'] : ['通常', ''],
-    short: r => r.short == null ? null : r.short >= 49 ? ['底打ちサイン', 'ok'] : r.short >= 40 ? ['警戒強め', 'warn'] : ['通常', ''],
+    short: r => r.short == null ? null : r.short >= 45 ? ['底打ちサイン', 'ok'] : r.short >= 40 ? ['警戒強め', 'warn'] : ['通常', ''],
     nvi: r => r.nvi == null ? null : r.nvi >= 40 ? ['パニック', 'bad'] : r.nvi >= 30 ? ['警戒', 'warn'] : r.nvi >= 20 ? ['やや不安', ''] : ['落ち着き', 'ok'],
     vix: r => r.vix == null ? null : r.vix >= 30 ? ['パニック', 'bad'] : r.vix >= 20 ? ['警戒', 'warn'] : ['落ち着き', 'ok'],
     fg: r => r.fg == null ? null : r.fg <= 25 ? ['極端な恐怖', 'bad'] : r.fg <= 44 ? ['恐怖', 'warn'] : r.fg <= 55 ? ['中立', ''] : r.fg <= 75 ? ['強欲', 'ok'] : ['極端な強欲', 'bad']
@@ -1003,7 +1003,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     d25: r => r.nk_d25 != null && r.nk_d25 <= -7,
     adr: r => r.adr25 != null && r.adr25 <= 81,
     pl: r => r.buy_pl != null && r.buy_pl <= -20,
-    short: r => r.short != null && r.short >= 49,
+    short: r => r.short != null && r.short >= 45,
     nvi: r => r.nvi != null && r.nvi >= 41,
     per: r => r.nk_per_f != null && r.nk_per_f <= 11.8,
     pbr: r => r.nk_pbr != null && r.nk_pbr <= 0.8
@@ -1022,7 +1022,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
         ['d25', r, '日経25日乖離', v(r.nk_d25, 'pct'), '-7%以下'],
         ['adr', r, '騰落レシオ', v(r.adr25, '1'), '81以下'],
         ['pl', m, '信用評価損益率(買い方)', m ? v(m.buy_pl, 'pctu') + (m.date !== r.date ? '(' + F.fmt(m.date, 'date') + ')' : '') : '未発表', '-20%以下'],
-        ['short', r, '空売り比率', v(r.short, 'pctu1'), '49%以上'],
+        ['short', r, '空売り比率', v(r.short, 'pctu1'), '45%以上'],
         ['nvi', r, '日経VI', v(r.nvi, '2'), '41以上'],
         ['per', r, '予想PER', v(r.nk_per_f, 'x') + (r.val_est === 1 ? '(推計)' : ''), '11.8倍以下'],
         ['pbr', r, 'PBR', v(r.nk_pbr, 'x') + (r.val_est === 1 ? '(推計)' : ''), '0.8倍以下']
@@ -1274,7 +1274,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     return monthStart.toISOString().slice(0, 10);
   };
   const unit = {nk: '円', tp: '', gr: '', nk_per_f: '倍', nk_pbr: '倍', adr25: '', nk_d25: '%', short: '%', nvi: '', spx: '', ixic: '', ndx: '', dji: '', vix: '', fg: '', tnx: '%', usdjpy: '円', spx_d200: '%'};
-  const refs = {adr25: [70, 120], nk_d25: [-5, 0, 5], short: [40, 49], nvi: [30, 40], vix: [20, 30], fg: [25, 75], spx_d200: [0], nk_per_f: [11.8, 13.5, 15]};
+  const refs = {adr25: [70, 120], nk_d25: [-5, 0, 5], short: [40, 45], nvi: [30, 40], vix: [20, 30], fg: [25, 75], spx_d200: [0], nk_per_f: [11.8, 13.5, 15]};
   dash.draw('chart', el => {
     const mkt = el.dataset.mkt; const d = dash.data(el.dataset.source); el.replaceChildren();
     if (d.status !== 'ok') { el.textContent = '—'; return; }
@@ -1444,7 +1444,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       ['d25', r, '25日線からの乖離', '−7%以下', r.nk_d25, 'pct', ''],
       ['adr', r, '騰落レシオ', '81以下', r.adr25, '1', ''],
       ['pl', m, '信用評価損益率（買い方）', '−20%以下', m ? m.buy_pl : null, 'pctu', m && m.date && m.date !== r.date ? '（' + F.fmt(m.date, 'date') + '時点）' : ''],
-      ['short', r, '空売り比率', '49%以上', r.short, 'pctu1', ''],
+      ['short', r, '空売り比率', '45%以上', r.short, 'pctu1', ''],
       ['nvi', r, '日経VI', '41以上', r.nvi, '2', ''],
       ['per', r, '予想PER', '11.8倍以下', r.nk_per_f, 'x', est],
       ['pbr', r, 'PBR', '0.8倍以下', r.nk_pbr, 'x', est]

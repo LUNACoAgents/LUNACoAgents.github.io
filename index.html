@@ -791,7 +791,7 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
     function set(id,v,pct,d){if(v==null)return;$(id).textContent=n0(v,d)+(id==='mkNk'?'円':'');
       var e=$(id+'P');if(pct==null)return;e.textContent=(pct>0?'+':pct<0?'−':'±')+Math.abs(pct).toFixed(2)+'%';e.className=pct>0?'up':pct<0?'dn':''}
     set('mkNk',r.nk,r.nk_pct,0);set('mkTp',r.tp,r.tp_pct,2);set('mkGr',r.gr,r.gr_pct,2);
-    var sig=[r.nk_d25!=null&&r.nk_d25<=-7,r.adr25!=null&&r.adr25<=81,!!(mt&&mt.buy_pl!=null&&mt.buy_pl<=-20),r.short!=null&&r.short>=49,
+    var sig=[r.nk_d25!=null&&r.nk_d25<=-7,r.adr25!=null&&r.adr25<=81,!!(mt&&mt.buy_pl!=null&&mt.buy_pl<=-20),r.short!=null&&r.short>=45,
       r.nvi!=null&&r.nvi>=41,r.nk_per_f!=null&&r.nk_per_f<=11.8,r.nk_pbr!=null&&r.nk_pbr<=.8];
     var n=sig.filter(Boolean).length;
     $('mkMoons').textContent='🌕'.repeat(n)+'🌑'.repeat(7-n);$('mkSigN').textContent=n+' / 7 点灯';
