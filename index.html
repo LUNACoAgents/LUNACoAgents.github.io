@@ -186,9 +186,10 @@ h2::after{content:"";flex:1;height:2px;min-width:30px;background:repeating-linea
 .idhead span{display:flex;align-items:center;gap:7px}
 .idhead svg{width:16px;height:16px;flex:none;color:var(--gold)}
 .idhead .en{font-size:14px;letter-spacing:.04em;color:var(--gold);font-weight:600}
-.idbody{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);align-items:start;gap:14px;padding:16px var(--card-inset) 0}
-.ph{position:relative}
-.ph img{width:100%;height:auto;aspect-ratio:4/5;display:block;border-radius:9px;border:1px solid var(--line)}
+.idbody{display:grid;grid-template-columns:minmax(0,46%) minmax(0,1fr);align-items:stretch;gap:14px;padding:16px var(--card-inset) 0}
+.ph{position:relative;display:flex}
+/* 写真は横の文字と同じ高さまでのばして、下にすき間ができないようにする（顔が切れないよう上寄せ） */
+.ph img{width:100%;height:auto;min-height:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 18%;display:block;border-radius:9px;border:1px solid var(--line)}
 .hanko{position:absolute;right:5px;bottom:5px;width:36px;height:36px;border:1.5px solid var(--crimson);color:var(--crimson);border-radius:50%;
   display:grid;place-items:center;font-size:9px;font-weight:900;line-height:1.1;text-align:center;background:color-mix(in srgb,var(--sheet) 92%,transparent)}
 .nm{font-weight:900;font-size:clamp(18px,5vw,22px);line-height:1.25;color:var(--navy)}
