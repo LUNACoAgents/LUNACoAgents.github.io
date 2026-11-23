@@ -181,6 +181,8 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
 .mb-chart{position:relative;min-height:280px;margin-top:var(--cds-gap-sm)}
 .mb-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);border-radius:var(--cds-radius);box-shadow:var(--cds-shadow-popover);padding:var(--cds-pad-xs) var(--cds-pad-sm);font-size:var(--cds-font-size-caption);white-space:nowrap;font-variant-numeric:tabular-nums}
 .mb-tip span{display:block;color:var(--cds-text-secondary)}
+.mb-tip b{display:block;font-weight:700}
+.mb-tip span.up{color:var(--mb-up)} .mb-tip span.dn{color:var(--mb-dn)}
 .mb-hist{max-height:460px;overflow:auto}
 .mb-hist thead th{position:sticky;top:0;background:var(--color-panel);z-index:1}
 .mb details{font-size:14px;color:var(--color-fg-muted)}
@@ -733,7 +735,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 
     <article class="mb-card" id="jp-history">
       <h2>日次の履歴</h2>
-      <p class="mb-note">新しい日が上。毎日の自動更新で行が増えていきます</p>
+      <p class="mb-note">新しい日が上。約1年前まで遡れます（古い日は過去データから。毎日の自動更新で行が増えていきます）</p>
       <div class="mb-tablewrap mb-hist">
         <table class="mb-table" data-source="jp_hist" data-row-key="date">
           <thead><tr>
@@ -883,7 +885,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 
     <article class="mb-card" id="us-history">
       <h2>日次の履歴</h2>
-      <p class="mb-note">新しい日が上（米国の取引日）</p>
+      <p class="mb-note">新しい日が上（米国の取引日）。約1年前まで遡れます</p>
       <div class="mb-tablewrap mb-hist">
         <table class="mb-table" data-source="us_hist" data-row-key="date">
           <thead><tr>
@@ -1342,15 +1344,36 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     const hdot = hover.append('circle').attr('r', 4.5).attr('fill', color).attr('stroke', 'var(--color-panel)').attr('stroke-width', 2);
     const tip = document.createElement('div'); tip.className = 'mb-tip'; tip.hidden = true; el.appendChild(tip);
     const bis = d3.bisector(r => r.t).center;
-    svg.append('rect').attr('x', ml).attr('y', 0).attr('width', W - 14 - ml).attr('height', H).attr('fill', 'transparent')
-      .on('pointermove', ev => {
-        const [px] = d3.pointer(ev); const r = rows[bis(rows, x.invert(px))];
-        hover.attr('display', null); hover.select('line').attr('x1', x(r.t)).attr('x2', x(r.t)); hdot.attr('cx', x(r.t)).attr('cy', y(r.v));
-        tip.replaceChildren(); const s = document.createElement('span'); s.textContent = r.date; tip.append(s, document.createTextNode(label + ' ' + fmtV(r.v)));
-        tip.hidden = false; const sx = 7 + x(r.t) / W * (el.clientWidth - 14); const tw = tip.offsetWidth;
-        tip.style.left = Math.max(0, Math.min(sx - tw / 2, el.clientWidth - tw)) + 'px'; tip.style.top = '0px';
-      })
-      .on('pointerleave', () => { hover.attr('display', 'none'); tip.hidden = true; });
+    // 値動きの大きさが「%」で見やすいもの（指数・為替）は前日比を%で、それ以外は前日との差で出す
+    const asPct = ['nk', 'tp', 'gr', 'spx', 'ixic', 'ndx', 'dji', 'usdjpy'].includes(f);
+    const WD = '日月火水木金土';
+    const hide = () => { hover.attr('display', 'none'); tip.hidden = true; };
+    const show = ev => {
+      const [px] = d3.pointer(ev); const i = bis(rows, x.invert(px)), r = rows[i], prev = rows[i - 1];
+      hover.attr('display', null); hover.select('line').attr('x1', x(r.t)).attr('x2', x(r.t)); hdot.attr('cx', x(r.t)).attr('cy', y(r.v));
+      tip.replaceChildren();
+      const s = document.createElement('span'); s.textContent = r.date.replaceAll('-', '/') + '（' + WD[r.t.getUTCDay()] + '）';
+      const b = document.createElement('b'); b.textContent = label + ' ' + fmtV(r.v);
+      tip.append(s, b);
+      if (prev) {
+        const c = asPct ? (r.v / prev.v - 1) * 100 : r.v - prev.v;
+        const ch = document.createElement('span'); ch.className = c > 0 ? 'up' : c < 0 ? 'dn' : '';
+        ch.textContent = (asPct ? '前日比 ' : '前日差 ') + (c > 0 ? '+' : c < 0 ? '−' : '±') + (asPct ? Math.abs(c).toFixed(2) + '%' : fmtV(Math.abs(c)));
+        tip.append(ch);
+      }
+      tip.hidden = false; const sx = 7 + x(r.t) / W * (el.clientWidth - 14); const tw = tip.offsetWidth;
+      tip.style.left = Math.max(0, Math.min(sx - tw / 2, el.clientWidth - tw)) + 'px'; tip.style.top = '0px';
+    };
+    svg.append('rect').attr('x', ml).attr('y', 0).attr('width', W - 14 - ml).attr('height', H).attr('fill', 'transparent').style('touch-action', 'pan-y')
+      .on('pointerdown', show)
+      .on('pointermove', show)
+      // マウスはチャートから外れたら消す。指やペンは離しても残して、チャートの外をタップしたら消す
+      .on('pointerleave', ev => { if (ev.pointerType === 'mouse') hide(); });
+    el.hideTip = hide;
+    if (!el.dataset.tapAway) {
+      el.dataset.tapAway = '1';
+      document.addEventListener('pointerdown', ev => { if (!el.contains(ev.target) && el.hideTip) el.hideTip(); });
+    }
   });
 
   // 日次の履歴テーブル
@@ -1358,14 +1381,34 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     jp: [['date', 'date'], ['nk', '2'], ['nk_pct', 'pct'], ['tp', '2'], ['tp_pct', 'pct'], ['gr', '2'], ['gr_pct', 'pct'], ['nk_per_f', 'x'], ['nk_pbr', 'x'], ['adr25', '1'], ['nk_d25', 'pct'], ['short', 'pctu1'], ['nvi', '2']],
     us: [['date', 'date'], ['spx', '2'], ['spx_pct', 'pct'], ['ixic', '2'], ['ixic_pct', 'pct'], ['dji', '2'], ['dji_pct', 'pct'], ['vix', '2'], ['fg', '0'], ['tnx', '3'], ['usdjpy', '2']]
   };
+  // 毎日のデータより前の日は、チャート用の過去データ（mb-chart-history）から約1年前まで足す。前日比は過去データの前の日の値から計算
+  const HIST_DAYS = 366;
+  const olderRows = (mkt, live) => {
+    if (!live.length) return [];
+    const latest = live[0].date, have = new Set(live.map(r => r.date));
+    const cutoff = new Date(chartDate(latest).getTime() - HIST_DAYS * 864e5).toISOString().slice(0, 10);
+    const out = new Map();
+    for (const [k] of HC[mkt].slice(1)) {
+      const pct = k.endsWith('_pct'), h = chartHistory[pct ? k.slice(0, -4) : k]; if (!h) continue;
+      const pts = h.points;
+      for (let i = 0; i < pts.length; i++) {
+        const [dt, v] = pts[i]; if (dt < cutoff || have.has(dt) || v == null) continue;
+        const row = out.get(dt) || {date: dt};
+        if (!pct) row[k] = v; else if (i > 0 && pts[i - 1][1]) row[k] = (v / pts[i - 1][1] - 1) * 100;
+        out.set(dt, row);
+      }
+    }
+    return Array.from(out.values()).sort((a, b) => a.date < b.date ? 1 : -1);
+  };
   dash.draw('hist', el => {
     const mkt = el.dataset.mkt; const d = dash.data(mkt + '_hist'); el.replaceChildren();
     if (d.status !== 'ok') return;
-    for (const r of d.data) {
+    const year = d.data.length ? d.data[0].date.slice(0, 4) : '';
+    for (const r of d.data.concat(olderRows(mkt, d.data))) {
       const tr = document.createElement('tr'); tr.dataset.key = r.date;
       HC[mkt].forEach(([k, fm], i) => {
         const td = document.createElement(i === 0 ? 'th' : 'td'); if (i === 0) td.scope = 'row';
-        td.textContent = F.fmt(r[k], fm);
+        td.textContent = i === 0 && r.date.slice(0, 4) !== year ? r.date.slice(0, 4) + '/' + F.fmt(r[k], fm) : F.fmt(r[k], fm);
         if (fm === 'pct' && r[k] != null) td.className = r[k] > 0 ? 'up' : r[k] < 0 ? 'dn' : '';
         tr.appendChild(td);
       });
