@@ -751,12 +751,12 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     <details class="mb-card mb-post" id="jp-post">
       <summary class="mb-post-head">
         <span>今日のX投稿</span>
-        <span class="mb-count" data-draw="count" data-post="jp" data-source="jp_latest margin_latest">—</span>
+        <span class="mb-count" data-draw="count" data-post="jp" data-source="jp_latest margin_latest matsui_latest">—</span>
       </summary>
-      <pre class="mb-post-text" id="jp-post-text" data-draw="post" data-post="jp" data-source="jp_latest margin_latest">—</pre>
+      <pre class="mb-post-text" id="jp-post-text" data-draw="post" data-post="jp" data-source="jp_latest margin_latest matsui_latest">—</pre>
       <div class="mb-post-actions">
         <button type="button" class="mb-btn" data-copy="jp-post-text">投稿文をコピー</button>
-        <span class="mb-xlink" data-draw="xlink" data-post="jp" data-source="jp_latest margin_latest">—</span>
+        <span class="mb-xlink" data-draw="xlink" data-post="jp" data-source="jp_latest margin_latest matsui_latest">—</span>
         <span class="mb-copied" data-copied="jp-post-text" hidden>コピーしました。Xに貼り付けてね</span>
       </div>
     </details>
@@ -1032,7 +1032,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
         .concat(S.map(x => [9, `${x[1] && F.sig[x[0]](x[1]) ? '🌕' : '⚪'}${x[2]} ${x[3]}（${x[4]}）`]))
         .concat([[9, '#日経平均'], [8, '#株式投資'], [1, '#投資初心者']]);
     } else if (mkt === 'jp') {
-      const r = F.row('jp_latest'), m = F.row('margin_latest'); if (!r) return null;
+      const r = F.row('jp_latest'), m = F.row('margin_latest'), mt = F.row('matsui_latest'); if (!r) return null;
       const j = F.judge;
       lines = [
         [9, `【${F.fmt(r.date, 'date')} 日本株の指標】`],
@@ -1042,7 +1042,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
         [8, `日経PER 実${d3.format('.1f')(r.nk_per_t)}/予${d3.format('.1f')(r.nk_per_f)}倍 PBR${d3.format('.2f')(r.nk_pbr)}倍${r.val_est === 1 ? '(推計)' : ''}`, [r.nk_per_t, r.nk_per_f, r.nk_pbr]],
         [7, `騰落レシオ ${c1(r.adr25)}`, [r.adr25]],
         [7, `25日乖離 ${sp(r.nk_d25)}`, [r.nk_d25]],
-        m ? [6, `信用評価損益率 ${c2(m.pl).replace('−', '-')}%(${F.fmt(m.week, 'date')})`, [m.pl]] : null,
+        mt && mt.buy_pl != null ? [6, `信用評価損益率(松井・買い方) ${c2(mt.buy_pl).replace('−', '-')}%${mt.date !== r.date ? '(' + F.fmt(mt.date, 'date') + ')' : ''}`, [mt.buy_pl]] : null,
         m ? [5, `信用買残 ${d3.format('.2f')(m.buy / 10000)}兆円(${F.fmt(m.week, 'date')})`, [m.buy]] : null,
         [3, `空売り比率 ${c1(r.short)}%`, [r.short]],
         [3, `日経VI ${c2(r.nvi)}`, [r.nvi]],
