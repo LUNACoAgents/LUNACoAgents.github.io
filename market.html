@@ -59,7 +59,9 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
     draw(name, fn) { if (fn) draws[name] = fn; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => run(name)); else run(name); },
     setLink() {}
   };
-  addEventListener('resize', () => { clearTimeout(window.__rz); window.__rz = setTimeout(() => ['chart', 'spark'].forEach(n => draws[n] && run(n)), 200); });
+  // 横幅が変わったときだけ描き直す（スマホでスクロールしてアドレスバーが出入りすると高さだけ変わり、描き直すとチャートのタップ表示が消えてしまうため）
+  let lastW = innerWidth;
+  addEventListener('resize', () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(window.__rz); window.__rz = setTimeout(() => ['chart', 'spark'].forEach(n => draws[n] && run(n)), 200); });
 })();
 </script></head><body><div id="dash-root">
 
