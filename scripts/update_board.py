@@ -54,7 +54,13 @@ def save(d):
     DATA.write_text('\n'.join(out) + '\n', encoding='utf-8')
 
 
+HISTORY = ROOT / 'market-history.json'
+
+
 def history():
+    # チャート用の過去データ。ページを軽くするため market.html から market-history.json に分けた
+    if HISTORY.exists():
+        return json.loads(HISTORY.read_text(encoding='utf-8'))
     h = PAGE.read_text(encoding='utf-8')
     m = re.search(r'<script type="application/json" id="mb-chart-history">(.*?)</script>', h, re.S)
     return json.loads(m.group(1)) if m else {}
