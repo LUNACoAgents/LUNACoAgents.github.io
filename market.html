@@ -39,6 +39,7 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 .cp-btn{font:700 15px/1.2 inherit;font-family:inherit;white-space:nowrap;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;text-decoration:none;color:#fff;background:linear-gradient(135deg,#ff9ec7,#b79cff);box-shadow:0 6px 16px -6px rgba(200,120,220,.6);display:inline-block}
 .cp-btn:active{transform:scale(.97)}
 .cp-btn.cp-x{background:linear-gradient(135deg,#3b3670,#8a5fa8)}
+.cp-btn.cp-th{background:linear-gradient(135deg,#1f1d2e,#5a4a7a)}
 .cp-btn:focus-visible{outline:3px solid #b79cff;outline-offset:2px}
 .cp-done{font-size:13px;color:#3d9e77;font-weight:700}
 .cp-foot{margin:0;font-size:11.5px;color:#8a7fb0}
@@ -189,9 +190,10 @@ a.mb-btn{text-decoration:none;display:inline-block;text-align:center}
 .mb-hist thead th{position:sticky;top:0;background:var(--color-panel);z-index:1}
 .mb details{font-size:14px;color:var(--color-fg-muted)}
 .mb details summary{cursor:pointer;color:var(--color-fg);font-weight:500}
-.mb details dl{display:grid;grid-template-columns:minmax(7em,auto) 1fr;gap:6px 14px;margin:12px 0 0}
+.mb details dl{display:grid;grid-template-columns:minmax(7em,11em) minmax(0,1fr);gap:10px 18px;margin:12px 0 0;line-height:1.75}
 .mb details dt{color:var(--color-fg);font-weight:500}
 .mb details dd{margin:0}
+@media (max-width:640px){.mb details dl{grid-template-columns:minmax(0,1fr);gap:0}.mb details dt{margin-top:14px;padding-top:12px;border-top:1px solid var(--mb-line,rgba(127,127,127,.25))}.mb details dt:first-child{margin-top:0;padding-top:0;border-top:0}.mb details dd{margin-top:4px}}
 [data-dash-source-state=refreshing]{opacity:.5;transition:opacity var(--cds-dur-slow)}
 [data-dash-source-state=empty]{color:transparent}
 @media (max-width:520px){.mb-btn{width:100%}.mb-seg{width:100%}.mb-seg button{flex:1}}
@@ -577,7 +579,8 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       <div class="cp-act">
         <button type="button" class="cp-btn" data-copy="cute-post-text">📋 コピーする</button>
         <a class="cp-btn cp-x" data-draw="cutex" data-source="jp_latest margin_latest matsui_latest" href="https://x.com/intent/post" target="_blank" rel="noopener">🌙 Xで投稿</a>
-        <span class="cp-done" data-copied="cute-post-text" hidden>コピーしたよ！ Xに貼り付けてね🐰</span>
+        <a class="cp-btn cp-th" data-draw="cuteth" data-source="jp_latest margin_latest matsui_latest" href="https://www.threads.com/intent/post" target="_blank" rel="noopener">🧵 Threadsで投稿</a>
+        <span class="cp-done" data-copied="cute-post-text" hidden>コピーしたよ！ XやThreadsに貼り付けてね🐰</span>
       </div>
       <p class="cp-foot">数字は下の表と同じデータから自動で作っているよ。投資をすすめるものではありません。</p>
     </section>
@@ -711,7 +714,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
         <div class="mb-post-actions">
           <button type="button" class="mb-btn" data-copy="sig-post-text">投稿文をコピー</button>
           <span class="mb-xlink" data-draw="xlink" data-post="sig" data-source="jp_latest margin_latest">—</span>
-          <span class="mb-copied" data-copied="sig-post-text" hidden>コピーしました。Xに貼り付けてね</span>
+          <span class="mb-copied" data-copied="sig-post-text" hidden>コピーしました。XやThreadsに貼り付けてね</span>
         </div>
       </details>
     </article>
@@ -761,7 +764,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       <div class="mb-post-actions">
         <button type="button" class="mb-btn" data-copy="jp-post-text">投稿文をコピー</button>
         <span class="mb-xlink" data-draw="xlink" data-post="jp" data-source="jp_latest margin_latest matsui_latest">—</span>
-        <span class="mb-copied" data-copied="jp-post-text" hidden>コピーしました。Xに貼り付けてね</span>
+        <span class="mb-copied" data-copied="jp-post-text" hidden>コピーしました。XやThreadsに貼り付けてね</span>
       </div>
     </details>
   </section>
@@ -910,7 +913,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       <div class="mb-post-actions">
         <button type="button" class="mb-btn" data-copy="us-post-text">投稿文をコピー</button>
         <span class="mb-xlink" data-draw="xlink" data-post="us" data-source="us_latest">—</span>
-        <span class="mb-copied" data-copied="us-post-text" hidden>コピーしました。Xに貼り付けてね</span>
+        <span class="mb-copied" data-copied="us-post-text" hidden>コピーしました。XやThreadsに貼り付けてね</span>
       </div>
     </details>
   </section>
@@ -1220,7 +1223,10 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
   dash.draw('xlink', el => {
     const t = F.post(el.dataset.post); el.replaceChildren(); if (!t) { el.textContent = '—'; return; }
     const a = document.createElement('a'); a.href = 'https://x.com/intent/post?text=' + encodeURIComponent(t); a.target = '_blank'; a.rel = 'noopener';
-    a.textContent = 'Xの投稿画面を開く'; el.appendChild(a);
+    a.textContent = 'Xの投稿画面を開く';
+    const th = document.createElement('a'); th.href = 'https://www.threads.com/intent/post?text=' + encodeURIComponent(t); th.target = '_blank'; th.rel = 'noopener';
+    th.textContent = 'Threadsの投稿画面を開く';
+    el.append(a, document.createTextNode('　'), th);
   });
 
   // ゲージ（目盛りの帯と現在値）
@@ -1580,6 +1586,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
   dash.draw('cutecount', el => { const t = F.cute(); if (!t) { el.textContent = '—'; return; } const n = F.xlen(t);
     el.replaceChildren(); const b = document.createElement('b'); b.textContent = n; el.append(b, ' / 280（Xの文字数）'); el.classList.toggle('over', n > 280); });
   dash.draw('cutex', el => { const t = F.cute(); el.href = 'https://x.com/intent/post' + (t ? '?text=' + encodeURIComponent(t) : ''); });
+  dash.draw('cuteth', el => { const t = F.cute(); el.href = 'https://www.threads.com/intent/post' + (t ? '?text=' + encodeURIComponent(t) : ''); });
   dash.draw('cutesay', el => { const r = F.row('jp_latest'); if (!r) { el.textContent = '—'; return; }
     el.textContent = el.dataset.who === 'luna' ? lunaSay(r) : shioriSay(r); });
 })();
