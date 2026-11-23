@@ -35,7 +35,11 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 .cp-say.l p{background:#fdf0f6;border:1.5px solid #ffd7e8;border-bottom-left-radius:4px}
 .cp-say.s p{background:#eef6ff;border:1.5px solid #d3e6ff;border-bottom-right-radius:4px}
 .cp-text{margin:0;white-space:pre-wrap;word-break:break-word;font:15px/1.8 "Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;background:#fbfaff;border:2px dashed #cdbcf2;border-radius:16px;padding:14px;color:#2e2a4f}
-.cp-act{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cp-act{display:grid;gap:10px}
+.cp-share{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cp-act .cp-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-size:15px;font-weight:700;line-height:1.2;padding:13px 12px}
+.cp-btn svg{width:18px;height:18px;flex:none}
+.cp-done{text-align:center}
 .cp-btn{font:700 15px/1.2 inherit;font-family:inherit;white-space:nowrap;border:0;border-radius:999px;padding:12px 22px;cursor:pointer;text-decoration:none;color:#fff;background:linear-gradient(135deg,#ff9ec7,#b79cff);box-shadow:0 6px 16px -6px rgba(200,120,220,.6);display:inline-block}
 .cp-btn:active{transform:scale(.97)}
 .cp-btn.cp-x{background:linear-gradient(135deg,#3b3670,#8a5fa8)}
@@ -577,9 +581,11 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       </div>
       <pre class="cp-text" id="cute-post-text" data-draw="cutepost" data-source="jp_latest margin_latest matsui_latest">—</pre>
       <div class="cp-act">
-        <button type="button" class="cp-btn" data-copy="cute-post-text">📋 コピーする</button>
-        <a class="cp-btn cp-x" data-draw="cutex" data-source="jp_latest margin_latest matsui_latest" href="https://x.com/intent/post" target="_blank" rel="noopener">🌙 Xで投稿</a>
-        <a class="cp-btn cp-th" data-draw="cuteth" data-source="jp_latest margin_latest matsui_latest" href="https://www.threads.com/intent/post" target="_blank" rel="noopener">🧵 Threadsで投稿</a>
+        <button type="button" class="cp-btn cp-copy" data-copy="cute-post-text">📋 コピーする</button>
+        <div class="cp-share">
+          <a class="cp-btn cp-x" data-draw="cutex" data-source="jp_latest margin_latest matsui_latest" href="https://x.com/intent/post" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7 8 10.3h-6.2l-4.9-6.3L5.4 21H2.3l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>X投稿</a>
+          <a class="cp-btn cp-th" data-draw="cuteth" data-source="jp_latest margin_latest matsui_latest" href="https://www.threads.com/intent/post" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" d="M17.6 8.6C16.7 5.6 14.4 3.8 11.8 3.8 7.5 3.8 4.6 7.1 4.6 12s2.9 8.2 7.2 8.2c3.5 0 6.1-2.1 6.1-5.1 0-2.7-2.2-4.3-5.2-4.3-2.4 0-3.9 1.2-3.9 2.7 0 1.5 1.3 2.4 2.9 2.4 2.5 0 3.8-2 3.8-5.3"/></svg>Threads投稿</a>
+        </div>
         <span class="cp-done" data-copied="cute-post-text" hidden>コピーしたよ！ XやThreadsに貼り付けてね🐰</span>
       </div>
       <p class="cp-foot">数字は下の表と同じデータから自動で作っているよ。投資をすすめるものではありません。</p>
