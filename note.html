@@ -172,6 +172,34 @@ dialog::backdrop{background:rgba(30,24,60,.45);backdrop-filter:blur(3px);-webkit
 .formula div{white-space:normal;overflow-wrap:anywhere}
 .formula div+div{border-top:1px dashed color-mix(in srgb,var(--c) 40%,transparent);margin-top:4px;padding-top:4px}
 .calc{border:2px dashed var(--line);border-radius:12px;padding:12px 16px 14px}
+/* 損益計算書（利益の階段） */
+.pl-paper{background:var(--sheet);border-radius:14px;box-shadow:inset 0 0 0 1.5px var(--line);padding:14px 14px 12px;overflow:hidden}
+.pl-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--navy);padding:0 2px 8px;margin-bottom:6px}
+.pl-head b{font-weight:900;font-size:18px;color:var(--navy);letter-spacing:.08em}
+.pl-head small{color:var(--muted);font-size:12.5px}
+.pl-rows{list-style:none;margin:0;padding:0}
+.pl-rows li{display:grid;grid-template-columns:26px minmax(0,1fr) auto;align-items:center;gap:2px 8px;padding:7px 6px;border-bottom:1px dashed var(--line);font-variant-numeric:tabular-nums}
+.pl-rows .nm{font-weight:700;font-size:14.5px;line-height:1.35;color:var(--ink)}
+.pl-rows .nm small{display:block;font-weight:500;font-size:11px;color:var(--muted)}
+.pl-rows .v{font-weight:700;font-size:14.5px;text-align:right;white-space:nowrap}
+.pl-rows em{grid-column:2/4;font-style:normal;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.pl-rows .bar{grid-column:2/4;height:7px;border-radius:999px;background:color-mix(in srgb,var(--sc) 16%,transparent);overflow:hidden}
+.pl-rows .bar i{display:block;height:100%;border-radius:999px;background:var(--sc)}
+.pl-rows .cost .nm,.pl-rows .cost .v{font-weight:500;font-size:13.5px;color:var(--muted)}
+.pl-rows .cost.plus .v{color:var(--c-health)}
+.pl-rows .sales{--sc:var(--navy)}
+.pl-rows .pf{border-radius:10px;border-bottom:0;margin:4px 0;background:color-mix(in srgb,var(--sc) 13%,var(--sheet));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--sc) 45%,transparent)}
+.pl-rows .pf .nm,.pl-rows .pf .v{font-size:16px;color:var(--navy)}
+.pl .no{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:13px;font-weight:900;color:#fff;background:var(--sc)}
+.pl .no:empty{background:transparent}
+.s1{--sc:#f28fb0} .s2{--sc:#f2a25a} .s3{--sc:#d9b03c} .s4{--sc:#6fbf8e} .s5{--sc:#6f9fe6} .pl-eps{--sc:#a98be6}
+.pl-eps{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;align-items:start;margin-top:10px;padding:10px 8px;border-radius:12px;background:color-mix(in srgb,var(--sc) 14%,var(--sheet));box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--sc) 45%,transparent)}
+.pl-eps b{display:block;font-weight:900;font-size:15.5px;color:var(--navy)}
+.pl-eps span{display:block;font-family:var(--hand);font-weight:600;font-size:16px}
+.pl-eps strong{font-size:20px;background:linear-gradient(transparent 55%,var(--marker) 55%);padding-inline:3px}
+.pl-eps small{display:block;font-size:12px;color:var(--muted)}
+.pl-note{margin:10px 2px 0;font-size:12.5px;line-height:1.7;color:var(--muted)}
+
 .calc .t{font-weight:700;font-size:14px;color:var(--muted);margin:0 0 4px}
 .calc ol{list-style:none;margin:0;padding:0;font-family:var(--hand);font-size:17px;line-height:1.8;font-variant-numeric:tabular-nums}
 .calc ol li{overflow-wrap:anywhere}
@@ -424,13 +452,19 @@ dialog::backdrop{background:rgba(30,24,60,.45);backdrop-filter:blur(3px);-webkit
    tip:'株価が下がると、配当が同じでも利回りは高く見えるよ。業績が悪くなって、配当が減ったり、なくなったりすることもあるの。利回りの高さだけで選ばないでね。',
    src:[['野村證券 証券用語解説集「配当利回り」','https://www.nomura.co.jp/terms/japan/ha/haitourimawari.html']]},
 
-  {id:'profit',cat:'profit',term:'売上と利益',yomi:'うりあげとりえき／利益の階段',ep:'第3話',
-   one:'売上から、いろんな費用を引いて残るのが利益。',
-   f:['売上 − 仕入れなど（原価）＝ 売上総利益（粗利）','売上総利益 − 家賃・お給料など ＝ 営業利益（本業のもうけ）','営業利益 ± 本業以外のお金 ＝ 経常利益','経常利益 ± 特別なお金 − 税金など ＝ 純利益（最後に残るもうけ）'],
+  {id:'profit',cat:'profit',term:'売上と利益',yomi:'うりあげとりえき／利益の階段',ep:'第3話',pl:true,
+   one:'売上から費用を順番に引いていくと、5つの利益が出てくる。',
+   f:['売上 → 売上総利益 → 営業利益 → 経常利益 → 税引前当期純利益 → 当期純利益 → 1株利益',
+      '売上高 − 売上原価 ＝ ①売上総利益（粗利）',
+      '①売上総利益 − 販売費及び一般管理費 ＝ ②営業利益（本業のもうけ）',
+      '②営業利益 ＋ 営業外収益 − 営業外費用 ＝ ③経常利益（ふだんの実力）',
+      '③経常利益 ＋ 特別利益 − 特別損失 ＝ ④税引前当期純利益（税金の前）',
+      '④税引前当期純利益 − 法人税等 ＝ ⑤当期純利益（税引後・最後に残るもうけ）',
+      '⑤当期純利益 ÷ 株の数 ＝ ⑥1株あたり当期純利益（EPS）'],
    calc:{t:'星野雑貨の数字',l:['売上 100億円','営業利益 5億円','純利益 3億1,500万円'],a:'100億円売って、最後に残るのは3億1,500万円'},
-   talk:[['luna','100億円も売れてるのに、利益は5億円！？'],['shiori','売上は、お店に入ってきたお金の合計。そこから仕入れや家賃やお給料を引いて、残ったのが利益だよ。'],['luna','利益にも、階段があるんだね……！']],
-   tip:'ニュースや決算で「利益」と出てきたら、どの段の利益か確かめてね。PERやEPSで使うのは、いちばん下の「純利益」だよ。',
-   src:[['松井証券 マネーサテライト「経常利益とは」','https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-ordinary.html']]},
+   talk:[['luna','100億円も売れてるのに、最後に残るのは3億1,500万円！？'],['shiori','損益計算書は、上から下へ費用を順番に引いていく「利益の階段」なの。段ごとに、利益の名前がちがうよ。'],['serina','どの段で減ったかを見ると、会社のくせが分かるわ。本業のお金がかかっているのか、借金の利息が重いのか、その年だけの損なのか。'],['luna','階段のどこでつまずいたか、見るんだね！']],
+   tip:'ニュースや決算で「利益」と出てきたら、どの段の利益か確かめてね。本業の力を見るなら②営業利益、PERやEPSで使うのはいちばん下の⑤当期純利益だよ。',
+   src:[['松井証券 マネーサテライト「経常利益とは」','https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-ordinary.html'],['日本取引所グループ 用語集「1株当たり当期純利益」','https://www.jpx.co.jp/glossary/0-9/558.html']]},
 
   {id:'gross-margin',cat:'profit',term:'粗利率',yomi:'あらりりつ／売上総利益率',ep:'第8話・第23話',
    one:'売上のうち、何％が売上総利益（粗利）か。',
@@ -547,11 +581,42 @@ dialog::backdrop{background:rgba(30,24,60,.45);backdrop-filter:blur(3px);-webkit
   /* ミライを出さない間は、ミライのセリフをルナが言う。ミライの名前が入るセリフは言いかえ、ミライだけのじょうだんは外す */
   function talkFor(n){if(SHOW_MIRAI)return n.talk;var out=[];
     n.talk.forEach(function(t){if(t[2]==='drop')return;if(t[0]==='mirai'){out.push(['luna',t[1]]);return}out.push(t[2]?[t[0],t[2]]:t)});return out}
+
+  /* ── 売上と利益のノートだけに出す「損益計算書のどこを見る？」。星野雑貨の1年分（売上100億円・純利益3億1,500万円・1,000万株はほかのノートと同じ数字） ── */
+  var PL_ROWS=[
+    ['sales','','売上高','うりあげだか','100億円',100,'お客さんに売れた金額の合計'],
+    ['cost','','売上原価','うりあげげんか','−50億円',0,'商品の仕入れや、つくるのにかかったお金'],
+    ['pf s1','1','売上総利益','あらり（粗利）','50億円',50,'商品そのもののもうけ'],
+    ['cost','','販売費及び一般管理費','はんかんひ','−45億円',0,'お給料・家賃・広告など、お店を動かすお金'],
+    ['pf s2','2','営業利益','えいぎょうりえき','5億円',5,'本業のもうけ。いちばん大事な段！'],
+    ['cost plus','','営業外収益','えいぎょうがいしゅうえき','＋2,000万円',0,'預金の利息や、持っている株の配当など'],
+    ['cost','','営業外費用','えいぎょうがいひよう','−4,000万円',0,'借りたお金の利息など'],
+    ['pf s3','3','経常利益','けいじょうりえき','4億8,000万円',4.8,'本業＋お金のやりくり＝ふだんの実力'],
+    ['cost plus','','特別利益','とくべつりえき','＋1,000万円',0,'土地を売ったなど、その年だけのもうけ'],
+    ['cost','','特別損失','とくべつそんしつ','−4,000万円',0,'お店を閉めたなど、その年だけの損'],
+    ['pf s4','4','税引前当期純利益','ぜいびきまえとうきじゅんりえき','4億5,000万円',4.5,'税金をはらう前のもうけ'],
+    ['cost','','法人税等','ほうじんぜいとう','−1億3,500万円',0,'会社がはらう税金'],
+    ['pf s5','5','当期純利益','とうきじゅんりえき（税引後）','3億1,500万円',3.15,'税金をはらったあと、最後に残るもうけ']
+  ];
+  function plHtml(){
+    var h='<section class="pl"><p class="label">損益計算書のどこを見る？ <span class="en">P/L</span></p><div class="pl-paper">'+
+      '<div class="pl-head"><b>損益計算書</b><small>星野雑貨・1年分</small></div><ol class="pl-rows">';
+    PL_ROWS.forEach(function(r){
+      h+='<li class="'+r[0]+'"><span class="no">'+r[1]+'</span>'+
+        '<span class="nm">'+esc(r[2])+'<small>'+esc(r[3])+'</small></span><span class="v">'+esc(r[4])+'</span>'+
+        (r[5]?'<span class="bar" aria-hidden="true"><i style="width:'+Math.max(2,r[5])+'%"></i></span>':'')+
+        '<em>'+esc(r[6])+'</em></li>'});
+    h+='</ol><div class="pl-eps"><span class="no">6</span><div><b>1株あたり当期純利益（EPS）</b>'+
+      '<span>3億1,500万円 ÷ 1,000万株 ＝ <strong>31.5円</strong></span><small>1株ぶんの「もうけの取り分」。PERの計算に使うよ</small></div></div></div>'+
+      '<p class="pl-note">本物の決算短信では、金額は「百万円」の単位で書かれていることが多いよ（100億円なら「10,000」）。'+
+      'グループの会社（連結）だと、④は「税金等調整前当期純利益」という名前。⑤のあとに「親会社株主に帰属する当期純利益」があって、EPSはそちらで計算するよ。</p></section>';
+    return h}
   function render(i){var n=N[i],c=catOf[n.cat],prev=N[(i-1+N.length)%N.length],next=N[(i+1)%N.length];
     sheet.className='sheet '+n.cat;
     var h='<header class="d-head"><div><span class="d-cat"><span class="dot"></span>'+c.label+'</span><h2 id="d-title">'+esc(n.term)+'</h2><span class="yomi">'+esc(n.yomi)+'</span></div>'+
       '<span class="stamp'+(n.soon?' soon':'')+'">'+esc(epLabel(n))+'</span></header>';
     h+='<section><p class="label">しき <span class="en">Formula</span></p><div class="formula">'+n.f.map(function(x){return '<div>'+esc(x)+'</div>'}).join('')+'</div></section>';
+    if(n.pl)h+=plHtml();else
     h+='<section class="calc"><p class="t">'+esc(n.calc.t)+'</p><ol>'+n.calc.l.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol><span class="ans">'+esc(n.calc.a)+'</span>'+(n.calc.n?'<span class="note">'+esc(n.calc.n)+'</span>':'')+'</section>';
     h+='<section><p class="label">みんなで説明 <span class="en">Let\'s talk</span></p><div class="talk">'+talkFor(n).map(line).join('')+'</div></section>';
     h+='<div class="fusen"><span class="who">しおりのふせん</span>'+esc(n.tip)+'</div>';

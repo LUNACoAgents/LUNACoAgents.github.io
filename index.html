@@ -392,6 +392,19 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
 .wotd p{margin:0;font-size:15px;line-height:1.7}
 .wotd .go{grid-column:2;font-family:var(--hand);font-size:14px;opacity:.75}
 
+/* 利益の階段への入口 */
+.plcall{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px 18px;margin-bottom:26px;padding:18px 20px;text-decoration:none;color:var(--ink);border-radius:16px;transition:transform .2s}
+.plcall:hover{transform:translateY(-3px)}
+.plcall .steps{display:flex;align-items:flex-end;gap:4px;height:64px}
+.plcall .steps i{display:grid;place-items:end center;width:18px;border-radius:6px 6px 3px 3px;color:#fff;font-style:normal;font-weight:900;font-size:11px;padding-bottom:3px}
+.plcall .s1{height:100%;background:#f28fb0}.plcall .s2{height:84%;background:#f2a25a}.plcall .s3{height:68%;background:#d9b03c}
+.plcall .s4{height:52%;background:#6fbf8e}.plcall .s5{height:38%;background:#6f9fe6}.plcall .s6{height:26%;background:#a98be6}
+.plcall .en{display:block;color:var(--gold);font-size:16px;line-height:1.2}
+.plcall b{display:block;font-size:18px;font-weight:900;color:var(--navy);line-height:1.45}
+.plcall small{display:block;font-size:13px;line-height:1.7;color:var(--muted);margin-top:2px}
+.plcall .go{font-family:var(--hand);font-size:15px;color:var(--pink);white-space:nowrap}
+@media (max-width:600px){.plcall{grid-template-columns:auto minmax(0,1fr);padding:16px}.plcall .go{grid-column:2}.plcall .steps{height:56px}.plcall .steps i{width:14px}}
+
 /* 新しい部員（準備中） */
 .soon{margin-top:24px;display:flex;align-items:center;gap:18px;padding:16px 20px;border:2px dashed var(--line);border-radius:18px;color:var(--muted);font-size:14px;line-height:1.7;
   background:color-mix(in srgb,var(--sheet) 70%,transparent)}
@@ -671,6 +684,12 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
       <p id="wotdOne">会社の値段が、1年の純利益の何倍か。</p>
       <span class="go">ノートで計算のしかたを見る →</span>
     </a>
+    <a class="plcall paper" href="note.html#profit">
+      <span class="steps" aria-hidden="true"><i class="s1">1</i><i class="s2">2</i><i class="s3">3</i><i class="s4">4</i><i class="s5">5</i><i class="s6">6</i></span>
+      <span class="txt"><span class="en">Profit stairs</span><b>利益の階段 ― 損益計算書のどこを見る？</b>
+        <small>売上総利益 → 営業利益 → 経常利益 → 税引前当期純利益 → 当期純利益 → 1株利益。星野雑貨の損益計算書で、どの段の利益かが分かるよ</small></span>
+      <span class="go">ひらく →</span>
+    </a>
     <div class="notemore paper">
       <span class="tape b"></span>
       <div class="nm-head">
@@ -811,7 +830,7 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
     ['per','PER','ピーイーアール／株価収益率','会社の値段が、1年の純利益の何倍か。'],['forward-per','予想PER','よそうピーイーアール','来年の予想の利益で見たPER。'],
     ['pbr','PBR','ピービーアール／株価純資産倍率','会社の値段が、純資産の何倍か。'],['mix','ミックス係数','ミックスけいすう／グレアムの目安','PERとPBRをかけて、ふたつの安さをいっしょに見る。'],
     ['peg','PEGレシオ','ペグレシオ','PERを、利益が伸びる速さで割る。'],['dividend-yield','配当利回り','はいとうりまわり','株価に対して、1年で何％の配当があるか。'],
-    ['profit','売上と利益','うりあげとりえき／利益の階段','売上から、いろんな費用を引いて残るのが利益。'],['gross-margin','粗利率','あらりりつ／売上総利益率','売上のうち、何％が売上総利益（粗利）か。'],
+    ['profit','売上と利益','うりあげとりえき／利益の階段','売上から費用を順番に引いていくと、5つの利益が出てくる。'],['gross-margin','粗利率','あらりりつ／売上総利益率','売上のうち、何％が売上総利益（粗利）か。'],
     ['revenue-up-profit-down','増収減益','ぞうしゅうげんえき','売上は増えたのに、利益は減ったこと。'],['roe','ROE','アールオーイー／自己資本利益率','株主のお金を使って、1年でどれだけもうけたか。'],
     ['net-assets','純資産','じゅんしさん／BPS','持ち物から借金を引いた、株主の分。'],['equity-ratio','自己資本比率','じこしほんひりつ','持ち物のうち、返さなくていいお金でまかなっている割合。'],
     ['cash-flow','キャッシュフロー','CF／お金の流れ','会社のお金が、どこから入ってどこへ出たか。'],['hidden-assets','かくれ資産','かくれしさん／含み益','帳簿の値段より、今の値段が高い持ち物。'],
