@@ -22,7 +22,7 @@
 | 日経VI | `nvi` | 上の道具。だめなら https://stock-marketdata.com/vi.html | |
 | 日経平均 予想PER・EPS・PBR・配当利回り | `nk_per_f` `nk_eps` `nk_pbr` `nk_dy` | 上の道具。だめなら https://stock-marketdata.com/kabukashihyo.html | ページの場合は「加重平均」の列を使う（「指数」の列ではない）。`nk_bps` は `nk ÷ nk_pbr` を小数2桁で |
 | 裁定買い残（株数） | `arb_buy` | https://stock-marketdata.com/saiteitorihiki.html | **万株**（8億1,863万株 → 81863）。数日遅れで出るので、出ている最新日の行に入れる |
-| プライム・グロース全銘柄のPER・PBR | `pr_*` `gm_*` | まだ取れる場所がない | 入れない |
+| 日経平均 実績PER・プライム/グロース全銘柄のPER・PBR | `nk_per_t` `pr_per_t` `pr_per_f` `pr_pbr` `gm_per_t` `gm_per_f` `gm_pbr` | 日経電子版「国内の株式指標・東証」 https://www.nikkei.com/markets/kabu/japanidx/ | WebFetch は断られる（robots）。WebSearch（allowed_domains: nikkei.com）の抜粋か、ブラウザで読む。「株価収益率（連結決算ベース）」の**前期基準**が実績PER、予想が予想PER。見出しの「（24日）」が今日の日付と合っていること。抜粋が前の日のままなら入れずに、ゆうやに聞く |
 
 - 今日のPERがまだ出ていないとき：`nk_per_f = nk ÷ 前日のnk_eps`、`nk_pbr = nk ÷ 前日のnk_bps` で推計し、`val_est: 1` を付ける。翌日以降に正式値が出たら正式値に入れ替えて `val_est: 0`
 - 騰落レシオ・空売り比率・日経VIが18:40にまだ出ていなければ、その項目は渡さない（次回に埋める）
