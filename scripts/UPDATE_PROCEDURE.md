@@ -16,7 +16,7 @@
 
 | 項目 | キー | 出どころ | 単位・注意 |
 |---|---|---|---|
-| 日経平均・TOPIX・グロース250 終値 | `nk` `tp` `gr` | https://finance.matsui.co.jp/stock/index | 更新日時が今日の15:30（終値）になっていること。場中の値は使わない（`nk` は上の道具でも取れる） |
+| 日経平均・TOPIX・グロース250 終値 | `nk` `tp` `gr` | https://finance.matsui.co.jp/stock/index（読めないときは株探スマホ版 https://s.kabutan.jp/stocks/0010/ TOPIX・https://s.kabutan.jp/stocks/0012/ グロース250。PC版 kabutan.jp は読めない） | 更新日時が今日の15:30（終値）になっていること。場中の値（例：09:50）は使わない。株探は古い写しが返ることがあるので、時刻が15:30でなければ入れずにゆうやに聞く（`nk` は上の道具でも取れる） |
 | 騰落レシオ（25日・プライム） | `adr25` | 上の道具。だめなら https://stock-marketdata.com/advance-decline-tse-prime-market | |
 | 空売り比率（東証全体） | `short` | https://stock-marketdata.com/karauri.html | % |
 | 日経VI | `nvi` | 上の道具。だめなら https://stock-marketdata.com/vi.html | |
