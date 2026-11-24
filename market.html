@@ -51,7 +51,8 @@ html,body{margin:0;background:var(--color-bg);color:var(--color-fg)}
 @media (max-width:520px){.cp-btn{flex:1;text-align:center}.cp-say p{max-width:84%}}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="./market-data.js"></script>
+<!-- 毎日更新するデータなので、ブラウザに古い写しが残らないよう開くたびに取り直す -->
+<script>document.write('<script src="./market-data.js?t=' + Date.now() + '"><\/script>');</script>
 <script>
 /* ===== dash の代わり：calc=計算した表、data=表を取る、draw=data-draw="名前" の要素を描く ===== */
 (function(){
@@ -634,7 +635,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
       <div class="mb-grid">
         <article class="mb-card">
           <h2>PER・PBR</h2>
-          <p class="mb-note">実績は前期基準、予想は会社予想ベース。グロースは市場全銘柄の単純平均</p>
+          <p class="mb-note">日経電子版の値（加重平均）。実績は前期基準、予想は会社予想ベース</p>
           <div class="mb-tablewrap">
             <table class="mb-table">
               <thead><tr><th scope="col">指数</th><th scope="col">実績PER</th><th scope="col">予想PER</th><th scope="col">PBR</th></tr></thead>

@@ -802,7 +802,7 @@ img{-webkit-user-drag:none;user-select:none;-webkit-touch-callout:none}
     var t=[];if(r.adr25!=null)t.push('騰落レシオ '+r.adr25.toFixed(1));if(r.nvi!=null)t.push('日経VI '+r.nvi.toFixed(1));if(r.nk_per_f!=null)t.push('予想PER '+r.nk_per_f.toFixed(1)+'倍');
     $('mkShiori').textContent=(t.length?t.join('、')+'。':'')+'サインは「重なり」で見るものだよ。';
   }
-  var s=document.createElement('script');s.src='market-data.js';s.onload=show;document.body.appendChild(s);
+  var s=document.createElement('script');s.src='market-data.js?t='+Date.now();s.onload=show;document.body.appendChild(s);
 })();
 
 /* ── 今日の一語：まなびノートの19語から、日本の日付で1日1語（言葉を足したら、ここにも足す） ── */
