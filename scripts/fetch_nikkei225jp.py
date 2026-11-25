@@ -26,7 +26,7 @@ def load():
     # ページが読み込んでいるデータファイルの場所（版番号つき）をページから取り、curl で取る
     # （Python 標準の取得はこのサイトに断られるため curl を使う）
     get = lambda u: subprocess.run(['curl', '-sfL', '-m', '30', u], capture_output=True, check=True).stdout.decode('utf-8')
-    m = re.search(r'src="(/_data/_nfsDATA/data_DAY/daily2\.json\?[0-9]+)"', get(PAGE))
+    m = re.search(r'src="(/_data/_nfsDATA/data_DAY/daily2\.json\?[0-9A-Za-z=_-]+)"', get(PAGE))
     if not m:
         sys.exit('エラー: ページの中にデータファイルの場所が見つかりません（サイトの作りが変わったかも）')
     s = get('https://nikkei225jp.com' + m.group(1))
