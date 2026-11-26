@@ -69,7 +69,7 @@ python3 scripts/update_board.py matsui '{"date":"YYYY-MM-DD","buy_pl":...,"sell_
 1. `python3 scripts/update_board.py check` で最新行を見直す
 2. `git diff --stat` で `market-data.js`（と必要なら `market.html`）だけが変わっていることを確かめる
 3. コミットメッセージ：`マーケット指標を更新（日本M/D・米国M/D）`。main に push する
-4. 1〜2分後に https://lunacoagents.github.io/market-data.js に今日の日付が出ていることを確かめる
+4. 1〜2分後に https://investclub.lunaaiagents.com/market-data.js に今日の日付が出ていることを確かめる
 
 ## 5. 報告
 
